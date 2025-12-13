@@ -7,7 +7,9 @@
 		<title>Floor Supervisor</title>
 	</head>
 	<body>
-		<h1>Under construction for Floor Supervisor (the Chicago DJ, Producer, and Party Promoter)</h1>
+		<main>
+			<h1>Under construction for Floor Supervisor (the Chicago DJ, Producer, and Party Promoter)</h1>
+		</main>
 	</body>
 </html>
 
@@ -22,18 +24,24 @@
 		font-family: sans-serif;
 		display: flex;
 		justify-content: center;
-		align-items: center;
-		height: 100vh;
-		padding: 2rem;
 		text-align: center;
 		line-height: 1.5;
-		width: 100vw;
+		height: 100dvh;
 	}
+
+	main {
+		max-width: 600px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
+
 	h1 {
 		font-size: 2rem;
 		font-weight: 600;
-		padding: 0 1rem;
+		padding: 5rem 2rem;
 	}
+
 	@media (max-width: 600px) {
 		h1 {
 			font-size: 1rem;

@@ -12,25 +12,27 @@
 </html>
 
 <style>
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
 	body {
 		font-family: sans-serif;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		min-height: 100vh;
-		margin: 0;
+		height: 100vh;
 		padding: 2rem;
 		text-align: center;
 		line-height: 1.5;
-		box-sizing: border-box;
-		width: 100%;
+		width: 100vw;
 	}
 	h1 {
 		font-size: 2rem;
 		font-weight: 600;
-		max-width: 100%;
 		padding: 0 1rem;
-		box-sizing: border-box;
 	}
 	@media (max-width: 600px) {
 		h1 {

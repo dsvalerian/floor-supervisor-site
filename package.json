@@ -1,14 +1,20 @@
 {
-  "name": "floor-supervisor-site",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^5.16.5"
-  }
+	"name": "floor-supervisor-site",
+	"version": "1.0.0",
+	"private": true,
+	"workspaces": [
+		"web",
+		"sanity-studio"
+	],
+	"scripts": {
+		"dev": "concurrently \"npm run dev:web\" \"npm run dev:studio\"",
+		"dev:web": "npm run dev --workspace=web",
+		"dev:studio": "npm run dev --workspace=sanity-studio",
+		"build": "concurrently \"npm run build:web \"npm run build:studio\"",
+		"build:web": "npm run build --workspace=web",
+		"build:studio": "npm run build --workspace=sanity-studio"
+	},
+	"devDependencies": {
+		"concurrently": "^9.2.1"
+	}
 }

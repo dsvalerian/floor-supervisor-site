@@ -1,0 +1,14 @@
+---
+import type { SingleTrackPost } from "../types/sanity";
+
+interface Props {
+	config: SingleTrackPost;
+}
+
+const { config } = Astro.props;
+---
+
+<div>
+	<h3>{config.trackTitle}</h3>
+	<a href={config.trackUrl}>Listen</a>
+</div>

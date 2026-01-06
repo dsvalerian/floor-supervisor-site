@@ -1,5 +1,6 @@
 ---
-import '../styles/global.css'
+import Feed from "../components/Feed.astro";
+import "../styles/global.css";
 ---
 
 <html lang="en">
@@ -9,11 +10,20 @@ import '../styles/global.css'
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Floor Supervisor</title>
-		<meta name="description" content="Professional portfolio website for Chicago DJ Floor Supervisor." />
+		<meta
+			name="description"
+			content="Professional portfolio website for Chicago DJ Floor Supervisor."
+		/>
 	</head>
 	<body>
 		<main>
-			hello world
+			<Feed />
 		</main>
 	</body>
 </html>
+
+<style>
+	main {
+		padding: 1rem;
+	}
+</style>

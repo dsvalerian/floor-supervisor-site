@@ -1,0 +1,18 @@
+---
+import { getAllPosts } from "../lib/sanity-queries";
+import PostCard from "./PostCard.astro";
+
+const posts = await getAllPosts();
+---
+
+<section class="feed-section">
+	{posts.map((post) => <PostCard config={post} />)}
+</section>
+
+<style>
+	.feed-section {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+</style>

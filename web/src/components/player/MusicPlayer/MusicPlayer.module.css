@@ -1,0 +1,16 @@
+.music-player-container {
+	background: var(--color-background-light);
+}
+
+.music-player {
+	margin: 0 auto;
+	max-width: 1024px;
+	padding: 0.5rem 1rem;
+}
+
+.music-controls {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	align-items: center;
+}

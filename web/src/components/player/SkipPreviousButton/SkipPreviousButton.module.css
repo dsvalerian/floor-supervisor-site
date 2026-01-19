@@ -1,0 +1,15 @@
+.skip-prev-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	transition-duration: 0.2s;
+}
+
+.skip-prev-button:hover {
+	color: var(--color-accent);
+}
+
+.icon {
+	font-size: 36px;
+	user-select: none;
+}

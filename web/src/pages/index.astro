@@ -1,5 +1,6 @@
 ---
 import Feed from "../components/Feed.astro";
+import MusicPlayer from "../components/MusicPlayer.astro";
 import "../styles/global.css";
 ---
 
@@ -7,6 +8,10 @@ import "../styles/global.css";
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+			rel="stylesheet"
+		/>
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Floor Supervisor</title>
@@ -19,11 +24,23 @@ import "../styles/global.css";
 		<main>
 			<Feed />
 		</main>
+		<footer>
+			<MusicPlayer
+				songUrl="https://pub-958ea3bcb00b47cc8a5ea12be54050e2.r2.dev/Ross%20Couch%20-%20Rhythm%20Rules%20The%20World%20(Original%20Mix).mp3"
+			/>
+		</footer>
 	</body>
 </html>
 
 <style>
 	main {
 		padding: 1rem;
+	}
+
+	footer {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
 	}
 </style>

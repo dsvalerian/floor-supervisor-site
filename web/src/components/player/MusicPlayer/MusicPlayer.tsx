@@ -70,7 +70,7 @@ const MusicPlayer = ({ songUrl }: MusicPlayerProps) => {
 				<MusicProgress
 					duration={duration}
 					currentTime={currentTime}
-					onSeek={onSeek}
+					onSeekEnd={onSeek}
 				/>
 			</div>
 		</section>

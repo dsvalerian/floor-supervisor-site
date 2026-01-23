@@ -5,11 +5,13 @@
 	transition-duration: 0.2s;
 }
 
-.skip-prev-button:hover {
-	color: var(--color-accent);
-}
-
 .icon {
 	font-size: 36px;
 	user-select: none;
+	color: var(--color-controls-light-muted);
+	transition: var(--transition-normal);
+}
+
+.icon:hover {
+	color: var(--color-controls-light);
 }

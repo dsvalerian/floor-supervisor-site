@@ -14,3 +14,24 @@
 	justify-self: start;
 	font-size: var(--font-size-xs);
 }
+
+.text {
+	color: var(--color-controls-light-muted);
+}
+
+.progress-bar {
+	appearance: none;
+	width: 100%;
+	cursor: pointer;
+	height: 4px;
+	border-radius: 4px;
+	background: var(--color-controls-light-extra-muted);
+}
+
+.progress-bar::-webkit-slider-thumb {
+	appearance: none;
+	background: white;
+	height: 16px;
+	width: 16px;
+	border-radius: 50%;
+}

@@ -1,3 +1,3 @@
-import {singleTrackPost} from "./posts/singleTrackPost";
+import {musicPost} from "./posts/musicPost";
 
-export const schemaTypes = [singleTrackPost];
+export const schemaTypes = [musicPost];

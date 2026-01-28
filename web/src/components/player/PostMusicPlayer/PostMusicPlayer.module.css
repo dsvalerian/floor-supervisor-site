@@ -1,0 +1,57 @@
+.post-music-player {
+	display: flex;
+	gap: 1rem;
+	justify-content: space-between;
+	align-items: center;
+	user-select: none;
+	cursor: pointer;
+	padding: 0.25rem 0.75rem;
+
+	width: 100%;
+	background: none;
+	border: none;
+	border-radius: var(--radius-normal);
+	transition: var(--transition-normal);
+}
+
+.selected,
+.post-music-player:hover {
+	background: rgba(0, 0, 0, 20%);
+}
+
+.music-progress {
+	flex-grow: 1;
+}
+
+.left {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+.icon {
+	font-size: 24px;
+}
+
+.track-text {
+	text-align: left;
+}
+
+.track-name {
+	font-size: var(--font-size-sm);
+	text-wrap: nowrap;
+}
+
+.track-artist {
+	font-size: var(--font-size-xs);
+	opacity: 0.8;
+	font-weight: var(--font-weight-semilight);
+	text-wrap: nowrap;
+}
+
+.track-duration {
+	opacity: 0.8;
+	font-weight: var(--font-weight-light);
+	font-size: var(--font-size-sm);
+	text-wrap: nowrap;
+}

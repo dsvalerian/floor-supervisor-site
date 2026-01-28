@@ -1,5 +1,5 @@
 ---
-import { getAllPosts } from "../lib/sanity-queries";
+import { getAllPosts } from "../lib/sanityQueries";
 import PostCard from "./PostCard.astro";
 
 const posts = await getAllPosts();
@@ -14,7 +14,7 @@ const posts = await getAllPosts();
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		max-width: 1024px;
+		max-width: 860px;
 		margin: 0 auto;
 	}
 </style>

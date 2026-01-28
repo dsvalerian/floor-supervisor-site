@@ -5,7 +5,7 @@ interface PlayPauseButtonProps {
 	onClick: () => void;
 }
 
-const PlayPauseButton = ({ playing, onClick }: PlayPauseButtonProps) => {
+const PlayButton = ({ playing, onClick }: PlayPauseButtonProps) => {
 	return (
 		<button className={styles["play-button"]} onClick={onClick}>
 			{(playing && (
@@ -21,4 +21,4 @@ const PlayPauseButton = ({ playing, onClick }: PlayPauseButtonProps) => {
 	);
 };
 
-export default PlayPauseButton;
+export default PlayButton;

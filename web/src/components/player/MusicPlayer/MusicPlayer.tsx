@@ -1,19 +1,18 @@
+import { useStore } from "@nanostores/react";
 import { useEffect, useRef, useState } from "react";
-import ForwardButton from "../SkipNextButton/SkipNextButton";
+import { activeAudio, isPlaying } from "../../../stores/musicStore";
 import MusicProgress from "../MusicProgress/MusicProgress";
-import PlayPauseButton from "../PlayButton/PlayButton";
+import PlayButton from "../PlayButton/PlayButton";
+import ForwardButton from "../SkipNextButton/SkipNextButton";
 import RewindButton from "../SkipPreviousButton/SkipPreviousButton";
 import styles from "./MusicPlayer.module.css";
 
-interface MusicPlayerProps {
-	songUrl?: string;
-}
-
-const MusicPlayer = ({ songUrl }: MusicPlayerProps) => {
+const MusicPlayer = () => {
 	const audioRef = useRef<HTMLAudioElement>(null);
-	const [isPlaying, setPlaying] = useState<boolean>(false);
 	const [duration, setDuration] = useState<number>(0);
 	const [currentTime, setCurrentTime] = useState<number>(0);
+	const trackInfo = useStore(activeAudio);
+	const isSongPlaying = useStore(isPlaying);
 
 	useEffect(() => {
 		const audio = audioRef.current;
@@ -22,7 +21,7 @@ const MusicPlayer = ({ songUrl }: MusicPlayerProps) => {
 		const onLoadedMetadata = () => setDuration(audio.duration);
 		const onTimeUpdate = () => setCurrentTime(audio.currentTime);
 		const onEnded = () => {
-			setPlaying(false);
+			isPlaying.set(false);
 			setCurrentTime(0);
 			// You can add other logic here like auto-playing next track
 		};
@@ -40,18 +39,23 @@ const MusicPlayer = ({ songUrl }: MusicPlayerProps) => {
 
 	const togglePlay = () => {
 		if (audioRef.current) {
-			const audio = audioRef.current as HTMLAudioElement;
-			if (audio.paused) {
-				audio.play();
-				setPlaying(true);
-				setDuration(audio.duration);
+			if (isSongPlaying) {
+				isPlaying.set(false);
 			} else {
-				audio.pause();
-				setPlaying(false);
-				setDuration(audio.duration);
+				isPlaying.set(true);
 			}
 		}
 	};
+
+	if (audioRef.current) {
+		const audio = audioRef.current as HTMLAudioElement;
+
+		if (isSongPlaying) {
+			audio.play();
+		} else {
+			audio.pause();
+		}
+	}
 
 	const onSeek = (seekTime: number) => {
 		if (audioRef.current) audioRef.current.currentTime = seekTime;
@@ -60,11 +64,15 @@ const MusicPlayer = ({ songUrl }: MusicPlayerProps) => {
 
 	return (
 		<section className={styles["music-player-container"]}>
-			<audio ref={audioRef} src={songUrl}></audio>
+			<audio ref={audioRef} src={trackInfo?.url}></audio>
 			<div className={styles["music-player"]}>
+				<div className={styles["music-info"]}>
+					<p className={styles["music-name"]}>{trackInfo?.name}</p>
+					<p className={styles["music-artist"]}>{trackInfo?.artist}</p>
+				</div>
 				<div className={styles["music-controls"]}>
 					<RewindButton />
-					<PlayPauseButton playing={isPlaying} onClick={togglePlay} />
+					<PlayButton playing={isSongPlaying} onClick={togglePlay} />
 					<ForwardButton />
 				</div>
 				<MusicProgress

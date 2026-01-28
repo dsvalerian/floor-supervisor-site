@@ -1,3 +1,20 @@
+/* google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&family=Stack+Sans+Text:wght@200..700&display=swap");
+
+.stack-sans-headline {
+	font-family: "Stack Sans Headline", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 200 700;
+	font-style: normal;
+}
+
+.stack-sans-text {
+	font-family: "Stack Sans Text", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 200 700;
+	font-style: normal;
+}
+
 /* CSS Reset */
 *,
 *::before,
@@ -30,10 +47,8 @@
 	--color-controls-light-extra-muted: rgba(255, 255, 255, 0.1);
 
 	/* Typography */
-	--font-family-sans:
-		"Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-		sans-serif;
-	--font-family-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+	--font-family-header: "Stack Sans Headline", sans;
+	--font-family-text: "Stack Sans Text", sans;
 
 	--font-size-2xs: 0.625rem; /* 10px */
 	--font-size-xs: 0.75rem; /* 12px */
@@ -83,7 +98,7 @@
 
 /* Base styles */
 html {
-	font-family: var(--font-family-sans);
+	font-family: var(--font-family-text);
 	font-size: 1rem;
 	line-height: var(--line-height-normal);
 	color: var(--color-text);
@@ -103,6 +118,7 @@ h3,
 h4,
 h5,
 h6 {
+	font-family: var(--font-family-header);
 	font-weight: var(--font-weight-semibold);
 	line-height: var(--line-height-tight);
 }

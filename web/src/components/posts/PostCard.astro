@@ -1,29 +1,26 @@
 ---
-import type { Post } from "../types/sanityTypes";
-import MusicPost from "./MusicPost.astro";
+import type { Post } from "../../types/sanityTypes";
 
 interface Props {
 	config: Post;
 }
 
-const { config: post } = Astro.props;
+const { config } = Astro.props;
 ---
 
 <article class="post-card">
 	<div
-		class="post-title-container"
-		style=`justify-content: ${post.postTitleAlignment === "right" && "end" || "start"}`
+		class="post-label-container"
+		style=`justify-content: ${config.postTitleAlignment === "right" && "end" || "start"}`
 	>
-		<h2 class="post-title">{post.postTitle}</h2>
+		<h2 class="post-label">{config.postTitle}</h2>
 	</div>
 	<div class="post-content">
-		{post._type === "musicPost" && <MusicPost config={post} />}
+		<slot />
 	</div>
-
-	<!-- More post types here -->
 </article>
 
-<style define:vars={{ background: post.background }}>
+<style define:vars={{ background: config.background }}>
 	.post-card {
 		box-shadow: var(--shadow-md);
 		background: var(--background);
@@ -35,11 +32,11 @@ const { config: post } = Astro.props;
 		padding: 1rem;
 	}
 
-	.post-title-container {
+	.post-label-container {
 		display: flex;
 	}
 
-	.post-title {
+	.post-label {
 		background: red;
 		color: white;
 		padding: 0.25rem 0.75rem;

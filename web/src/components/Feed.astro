@@ -1,12 +1,23 @@
 ---
 import { getAllPosts } from "../lib/sanityQueries";
-import PostCard from "./PostCard.astro";
+import EventPost from "./posts/EventPost.astro";
+import MusicPost from "./posts/MusicPost.astro";
+import PostCard from "./posts/PostCard.astro";
 
 const posts = await getAllPosts();
 ---
 
 <section class="feed-section">
-	{posts.map((post) => <PostCard config={post} />)}
+	{
+		posts.map((post) => {
+			switch (post._type) {
+				case "musicPost":
+					return <MusicPost config={post} />;
+				case "eventPost":
+					return <EventPost config={post} />;
+			}
+		})
+	}
 </section>
 
 <style>

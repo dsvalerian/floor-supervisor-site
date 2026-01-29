@@ -1,7 +1,8 @@
 ---
-import type { MusicPost } from "../types/sanityTypes";
-import PostMusicPlayer from "./player/PostMusicPlayer/PostMusicPlayer";
 import { Image } from "astro:assets";
+import PostMusicPlayer from "../player/PostMusicPlayer/PostMusicPlayer";
+import PostCard from "./PostCard.astro";
+import type {MusicPost} from "../../types/sanityTypes";
 
 interface Props {
 	config: MusicPost;
@@ -9,42 +10,44 @@ interface Props {
 
 const { config } = Astro.props;
 ---
-
-<div class="music-post">
-	<div class="release-info">
-		<div class="release-cover-art">
-			{config.releaseCoverArt && <Image
-				alt=`${config.releaseName} cover art`
-				src={config.releaseCoverArt}
-				inferSize
-			/>}
+<PostCard config={config}>
+	<div class="music-post-content">
+		<div class="release-info">
+			<div class="release-cover-art">
+				{config.releaseCoverArt && <Image
+					alt=`${config.releaseName} cover art`
+					src={config.releaseCoverArt}
+					inferSize
+				/>}
+			</div>
+			<div class="release-info-text">
+				<p class="release-name">{config.releaseName}</p>
+				<p class="release-artist">{config.releaseArtist}</p>
+				<p class="release-description">{config.releaseDescription}</p>
+			</div>
 		</div>
-		<div class="release-info-text">
-			<p class="release-name">{config.releaseName}</p>
-			<p class="release-artist">{config.releaseArtist}</p>
-			<p class="release-description">{config.releaseDescription}</p>
-		</div>
+		<ul class="track-list">
+			{
+				config.trackInfos.map((trackInfo) => (
+					<li>
+						<PostMusicPlayer
+							client:load
+							track={{
+								url: trackInfo.trackFile,
+								name: trackInfo.trackName,
+								artist: trackInfo.trackArtist,
+							}}
+						/>
+					</li>
+				))
+			}
+		</ul>
 	</div>
-	<ul class="track-list">
-		{
-			config.trackInfos.map((trackInfo) => (
-				<li>
-					<PostMusicPlayer
-						client:load
-						track={{
-							url: trackInfo.trackFile,
-							name: trackInfo.trackName,
-							artist: trackInfo.trackArtist,
-						}}
-					/>
-				</li>
-			))
-		}
-	</ul>
-</div>
+	</PostCard>
+
 
 <style>
-	.music-post {
+	.music-post-content {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;

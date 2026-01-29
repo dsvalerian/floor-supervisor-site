@@ -1,0 +1,19 @@
+---
+import type { EventPost } from "../../types/sanityTypes";
+import PostCard from "./PostCard.astro";
+
+interface Props {
+	config: EventPost;
+}
+
+const { config } = Astro.props;
+---
+<PostCard config={config}>
+	<div class="event-post-content">
+		{config.eventInfos.map(event => <p>{event.eventName}</p>)}
+	</div>
+</PostCard>
+
+<style>
+
+</style>

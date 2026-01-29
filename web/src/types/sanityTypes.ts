@@ -26,4 +26,11 @@ export interface MusicPost extends BasePost {
 	}[];
 }
 
-export type Post = MusicPost;
+export interface EventPost extends BasePost {
+	_type: "eventPost";
+	eventInfos: {
+		eventName: string;
+	}[];
+}
+
+export type Post = MusicPost | EventPost;

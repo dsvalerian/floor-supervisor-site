@@ -1,4 +1,5 @@
 ---
+import { formatIsoDate, formatTime } from "../../lib/utils";
 import type { EventPost } from "../../types/sanityTypes";
 import PostCard from "./PostCard.astro";
 
@@ -8,12 +9,88 @@ interface Props {
 
 const { config } = Astro.props;
 ---
+
 <PostCard config={config}>
 	<div class="event-post-content">
-		{config.eventInfos.map(event => <p>{event.eventName}</p>)}
+		<div class="event-post-title-container">
+			{config.title && <p class="event-post-title">{config.title}</p>}
+			{
+				config.description && (
+					<p class="event-post-description">{config.description}</p>
+				)
+			}
+		</div>
+		<div class="events-container">
+			{
+				config.events.map((event) => (
+					<div class="event-details">
+						<p class="event-name">{event.name.toUpperCase()}</p>
+						<p class="event-location">{event.location}</p>
+						{event.dateTime && (
+							<p class="event-date">{formatIsoDate(event.dateTime.date)}</p>
+							<p class="event-time">{formatTime(event.dateTime.startTime)} - {formatTime(event.dateTime.endTime)}</p>
+						) || <p>TBD</p>}
+						{event.description && (
+							<p class="event-description">{event.description}</p>
+						)}
+					</div>
+				))
+			}
+		</div>
 	</div>
 </PostCard>
 
 <style>
+	.event-post-content {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
 
+	.event-post-title {
+		font-family: var(--font-family-header);
+		font-size: var(--font-size-2xl);
+		font-weight: var(--font-weight-semibold);
+	}
+
+	.event-post-description {
+		white-space: pre-wrap;
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-light);
+	}
+
+	.event-post-title-container {
+		display: flex;
+		align-items: center;
+		text-align: center;
+		flex-direction: column;
+	}
+
+	.events-container {
+		display: flex;
+		gap: 1rem;
+		justify-content: space-around;
+	}
+
+	.event-details {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.event-name {
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-bold);
+	}
+
+	.event-date, .event-time {
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-light);
+	}
+
+	.event-location {
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-light);
+	}
 </style>

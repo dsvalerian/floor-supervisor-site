@@ -10,7 +10,8 @@ interface BasePost extends SanityDocument {
 	postTitle?: string;
 	postTitleAlignment: "left" | "right";
 	postCategory: string;
-	background: string;
+	backgroundColor: string;
+	textColor: string;
 }
 
 export interface MusicPost extends BasePost {
@@ -28,8 +29,17 @@ export interface MusicPost extends BasePost {
 
 export interface EventPost extends BasePost {
 	_type: "eventPost";
-	eventInfos: {
-		eventName: string;
+	title?: string;
+	description?: string;
+	events: {
+		name: string;
+		location: string;
+		dateTime: {
+			date: string;
+			startTime: string;
+			endTime: string;
+		};
+		description?: string;
 	}[];
 }
 

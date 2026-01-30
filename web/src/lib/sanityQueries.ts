@@ -3,7 +3,7 @@ import type { Post } from "../types/sanityTypes";
 
 const allPostsQuery = `*[_type in ["musicPost", "eventPost"]] {
 		...,
-		"background": coalesce(backgroundColor.hex, backgroundImage.asset->url, "#000000"),
+		"backgroundColor": coalesce(backgroundColor.hex, backgroundImage.asset->url, "#000000"),
 		
 		// Music post specific fields
 		_type == "musicPost" => {

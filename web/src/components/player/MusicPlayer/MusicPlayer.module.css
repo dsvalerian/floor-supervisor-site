@@ -1,6 +1,9 @@
 .music-player-container {
 	border-top: 1px solid var(--color-controls-light-extra-muted);
 	backdrop-filter: blur(16px);
+	background: hsla(
+		var(--color-background-hsl) / 0.8
+	); /* Semi-transparent overlay matching your background color */
 }
 
 .music-player {

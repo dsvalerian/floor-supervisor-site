@@ -1,7 +1,8 @@
+import {defineType} from "sanity";
 import blockDetails from "../objects/blockDetails";
 import eventDetails from "../objects/eventDetails";
 
-export default {
+export default defineType({
   name: "eventsBlock",
   type: "object",
   title: "Events Block",
@@ -16,4 +17,16 @@ export default {
       of: [eventDetails],
     },
   ],
-};
+  preview: {
+    select: {
+      events: "events",
+    },
+    prepare({events}) {
+      const count = events ? events.length : 0;
+      return {
+        title: `Events (${count})`,
+        subtitle: "Events Block",
+      };
+    },
+  },
+});

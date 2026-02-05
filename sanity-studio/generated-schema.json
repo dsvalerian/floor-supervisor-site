@@ -1,0 +1,2417 @@
+[
+  {
+    "type": "type",
+    "name": "blockDetails",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "textColor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "light"
+              },
+              {
+                "type": "string",
+                "value": "dark"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "background": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "color"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "sanity.fileAsset.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "sanity.fileAsset"
+    }
+  },
+  {
+    "name": "customPost",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "customPost"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "postDetails": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "object",
+          "attributes": {
+            "category": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "label": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "object",
+                "attributes": {
+                  "text": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "alignment": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "union",
+                      "of": [
+                        {
+                          "type": "string",
+                          "value": "left"
+                        },
+                        {
+                          "type": "string",
+                          "value": "center"
+                        },
+                        {
+                          "type": "string",
+                          "value": "right"
+                        }
+                      ]
+                    },
+                    "optional": true
+                  },
+                  "textColor": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "union",
+                      "of": [
+                        {
+                          "type": "string",
+                          "value": "light"
+                        },
+                        {
+                          "type": "string",
+                          "value": "dark"
+                        }
+                      ]
+                    },
+                    "optional": true
+                  },
+                  "background": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "inline",
+                      "name": "color"
+                    },
+                    "optional": true
+                  }
+                }
+              },
+              "optional": true
+            }
+          }
+        },
+        "optional": true
+      },
+      "blocks": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "union",
+            "of": [
+              {
+                "type": "object",
+                "attributes": {
+                  "blockDetails": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "inline",
+                      "name": "blockDetails"
+                    },
+                    "optional": true
+                  },
+                  "multilineText": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "size": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "union",
+                      "of": [
+                        {
+                          "type": "string",
+                          "value": "small"
+                        },
+                        {
+                          "type": "string",
+                          "value": "medium"
+                        },
+                        {
+                          "type": "string",
+                          "value": "large"
+                        }
+                      ]
+                    },
+                    "optional": true
+                  },
+                  "alignment": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "union",
+                      "of": [
+                        {
+                          "type": "string",
+                          "value": "left"
+                        },
+                        {
+                          "type": "string",
+                          "value": "center"
+                        },
+                        {
+                          "type": "string",
+                          "value": "right"
+                        }
+                      ]
+                    },
+                    "optional": true
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "textBlock"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "object",
+                  "attributes": {
+                    "_key": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "blockDetails": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "inline",
+                      "name": "blockDetails"
+                    },
+                    "optional": true
+                  },
+                  "events": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "array",
+                      "of": {
+                        "type": "object",
+                        "attributes": {
+                          "name": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "date": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "location": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "startTime": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "12:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "12:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "1:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "1:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "2:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "2:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "3:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "3:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "4:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "4:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "5:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "5:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "6:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "6:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "7:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "7:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "8:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "8:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "9:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "9:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "10:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "10:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "11:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "11:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "12:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "12:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "1:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "1:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "2:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "2:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "3:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "3:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "4:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "4:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "5:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "5:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "6:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "6:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "7:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "7:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "8:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "8:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "9:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "9:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "10:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "10:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "11:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "11:30 PM"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "endTime": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "12:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "12:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "1:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "1:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "2:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "2:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "3:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "3:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "4:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "4:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "5:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "5:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "6:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "6:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "7:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "7:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "8:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "8:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "9:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "9:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "10:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "10:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "11:00 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "11:30 AM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "12:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "12:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "1:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "1:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "2:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "2:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "3:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "3:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "4:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "4:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "5:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "5:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "6:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "6:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "7:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "7:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "8:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "8:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "9:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "9:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "10:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "10:30 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "11:00 PM"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "11:30 PM"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "event"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "optional": true
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "eventsBlock"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "object",
+                  "attributes": {
+                    "_key": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "artist": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "name": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "coverArt": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "object",
+                      "attributes": {
+                        "asset": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "inline",
+                            "name": "sanity.fileAsset.reference"
+                          },
+                          "optional": true
+                        },
+                        "media": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "unknown"
+                          },
+                          "optional": true
+                        },
+                        "_type": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string",
+                            "value": "file"
+                          }
+                        }
+                      }
+                    },
+                    "optional": true
+                  },
+                  "musicTracks": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "array",
+                      "of": {
+                        "type": "object",
+                        "attributes": {
+                          "name": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "artist": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "audioFile": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "object",
+                              "attributes": {
+                                "asset": {
+                                  "type": "objectAttribute",
+                                  "value": {
+                                    "type": "inline",
+                                    "name": "sanity.fileAsset.reference"
+                                  },
+                                  "optional": true
+                                },
+                                "media": {
+                                  "type": "objectAttribute",
+                                  "value": {
+                                    "type": "unknown"
+                                  },
+                                  "optional": true
+                                },
+                                "_type": {
+                                  "type": "objectAttribute",
+                                  "value": {
+                                    "type": "string",
+                                    "value": "file"
+                                  }
+                                }
+                              }
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "musicTrack"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "optional": true
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "musicBlock"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "object",
+                  "attributes": {
+                    "_key": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "color",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "color"
+          }
+        },
+        "hex": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "alpha": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "hsl": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "hslaColor"
+          },
+          "optional": true
+        },
+        "hsv": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "hsvaColor"
+          },
+          "optional": true
+        },
+        "rgb": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "rgbaColor"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "timeSelect",
+    "type": "type",
+    "value": {
+      "type": "union",
+      "of": [
+        {
+          "type": "string",
+          "value": "12:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "12:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "1:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "1:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "2:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "2:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "3:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "3:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "4:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "4:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "5:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "5:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "6:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "6:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "7:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "7:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "8:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "8:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "9:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "9:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "10:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "10:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "11:00 AM"
+        },
+        {
+          "type": "string",
+          "value": "11:30 AM"
+        },
+        {
+          "type": "string",
+          "value": "12:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "12:30 PM"
+        },
+        {
+          "type": "string",
+          "value": "1:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "1:30 PM"
+        },
+        {
+          "type": "string",
+          "value": "2:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "2:30 PM"
+        },
+        {
+          "type": "string",
+          "value": "3:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "3:30 PM"
+        },
+        {
+          "type": "string",
+          "value": "4:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "4:30 PM"
+        },
+        {
+          "type": "string",
+          "value": "5:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "5:30 PM"
+        },
+        {
+          "type": "string",
+          "value": "6:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "6:30 PM"
+        },
+        {
+          "type": "string",
+          "value": "7:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "7:30 PM"
+        },
+        {
+          "type": "string",
+          "value": "8:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "8:30 PM"
+        },
+        {
+          "type": "string",
+          "value": "9:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "9:30 PM"
+        },
+        {
+          "type": "string",
+          "value": "10:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "10:30 PM"
+        },
+        {
+          "type": "string",
+          "value": "11:00 PM"
+        },
+        {
+          "type": "string",
+          "value": "11:30 PM"
+        }
+      ]
+    }
+  },
+  {
+    "name": "eventPost",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "eventPost"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "postTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "postTitleAlignment": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "left"
+            },
+            {
+              "type": "string",
+              "value": "right"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "postCategory": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "music"
+            },
+            {
+              "type": "string",
+              "value": "events"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "backgroundColor": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "color"
+        },
+        "optional": true
+      },
+      "textColor": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "dark"
+            },
+            {
+              "type": "string",
+              "value": "light"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "title": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "description": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "events": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "name": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "dateTime": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "object",
+                  "attributes": {
+                    "date": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string"
+                      },
+                      "optional": true
+                    },
+                    "startTime": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "timeSelect"
+                      },
+                      "optional": true
+                    },
+                    "endTime": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "timeSelect"
+                      },
+                      "optional": true
+                    }
+                  }
+                },
+                "optional": true
+              },
+              "location": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "description": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "event"
+                }
+              }
+            },
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "musicPost",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "musicPost"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "postTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "postTitleAlignment": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "left"
+            },
+            {
+              "type": "string",
+              "value": "right"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "postCategory": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "music"
+            },
+            {
+              "type": "string",
+              "value": "events"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "backgroundColor": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "color"
+        },
+        "optional": true
+      },
+      "textColor": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "dark"
+            },
+            {
+              "type": "string",
+              "value": "light"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "releaseCoverArt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "object",
+          "attributes": {
+            "asset": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "inline",
+                "name": "sanity.fileAsset.reference"
+              },
+              "optional": true
+            },
+            "media": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "unknown"
+              },
+              "optional": true
+            },
+            "_type": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string",
+                "value": "file"
+              }
+            }
+          }
+        },
+        "optional": true
+      },
+      "releaseName": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "releaseArtist": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "releaseDescription": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "trackInfos": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "trackFile": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "object",
+                  "attributes": {
+                    "asset": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.fileAsset.reference"
+                      },
+                      "optional": true
+                    },
+                    "media": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "unknown"
+                      },
+                      "optional": true
+                    },
+                    "_type": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string",
+                        "value": "file"
+                      }
+                    }
+                  }
+                },
+                "optional": true
+              },
+              "trackName": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "trackArtist": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "trackInfo"
+                }
+              }
+            },
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "rgbaColor",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "rgbaColor"
+          }
+        },
+        "r": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "g": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "b": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "a": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "hsvaColor",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "hsvaColor"
+          }
+        },
+        "h": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "s": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "v": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "a": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "hslaColor",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "hslaColor"
+          }
+        },
+        "h": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "s": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "l": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "a": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "sanity.imagePaletteSwatch",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "sanity.imagePaletteSwatch"
+          }
+        },
+        "background": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "foreground": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "population": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "title": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "sanity.imagePalette",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "sanity.imagePalette"
+          }
+        },
+        "darkMuted": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imagePaletteSwatch"
+          },
+          "optional": true
+        },
+        "lightVibrant": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imagePaletteSwatch"
+          },
+          "optional": true
+        },
+        "darkVibrant": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imagePaletteSwatch"
+          },
+          "optional": true
+        },
+        "vibrant": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imagePaletteSwatch"
+          },
+          "optional": true
+        },
+        "dominant": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imagePaletteSwatch"
+          },
+          "optional": true
+        },
+        "lightMuted": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imagePaletteSwatch"
+          },
+          "optional": true
+        },
+        "muted": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imagePaletteSwatch"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "sanity.imageDimensions",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "sanity.imageDimensions"
+          }
+        },
+        "height": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "width": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "aspectRatio": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "sanity.imageMetadata",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "sanity.imageMetadata"
+          }
+        },
+        "location": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "geopoint"
+          },
+          "optional": true
+        },
+        "dimensions": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageDimensions"
+          },
+          "optional": true
+        },
+        "palette": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imagePalette"
+          },
+          "optional": true
+        },
+        "lqip": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "blurHash": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "thumbHash": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "hasAlpha": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
+        "isOpaque": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "sanity.imageHotspot",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "sanity.imageHotspot"
+          }
+        },
+        "x": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "y": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "height": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "width": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "sanity.imageCrop",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "sanity.imageCrop"
+          }
+        },
+        "top": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "bottom": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "left": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "right": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "sanity.fileAsset",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "sanity.fileAsset"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "originalFilename": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "label": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "title": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "description": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "altText": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "sha1hash": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "extension": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "mimeType": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "size": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": true
+      },
+      "assetId": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "uploadId": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "path": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "url": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "source": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "sanity.assetSourceData"
+        },
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "sanity.assetSourceData",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "sanity.assetSourceData"
+          }
+        },
+        "name": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "id": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "url": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "sanity.imageAsset",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "sanity.imageAsset"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "originalFilename": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "label": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "title": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "description": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "altText": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "sha1hash": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "extension": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "mimeType": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "size": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": true
+      },
+      "assetId": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "uploadId": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "path": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "url": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "metadata": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "sanity.imageMetadata"
+        },
+        "optional": true
+      },
+      "source": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "sanity.assetSourceData"
+        },
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "geopoint",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "geopoint"
+          }
+        },
+        "lat": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "lng": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "alt": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "slug",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "slug"
+          }
+        },
+        "current": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "source": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        }
+      }
+    }
+  }
+]

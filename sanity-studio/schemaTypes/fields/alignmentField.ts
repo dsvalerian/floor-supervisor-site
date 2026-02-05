@@ -1,7 +1,7 @@
-import {defineType, StringRule} from "sanity";
+import {defineField} from "sanity";
 
 export default (required: boolean = false) =>
-  defineType({
+  defineField({
     name: "alignment",
     type: "string",
     title: "Alignment",
@@ -13,5 +13,5 @@ export default (required: boolean = false) =>
       ],
     },
     initialValue: "left",
-    validation: (rule: StringRule) => (required ? rule.required() : rule),
+    validation: (rule) => (required ? rule.required() : rule),
   });

@@ -16,4 +16,10 @@ export const customPost = {
       of: [textBlock, eventsBlock, musicBlock],
     },
   ],
+  preview: {
+    select: {
+      title: "postDetails.label.text",
+      subtitle: "postDetails.category",
+    },
+  },
 };

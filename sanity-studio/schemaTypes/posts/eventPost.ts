@@ -54,12 +54,12 @@ export const eventPost = defineType({
                 }),
                 defineField({
                   name: "startTime",
-                  type: "timeValue",
+                  type: "timeSelect",
                   title: "Start Time",
                 }),
                 defineField({
                   name: "endTime",
-                  type: "timeValue",
+                  type: "timeSelect",
                   title: "End Time",
                 }),
               ],

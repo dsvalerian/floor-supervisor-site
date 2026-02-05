@@ -5,8 +5,10 @@ export default {
   name: "blockDetails",
   type: "object",
   title: "Block Details",
-  fields: [textColorField(), backgroundField()],
+  description: "Change the look of this block only.",
+  fields: [textColorField(false), backgroundField(false)],
   options: {
     collapsible: true,
+    collapsed: true,
   },
 };

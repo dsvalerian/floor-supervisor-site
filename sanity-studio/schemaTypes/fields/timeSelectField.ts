@@ -1,10 +1,10 @@
-import {defineType} from "sanity";
+import {defineField} from "sanity";
 
-export default (required: boolean = false) =>
-  defineType({
-    name: "timeValue",
+export default (name: string = "timeSelect", title: string = "Time", required: boolean = false) =>
+  defineField({
+    name: name,
     type: "string",
-    title: "Time",
+    title: title,
     options: {
       list: [
         "12:00 AM",

@@ -1,5 +1,6 @@
-import timeValue from "./fields/timeValue";
+import timeValueField from "./fields/timeValueField";
+import {customPost} from "./posts/customPost";
 import {eventPost} from "./posts/eventPost";
 import {musicPost} from "./posts/musicPost";
 
-export const schemaTypes = [musicPost, eventPost, timeValue];
+export const schemaTypes = [musicPost, eventPost, timeValueField, customPost];

@@ -1,7 +1,8 @@
+import {defineType} from "sanity";
 import textField from "../fields/textField";
 import timeValueField from "../fields/timeSelectField";
 
-export default {
+export const eventDetails = defineType({
   name: "event",
   type: "object",
   title: "Event",
@@ -17,4 +18,4 @@ export default {
     timeValueField({name: "startTime", title: "Start Time", required: true}),
     timeValueField({name: "endTime", title: "End Time", required: false}),
   ],
-};
+});

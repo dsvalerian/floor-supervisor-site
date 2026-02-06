@@ -13,9 +13,55 @@
  */
 
 // Source: generated-schema.json
-export type BlockDetails = {
+export type Label = {
+  text?: string;
+  alignment?: "left" | "center" | "right";
   textColor?: "light" | "dark";
   background?: Color;
+};
+
+export type TextPost = {
+  _id: string;
+  _type: "textPost";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  postDetails?: PostDetails;
+  content?: TextBlock;
+};
+
+export type TextBlock = {
+  _type: "textBlock";
+  blockDetails?: BlockDetails;
+  multilineText?: string;
+  size?: "small" | "medium" | "large";
+  alignment?: "left" | "center" | "right";
+};
+
+export type CustomPost = {
+  _id: string;
+  _type: "customPost";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  postDetails?: PostDetails;
+  blocks?: Array<
+    | ({
+        _key: string;
+      } & TextBlock)
+    | ({
+        _key: string;
+      } & EventsBlock)
+    | ({
+        _key: string;
+      } & MusicBlock)
+  >;
+};
+
+export type PostDetails = {
+  _type: "postDetails";
+  category?: string;
+  label?: Label;
 };
 
 export type SanityFileAssetReference = {
@@ -25,163 +71,153 @@ export type SanityFileAssetReference = {
   [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
 };
 
-export type CustomPost = {
-  _id: string;
-  _type: "customPost";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  postDetails?: {
-    category?: string;
-    label?: {
-      text?: string;
-      alignment?: "left" | "center" | "right";
-      textColor?: "light" | "dark";
-      background?: Color;
-    };
+export type MusicBlock = {
+  _type: "musicBlock";
+  blockDetails?: BlockDetails;
+  artist?: string;
+  name?: string;
+  coverArt?: {
+    asset?: SanityFileAssetReference;
+    media?: unknown;
+    _type: "file";
   };
-  blocks?: Array<
-    | {
-        blockDetails?: BlockDetails;
-        multilineText?: string;
-        size?: "small" | "medium" | "large";
-        alignment?: "left" | "center" | "right";
-        _type: "textBlock";
-        _key: string;
-      }
-    | {
-        blockDetails?: BlockDetails;
-        events?: Array<{
-          name?: string;
-          date?: string;
-          location?: string;
-          startTime?:
-            | "12:00 AM"
-            | "12:30 AM"
-            | "1:00 AM"
-            | "1:30 AM"
-            | "2:00 AM"
-            | "2:30 AM"
-            | "3:00 AM"
-            | "3:30 AM"
-            | "4:00 AM"
-            | "4:30 AM"
-            | "5:00 AM"
-            | "5:30 AM"
-            | "6:00 AM"
-            | "6:30 AM"
-            | "7:00 AM"
-            | "7:30 AM"
-            | "8:00 AM"
-            | "8:30 AM"
-            | "9:00 AM"
-            | "9:30 AM"
-            | "10:00 AM"
-            | "10:30 AM"
-            | "11:00 AM"
-            | "11:30 AM"
-            | "12:00 PM"
-            | "12:30 PM"
-            | "1:00 PM"
-            | "1:30 PM"
-            | "2:00 PM"
-            | "2:30 PM"
-            | "3:00 PM"
-            | "3:30 PM"
-            | "4:00 PM"
-            | "4:30 PM"
-            | "5:00 PM"
-            | "5:30 PM"
-            | "6:00 PM"
-            | "6:30 PM"
-            | "7:00 PM"
-            | "7:30 PM"
-            | "8:00 PM"
-            | "8:30 PM"
-            | "9:00 PM"
-            | "9:30 PM"
-            | "10:00 PM"
-            | "10:30 PM"
-            | "11:00 PM"
-            | "11:30 PM";
-          endTime?:
-            | "12:00 AM"
-            | "12:30 AM"
-            | "1:00 AM"
-            | "1:30 AM"
-            | "2:00 AM"
-            | "2:30 AM"
-            | "3:00 AM"
-            | "3:30 AM"
-            | "4:00 AM"
-            | "4:30 AM"
-            | "5:00 AM"
-            | "5:30 AM"
-            | "6:00 AM"
-            | "6:30 AM"
-            | "7:00 AM"
-            | "7:30 AM"
-            | "8:00 AM"
-            | "8:30 AM"
-            | "9:00 AM"
-            | "9:30 AM"
-            | "10:00 AM"
-            | "10:30 AM"
-            | "11:00 AM"
-            | "11:30 AM"
-            | "12:00 PM"
-            | "12:30 PM"
-            | "1:00 PM"
-            | "1:30 PM"
-            | "2:00 PM"
-            | "2:30 PM"
-            | "3:00 PM"
-            | "3:30 PM"
-            | "4:00 PM"
-            | "4:30 PM"
-            | "5:00 PM"
-            | "5:30 PM"
-            | "6:00 PM"
-            | "6:30 PM"
-            | "7:00 PM"
-            | "7:30 PM"
-            | "8:00 PM"
-            | "8:30 PM"
-            | "9:00 PM"
-            | "9:30 PM"
-            | "10:00 PM"
-            | "10:30 PM"
-            | "11:00 PM"
-            | "11:30 PM";
-          _type: "event";
-          _key: string;
-        }>;
-        _type: "eventsBlock";
-        _key: string;
-      }
-    | {
-        artist?: string;
-        name?: string;
-        coverArt?: {
-          asset?: SanityFileAssetReference;
-          media?: unknown;
-          _type: "file";
-        };
-        musicTracks?: Array<{
-          name?: string;
-          artist?: string;
-          audioFile?: {
-            asset?: SanityFileAssetReference;
-            media?: unknown;
-            _type: "file";
-          };
-          _type: "musicTrack";
-          _key: string;
-        }>;
-        _type: "musicBlock";
-        _key: string;
-      }
+  musicTracks?: Array<
+    {
+      _key: string;
+    } & MusicTrack
   >;
+};
+
+export type EventsBlock = {
+  _type: "eventsBlock";
+  blockDetails?: BlockDetails;
+  events?: Array<
+    {
+      _key: string;
+    } & Event
+  >;
+};
+
+export type BlockDetails = {
+  _type: "blockDetails";
+  textColor?: "light" | "dark";
+  background?: Color;
+};
+
+export type MusicTrack = {
+  _type: "musicTrack";
+  name?: string;
+  artist?: string;
+  audioFile?: {
+    asset?: SanityFileAssetReference;
+    media?: unknown;
+    _type: "file";
+  };
+};
+
+export type Event = {
+  _type: "event";
+  name?: string;
+  date?: string;
+  location?: string;
+  startTime?:
+    | "12:00 AM"
+    | "12:30 AM"
+    | "1:00 AM"
+    | "1:30 AM"
+    | "2:00 AM"
+    | "2:30 AM"
+    | "3:00 AM"
+    | "3:30 AM"
+    | "4:00 AM"
+    | "4:30 AM"
+    | "5:00 AM"
+    | "5:30 AM"
+    | "6:00 AM"
+    | "6:30 AM"
+    | "7:00 AM"
+    | "7:30 AM"
+    | "8:00 AM"
+    | "8:30 AM"
+    | "9:00 AM"
+    | "9:30 AM"
+    | "10:00 AM"
+    | "10:30 AM"
+    | "11:00 AM"
+    | "11:30 AM"
+    | "12:00 PM"
+    | "12:30 PM"
+    | "1:00 PM"
+    | "1:30 PM"
+    | "2:00 PM"
+    | "2:30 PM"
+    | "3:00 PM"
+    | "3:30 PM"
+    | "4:00 PM"
+    | "4:30 PM"
+    | "5:00 PM"
+    | "5:30 PM"
+    | "6:00 PM"
+    | "6:30 PM"
+    | "7:00 PM"
+    | "7:30 PM"
+    | "8:00 PM"
+    | "8:30 PM"
+    | "9:00 PM"
+    | "9:30 PM"
+    | "10:00 PM"
+    | "10:30 PM"
+    | "11:00 PM"
+    | "11:30 PM";
+  endTime?:
+    | "12:00 AM"
+    | "12:30 AM"
+    | "1:00 AM"
+    | "1:30 AM"
+    | "2:00 AM"
+    | "2:30 AM"
+    | "3:00 AM"
+    | "3:30 AM"
+    | "4:00 AM"
+    | "4:30 AM"
+    | "5:00 AM"
+    | "5:30 AM"
+    | "6:00 AM"
+    | "6:30 AM"
+    | "7:00 AM"
+    | "7:30 AM"
+    | "8:00 AM"
+    | "8:30 AM"
+    | "9:00 AM"
+    | "9:30 AM"
+    | "10:00 AM"
+    | "10:30 AM"
+    | "11:00 AM"
+    | "11:30 AM"
+    | "12:00 PM"
+    | "12:30 PM"
+    | "1:00 PM"
+    | "1:30 PM"
+    | "2:00 PM"
+    | "2:30 PM"
+    | "3:00 PM"
+    | "3:30 PM"
+    | "4:00 PM"
+    | "4:30 PM"
+    | "5:00 PM"
+    | "5:30 PM"
+    | "6:00 PM"
+    | "6:30 PM"
+    | "7:00 PM"
+    | "7:30 PM"
+    | "8:00 PM"
+    | "8:30 PM"
+    | "9:00 PM"
+    | "9:30 PM"
+    | "10:00 PM"
+    | "10:30 PM"
+    | "11:00 PM"
+    | "11:30 PM";
 };
 
 export type Color = {
@@ -446,9 +482,17 @@ export type Slug = {
 };
 
 export type AllSanitySchemaTypes =
-  | BlockDetails
-  | SanityFileAssetReference
+  | Label
+  | TextPost
+  | TextBlock
   | CustomPost
+  | PostDetails
+  | SanityFileAssetReference
+  | MusicBlock
+  | EventsBlock
+  | BlockDetails
+  | MusicTrack
+  | Event
   | Color
   | TimeSelect
   | EventPost
@@ -469,9 +513,3 @@ export type AllSanitySchemaTypes =
   | Slug;
 
 export declare const internalGroqTypeReferenceTo: unique symbol;
-
-type ArrayOf<T> = Array<
-  T & {
-    _key: string;
-  }
->;

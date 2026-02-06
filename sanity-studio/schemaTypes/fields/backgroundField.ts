@@ -1,8 +1,8 @@
 import {defineField} from "sanity";
 import {FieldOptions} from "../../types/util.types";
 
-export default (options: FieldOptions = {}) => {
-  return defineField({
+export default (options: FieldOptions = {}) =>
+  defineField({
     name: options.name || "background",
     type: "color",
     title: options.title || "Background",
@@ -12,4 +12,3 @@ export default (options: FieldOptions = {}) => {
     },
     validation: (rule) => (options.required ? rule.required() : rule),
   });
-};

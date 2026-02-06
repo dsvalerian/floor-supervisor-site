@@ -1,7 +1,8 @@
+import {defineType} from "sanity";
 import fileField from "../fields/fileField";
 import textField from "../fields/textField";
 
-export default {
+export const musicTrack = defineType({
   name: "musicTrack",
   type: "object",
   title: "Music Track",
@@ -11,4 +12,4 @@ export default {
     textField({name: "artist", title: "Artist", required: true}),
     fileField({name: "audioFile", title: "Audio File", required: true}),
   ],
-};
+});

@@ -1,7 +1,8 @@
-import alignmentField from "../fields/alignmentField";
-import backgroundField from "../fields/backgroundField";
-import textColorField from "../fields/textColorField";
-import textField from "../fields/textField";
+import {defineField, defineType} from "sanity";
+import alignmentField from "../../fields/alignmentField";
+import backgroundField from "../../fields/backgroundField";
+import textColorField from "../../fields/textColorField";
+import textField from "../../fields/textField";
 
 const label = {
   name: "label",
@@ -16,7 +17,7 @@ const label = {
   ],
 };
 
-export default {
+export const postDetails = defineType({
   name: "postDetails",
   type: "object",
   title: "Post Details",
@@ -33,4 +34,10 @@ export default {
   options: {
     collapsible: true,
   },
-};
+});
+
+export const postDetailsField = defineField({
+  name: "postDetails",
+  type: "postDetails",
+  title: "Post Details",
+});

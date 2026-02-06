@@ -9,7 +9,12 @@ export default defineType({
   type: "object",
   title: "Text Block",
   description: "A customizable block of text. Good for titles, paragraphs, etc.",
-  fields: [blockDetails, multilineTextField(true), sizeField(true), alignmentField(true)],
+  fields: [
+    blockDetails,
+    multilineTextField({required: true}),
+    sizeField({required: true}),
+    alignmentField({required: true}),
+  ],
   preview: {
     select: {
       text: "multilineText",

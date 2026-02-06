@@ -1,10 +1,11 @@
 import {defineField} from "sanity";
+import {FieldOptions} from "../../types/util.types";
 
-export default (name: string = "text", title: string = "Text", description?: string, required: boolean = false) =>
+export default (options: FieldOptions = {}) =>
   defineField({
-    name: name,
+    name: options.name || "text",
     type: "string",
-    title: title,
-    description: description || undefined,
-    validation: (rule) => (required ? rule.required() : rule),
+    title: options.title || "Text",
+    description: options.description,
+    validation: (rule) => (options.required ? rule.required() : rule),
   });

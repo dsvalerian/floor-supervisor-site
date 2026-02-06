@@ -6,7 +6,7 @@ export default {
   type: "object",
   title: "Block Details",
   description: "Change the look of this block only.",
-  fields: [textColorField(false), backgroundField(false)],
+  fields: [textColorField({required: false}), backgroundField({required: false})],
   options: {
     collapsible: true,
     collapsed: true,

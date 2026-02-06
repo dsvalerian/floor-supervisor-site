@@ -7,8 +7,8 @@ export default {
   title: "Music Track",
   description: "Upload a track that can be played in the music player.",
   fields: [
-    textField("name", "Name", "The name of the song.", true),
-    textField("artist", "Artist", "Who made the song.", true),
-    fileField("audioFile", "Audio File", "Upload the audio file for this track.", true),
+    textField({name: "name", title: "Name", required: true}),
+    textField({name: "artist", title: "Artist", required: true}),
+    fileField({name: "audioFile", title: "Audio File", required: true}),
   ],
 };

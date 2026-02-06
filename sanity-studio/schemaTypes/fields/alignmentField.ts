@@ -1,10 +1,12 @@
 import {defineField} from "sanity";
+import {FieldOptions} from "../../types/util.types";
 
-export default (required: boolean = false) =>
+export default (options: FieldOptions = {}) =>
   defineField({
-    name: "alignment",
+    name: options.name || "alignment",
     type: "string",
-    title: "Alignment",
+    title: options.title || "Alignment",
+    description: options.description,
     options: {
       list: [
         {value: "left", title: "Left"},
@@ -13,5 +15,5 @@ export default (required: boolean = false) =>
       ],
     },
     initialValue: "left",
-    validation: (rule) => (required ? rule.required() : rule),
+    validation: (rule) => (options.required ? rule.required() : rule),
   });

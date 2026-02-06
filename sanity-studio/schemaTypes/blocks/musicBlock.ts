@@ -8,9 +8,9 @@ export default {
   title: "Music Block",
   description: "A music release that supports one or more music tracks.",
   fields: [
-    textField("artist", "Release Artist", "The artist of this music release."),
-    textField("name", "Release Name", "The name of this music release."),
-    fileField("coverArt", "Cover Art", "The cover art for this release."),
+    textField({name: "artist", title: "Release Artist"}),
+    textField({name: "name", title: "Release Name", description: "The name of this music release."}),
+    fileField({name: "coverArt", title: "Cover Art", description: "The cover art for this release."}),
     {
       name: "musicTracks",
       type: "array",

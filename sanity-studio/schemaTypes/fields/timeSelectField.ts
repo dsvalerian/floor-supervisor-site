@@ -1,10 +1,11 @@
 import {defineField} from "sanity";
+import {FieldOptions} from "../../types/util.types";
 
-export default (name: string = "timeSelect", title: string = "Time", required: boolean = false) =>
+export default (options: FieldOptions = {}) =>
   defineField({
-    name: name,
+    name: options.name || "timeSelect",
     type: "string",
-    title: title,
+    title: options.title || "Time",
     options: {
       list: [
         "12:00 AM",
@@ -57,5 +58,5 @@ export default (name: string = "timeSelect", title: string = "Time", required: b
         "11:30 PM",
       ],
     },
-    validation: (rule) => (required ? rule.required() : rule),
+    validation: (rule) => (options.required ? rule.required() : rule),
   });

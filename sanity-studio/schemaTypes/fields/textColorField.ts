@@ -1,10 +1,12 @@
 import {defineField} from "sanity";
+import {FieldOptions} from "../../types/util.types";
 
-export default (required: boolean = false) =>
+export default (options: FieldOptions = {}) =>
   defineField({
-    name: "textColor",
+    name: options.name || "textColor",
     type: "string",
-    title: "Text Color",
+    title: options.title || "Text Color",
+    description: options.description,
     options: {
       list: [
         {value: "light", title: "Light"},
@@ -12,5 +14,5 @@ export default (required: boolean = false) =>
       ],
     },
     initialValue: "light",
-    validation: (rule) => (required ? rule.required() : rule),
+    validation: (rule) => (options.required ? rule.required() : rule),
   });

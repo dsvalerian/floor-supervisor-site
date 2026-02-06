@@ -1,9 +1,11 @@
 import {defineField} from "sanity";
+import {FieldOptions} from "../../types/util.types";
 
-export default (required: boolean = false) =>
+export default (options: FieldOptions = {}) =>
   defineField({
-    name: "multilineText",
+    name: options.name || "multilineText",
     type: "text",
-    title: "Text",
-    validation: (rule) => (required ? rule.required() : rule),
+    title: options.title || "Text",
+    description: options.description,
+    validation: (rule) => (options.required ? rule.required() : rule),
   });

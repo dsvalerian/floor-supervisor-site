@@ -1,12 +1,15 @@
 import {defineField} from "sanity";
+import {FieldOptions} from "../../types/util.types";
 
-export default (required: boolean = false) =>
-  defineField({
-    name: "background",
+export default (options: FieldOptions = {}) => {
+  return defineField({
+    name: options.name || "background",
     type: "color",
-    title: "Background",
+    title: options.title || "Background",
+    description: options.description,
     options: {
       collapsible: false,
     },
-    validation: (rule) => (required ? rule.required() : rule),
+    validation: (rule) => (options.required ? rule.required() : rule),
   });
+};

@@ -1,7 +1,10 @@
 import { sanityClient } from "sanity:client";
 import type { Post } from "../types/sanityTypes";
+import type { CustomPost, EventPost, MusicPost } from "../types/sanity.types";
 
-const allPostsQuery = `*[_type in ["musicPost", "eventPost"]] {
+type QueryResult = CustomPost | MusicPost | EventPost;
+
+const allPostsQuery = `*[_type in ["musicPost", "eventPost", "customPost"]] {
 		...,
 		"backgroundColor": coalesce(backgroundColor.hex, backgroundImage.asset->url, "#000000"),
 		
@@ -23,7 +26,7 @@ const allPostsQuery = `*[_type in ["musicPost", "eventPost"]] {
 
 export const getAllPosts = async () => {
 	console.info("Getting all posts");
-	const result = await sanityClient.fetch<Post[]>(allPostsQuery);
+	const result = await sanityClient.fetch<QueryResult[]>(allPostsQuery);
 	console.info(`Fetched ${result.length} post(s)`, result);
 	return result;
 };

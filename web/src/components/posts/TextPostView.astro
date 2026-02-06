@@ -1,0 +1,21 @@
+---
+import type { TextPost } from "../../types/sanity.types";
+import TextBlockContent from "../blocks/TextBlockContent.astro";
+import PostWrapper from "./PostWrapper.astro";
+
+type Props = {
+	config: TextPost;
+};
+
+const {
+	config: { postDetails, content },
+} = Astro.props;
+
+if (!postDetails || !content) {
+	throw new Error("Must provide post details and content for a text post.");
+}
+---
+
+<PostWrapper config={postDetails}>
+	<TextBlockContent config={content} />
+</PostWrapper>

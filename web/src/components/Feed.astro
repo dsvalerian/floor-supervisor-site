@@ -1,8 +1,6 @@
 ---
 import { getAllPosts } from "../lib/sanityQueries";
-import EventPost from "./posts/EventPost.astro";
-import MusicPost from "./posts/MusicPost.astro";
-import PostCard from "./posts/PostCard.astro";
+import TextPostView from "./posts/TextPostView.astro";
 
 const posts = await getAllPosts();
 ---
@@ -11,10 +9,8 @@ const posts = await getAllPosts();
 	{
 		posts.map((post) => {
 			switch (post._type) {
-				case "musicPost":
-					return <MusicPost config={post} />;
-				case "eventPost":
-					return <EventPost config={post} />;
+				case "textPost":
+					return <TextPostView config={post} />;
 			}
 		})
 	}

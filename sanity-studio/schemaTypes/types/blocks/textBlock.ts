@@ -11,7 +11,7 @@ export const textBlock = defineType({
   description: "A customizable block of text. Good for titles, paragraphs, etc.",
   fields: [
     blockDetailsField,
-    multilineTextField({required: true}),
+    multilineTextField({name: "text", title: "Text", required: true}),
     sizeField({required: true}),
     alignmentField({required: true}),
   ],

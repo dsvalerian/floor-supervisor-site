@@ -33,7 +33,7 @@ export type TextPost = {
 export type TextBlock = {
   _type: "textBlock";
   blockDetails?: BlockDetails;
-  multilineText?: string;
+  text?: string;
   size?: "small" | "medium" | "large";
   alignment?: "left" | "center" | "right";
 };
@@ -62,6 +62,7 @@ export type PostDetails = {
   _type: "postDetails";
   category?: string;
   label?: Label;
+  background?: Color;
 };
 
 export type SanityFileAssetReference = {
@@ -229,115 +230,6 @@ export type Color = {
   rgb?: RgbaColor;
 };
 
-export type TimeSelect =
-  | "12:00 AM"
-  | "12:30 AM"
-  | "1:00 AM"
-  | "1:30 AM"
-  | "2:00 AM"
-  | "2:30 AM"
-  | "3:00 AM"
-  | "3:30 AM"
-  | "4:00 AM"
-  | "4:30 AM"
-  | "5:00 AM"
-  | "5:30 AM"
-  | "6:00 AM"
-  | "6:30 AM"
-  | "7:00 AM"
-  | "7:30 AM"
-  | "8:00 AM"
-  | "8:30 AM"
-  | "9:00 AM"
-  | "9:30 AM"
-  | "10:00 AM"
-  | "10:30 AM"
-  | "11:00 AM"
-  | "11:30 AM"
-  | "12:00 PM"
-  | "12:30 PM"
-  | "1:00 PM"
-  | "1:30 PM"
-  | "2:00 PM"
-  | "2:30 PM"
-  | "3:00 PM"
-  | "3:30 PM"
-  | "4:00 PM"
-  | "4:30 PM"
-  | "5:00 PM"
-  | "5:30 PM"
-  | "6:00 PM"
-  | "6:30 PM"
-  | "7:00 PM"
-  | "7:30 PM"
-  | "8:00 PM"
-  | "8:30 PM"
-  | "9:00 PM"
-  | "9:30 PM"
-  | "10:00 PM"
-  | "10:30 PM"
-  | "11:00 PM"
-  | "11:30 PM";
-
-export type EventPost = {
-  _id: string;
-  _type: "eventPost";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  postTitle?: string;
-  postTitleAlignment?: "left" | "right";
-  postCategory?: "music" | "events";
-  backgroundColor?: Color;
-  textColor?: "dark" | "light";
-  title?: string;
-  description?: string;
-  events?: Array<{
-    name?: string;
-    dateTime?: {
-      date?: string;
-      startTime?: TimeSelect;
-      endTime?: TimeSelect;
-    };
-    location?: string;
-    description?: string;
-    _type: "event";
-    _key: string;
-  }>;
-};
-
-export type MusicPost = {
-  _id: string;
-  _type: "musicPost";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  postTitle?: string;
-  postTitleAlignment?: "left" | "right";
-  postCategory?: "music" | "events";
-  backgroundColor?: Color;
-  textColor?: "dark" | "light";
-  releaseCoverArt?: {
-    asset?: SanityFileAssetReference;
-    media?: unknown;
-    _type: "file";
-  };
-  releaseName?: string;
-  releaseArtist?: string;
-  releaseDescription?: string;
-  trackInfos?: Array<{
-    trackFile?: {
-      asset?: SanityFileAssetReference;
-      media?: unknown;
-      _type: "file";
-    };
-    trackName?: string;
-    trackArtist?: string;
-    _type: "trackInfo";
-    _key: string;
-  }>;
-};
-
 export type RgbaColor = {
   _type: "rgbaColor";
   r?: number;
@@ -494,9 +386,6 @@ export type AllSanitySchemaTypes =
   | MusicTrack
   | Event
   | Color
-  | TimeSelect
-  | EventPost
-  | MusicPost
   | RgbaColor
   | HsvaColor
   | HslaColor

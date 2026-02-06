@@ -30,6 +30,7 @@ export const postDetails = defineType({
       required: true,
     }),
     label,
+    backgroundField({title: "Post Background", required: true}),
   ],
   options: {
     collapsible: true,

@@ -1,0 +1,30 @@
+---
+import { type BlockDetails } from "../../types/sanity.types";
+
+type Props = {
+	config: BlockDetails;
+};
+
+const {
+	config: { textColor, background },
+} = Astro.props;
+
+const textColorVar = `var(--color-text-${textColor})`;
+---
+
+<div class="block"><slot /></div>
+
+<style
+	define:vars={{
+		blockBackground: background,
+		textColor: textColorVar,
+	}}
+>
+	.block {
+		background: var(--blockBackground);
+	}
+
+	.block :global(*) {
+		color: var(--textColor);
+	}
+</style>

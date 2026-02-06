@@ -1,0 +1,73 @@
+---
+import type { PostDetails } from "../../types/sanity.types";
+
+type Props = {
+	config: PostDetails;
+};
+
+const {
+	config: { label, background },
+} = Astro.props;
+
+if (!label || !background) {
+	throw new Error("Must provide post details.");
+}
+
+// Compute the CSS variable name based on textColor value
+const textColorVar = `var(--color-text-${label.textColor})`;
+const alignVar =
+	(label.alignment === "left" && "start") ||
+	(label.alignment === "right" && "end") ||
+	"center";
+---
+
+<article class="post-card">
+	{
+		label.text && (
+			<div class="post-label-container">
+				<h2 class="post-label">{label.text.toUpperCase()}</h2>
+			</div>
+		)
+	}
+	<div class="post-content">
+		<slot />
+	</div>
+</article>
+
+<style
+	define:vars={{
+		postBackground: background,
+		labelBackground: label.background,
+		textColor: textColorVar,
+		alignment: alignVar,
+	}}
+>
+	.post-card {
+		box-shadow: var(--shadow-md);
+		background: var(--postBackground);
+		border-radius: var(--radius-normal);
+		overflow: hidden;
+	}
+
+	.post-card > * {
+		color: var(--textColor);
+	}
+
+	.post-content {
+		padding: 2rem;
+	}
+
+	.post-label-container {
+		display: flex;
+		justify-content: var(--alignVar);
+	}
+
+	.post-label {
+		background: var(--labelBackground);
+		color: white;
+		padding: 0.5rem 1rem;
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-bold);
+		font-family: var(--font-family-header);
+	}
+</style>

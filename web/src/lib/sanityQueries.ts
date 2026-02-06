@@ -1,12 +1,18 @@
 import { sanityClient } from "sanity:client";
-import type { Post } from "../types/sanityTypes";
-import type { CustomPost, EventPost, MusicPost } from "../types/sanity.types";
+import type { CustomPost, TextPost } from "../types/sanity.types";
 
-type QueryResult = CustomPost | MusicPost | EventPost;
+type QueryResult = CustomPost | TextPost;
 
-const allPostsQuery = `*[_type in ["musicPost", "eventPost", "customPost"]] {
+const allPostsQuery = `*[_type in ["customPost", "textPost"]] {
 		...,
-		"backgroundColor": coalesce(backgroundColor.hex, backgroundImage.asset->url, "#000000"),
+		"postDetails": {
+			...postDetails,
+			"background": coalesce(postDetails.background.hex, postDetails.backgroundImage.asset->url, "#000000"),
+			"label": {
+				...postDetails.label,
+				"background": coalesce(postDetails.label.background.hex, postDetails.label.backgroundImage.asset->url, "#000000"),
+			}
+		},
 		
 		// Music post specific fields
 		_type == "musicPost" => {

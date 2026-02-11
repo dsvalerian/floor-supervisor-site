@@ -1,6 +1,6 @@
 import {defineArrayMember, defineType} from "sanity";
 import fileField from "../../fields/fileField";
-import textField from "../../fields/textField";
+import {textField} from "../../fields/textField";
 import {blockDetailsField} from "../common/blockDetails";
 
 export const musicBlock = defineType({

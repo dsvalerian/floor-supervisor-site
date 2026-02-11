@@ -3,7 +3,7 @@ import type { CustomPost, TextPost } from "../types/sanity.types";
 
 type QueryResult = CustomPost | TextPost;
 
-const allPostsQuery = `*[_type in ["customPost", "textPost"]] {
+const allPostsQuery = `*[_type in ["customPost", "textPost", "eventsPost"]] {
 		...,
 		"postDetails": {
 			...postDetails,
@@ -11,6 +11,28 @@ const allPostsQuery = `*[_type in ["customPost", "textPost"]] {
 			"label": {
 				...postDetails.label,
 				"background": coalesce(postDetails.label.background.hex, postDetails.label.backgroundImage.asset->url, "#000000"),
+			}
+		},
+		
+		// Custom post specific fields - transform block backgrounds
+		_type == "customPost" => {
+			"blocks": blocks[]{
+				...,
+				"blockDetails": {
+					...blockDetails,
+					"background": coalesce(blockDetails.background.hex, "transparent")
+				}
+			}
+		},
+		
+		// Text post specific fields - transform content block background
+		_type == "textPost" => {
+			"content": {
+				...content,
+				"blockDetails": {
+					...content.blockDetails,
+					"background": coalesce(content.blockDetails.background.hex, "transparent")
+				}
 			}
 		},
 		

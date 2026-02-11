@@ -1,4 +1,4 @@
-import {defineType} from "sanity";
+import {defineType, defineArrayMember} from "sanity";
 import alignmentField from "../../fields/alignmentField";
 import multilineTextField from "../../fields/multilineTextField";
 import sizeField from "../../fields/sizeField";
@@ -11,8 +11,12 @@ export const textBlock = defineType({
   description: "A customizable block of text. Good for titles, paragraphs, etc.",
   fields: [
     blockDetailsField,
-    multilineTextField({name: "text", title: "Text", required: true}),
-    sizeField({required: true}),
-    alignmentField({required: true}),
+    {
+      name: "customTexts",
+      type: "array",
+      title: "Custom Texts",
+      description: "Define one or more custom text objects.",
+      of: [defineArrayMember({type: "customText"})],
+    },
   ],
 });

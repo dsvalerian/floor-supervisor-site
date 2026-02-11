@@ -2,7 +2,7 @@ import {defineField, defineType} from "sanity";
 import alignmentField from "../../fields/alignmentField";
 import backgroundField from "../../fields/backgroundField";
 import textColorField from "../../fields/textColorField";
-import textField from "../../fields/textField";
+import {textField} from "../../fields/textField";
 
 const label = {
   name: "label",
@@ -15,6 +15,9 @@ const label = {
     textColorField({required: true}),
     backgroundField({required: true}),
   ],
+  options: {
+    collapsible: true,
+  },
 };
 
 export const postDetails = defineType({
@@ -29,8 +32,8 @@ export const postDetails = defineType({
       description: "The category of the post. Used for filtering with similar posts.",
       required: true,
     }),
-    label,
     backgroundField({title: "Post Background", required: true}),
+    label,
   ],
   options: {
     collapsible: true,

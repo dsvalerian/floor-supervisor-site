@@ -6,7 +6,7 @@ export const blockDetails = defineType({
   name: "blockDetails",
   type: "object",
   title: "Block Details",
-  description: "Change the look of this block only.",
+  description: "Change the text color and background for this block.",
   fields: [textColorField({required: false}), backgroundField({required: false})],
   options: {
     collapsible: true,

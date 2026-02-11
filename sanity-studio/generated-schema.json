@@ -135,52 +135,25 @@
           },
           "optional": true
         },
-        "text": {
+        "customTexts": {
           "type": "objectAttribute",
           "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "size": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "small"
+            "type": "array",
+            "of": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
               },
-              {
-                "type": "string",
-                "value": "medium"
-              },
-              {
-                "type": "string",
-                "value": "large"
+              "rest": {
+                "type": "inline",
+                "name": "customText"
               }
-            ]
-          },
-          "optional": true
-        },
-        "alignment": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "left"
-              },
-              {
-                "type": "string",
-                "value": "center"
-              },
-              {
-                "type": "string",
-                "value": "right"
-              }
-            ]
+            }
           },
           "optional": true
         }
@@ -309,6 +282,14 @@
           },
           "optional": true
         },
+        "background": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "color"
+          },
+          "optional": true
+        },
         "label": {
           "type": "objectAttribute",
           "value": {
@@ -316,12 +297,69 @@
             "name": "label"
           },
           "optional": true
-        },
-        "background": {
+        }
+      }
+    }
+  },
+  {
+    "name": "customText",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
           "type": "objectAttribute",
           "value": {
-            "type": "inline",
-            "name": "color"
+            "type": "string",
+            "value": "customText"
+          }
+        },
+        "text": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "textSize": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "small"
+              },
+              {
+                "type": "string",
+                "value": "medium"
+              },
+              {
+                "type": "string",
+                "value": "large"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "textAlignment": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "left"
+              },
+              {
+                "type": "string",
+                "value": "center"
+              },
+              {
+                "type": "string",
+                "value": "right"
+              }
+            ]
           },
           "optional": true
         }
@@ -467,6 +505,13 @@
           "value": {
             "type": "inline",
             "name": "blockDetails"
+          },
+          "optional": true
+        },
+        "title": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         },

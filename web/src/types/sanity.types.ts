@@ -33,9 +33,11 @@ export type TextPost = {
 export type TextBlock = {
   _type: "textBlock";
   blockDetails?: BlockDetails;
-  text?: string;
-  size?: "small" | "medium" | "large";
-  alignment?: "left" | "center" | "right";
+  customTexts?: Array<
+    {
+      _key: string;
+    } & CustomText
+  >;
 };
 
 export type CustomPost = {
@@ -61,8 +63,15 @@ export type CustomPost = {
 export type PostDetails = {
   _type: "postDetails";
   category?: string;
-  label?: Label;
   background?: Color;
+  label?: Label;
+};
+
+export type CustomText = {
+  _type: "customText";
+  text?: string;
+  textSize?: "small" | "medium" | "large";
+  textAlignment?: "left" | "center" | "right";
 };
 
 export type SanityFileAssetReference = {
@@ -92,6 +101,7 @@ export type MusicBlock = {
 export type EventsBlock = {
   _type: "eventsBlock";
   blockDetails?: BlockDetails;
+  title?: string;
   events?: Array<
     {
       _key: string;
@@ -379,6 +389,7 @@ export type AllSanitySchemaTypes =
   | TextBlock
   | CustomPost
   | PostDetails
+  | CustomText
   | SanityFileAssetReference
   | MusicBlock
   | EventsBlock

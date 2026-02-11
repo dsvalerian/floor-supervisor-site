@@ -1,5 +1,6 @@
 import {defineArrayMember, defineType} from "sanity";
 import {blockDetailsField} from "../common/blockDetails";
+import {textField} from "../../fields/textField";
 
 export const eventsBlock = defineType({
   name: "eventsBlock",
@@ -8,6 +9,7 @@ export const eventsBlock = defineType({
   description: "A list of one or more events.",
   fields: [
     blockDetailsField,
+    textField({name: "title", title: "Title", required: false, description: "An optional title for the event block."}),
     {
       name: "events",
       type: "array",

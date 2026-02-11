@@ -1,0 +1,33 @@
+---
+import type { CustomPost } from "../../types/sanity.types";
+import EventsBlockView from "../blocks/EventsBlockView.astro";
+import TextBlockView from "../blocks/TextBlockView.astro";
+import PostWrapper from "./PostWrapper.astro";
+
+type Props = {
+	config: CustomPost;
+};
+
+const {
+	config: { postDetails, blocks },
+} = Astro.props;
+
+if (!postDetails || !blocks) {
+	throw new Error("Must provide post details and blocks for a custom post.");
+}
+---
+
+<PostWrapper config={postDetails}>
+	{
+		blocks.map((block) => {
+			if (block._type === "textBlock") {
+				return <TextBlockView config={block} />;
+			} else if (block._type === "musicBlock") {
+				// Render music block
+				return <p>todo</p>;
+			} else if (block._type === "eventsBlock") {
+				return <EventsBlockView config={block} />;
+			}
+		})
+	}
+</PostWrapper>

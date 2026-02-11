@@ -1,5 +1,6 @@
 ---
 import { getAllPosts } from "../lib/sanityQueries";
+import CustomPostView from "./posts/CustomPostView.astro";
 import TextPostView from "./posts/TextPostView.astro";
 
 const posts = await getAllPosts();
@@ -9,6 +10,8 @@ const posts = await getAllPosts();
 	{
 		posts.map((post) => {
 			switch (post._type) {
+				case "customPost":
+					return <CustomPostView config={post} />;
 				case "textPost":
 					return <TextPostView config={post} />;
 			}

@@ -1,6 +1,6 @@
 ---
 import type { TextPost } from "../../types/sanity.types";
-import TextBlockContent from "../blocks/TextBlockContent.astro";
+import TextBlockView from "../blocks/TextBlockView.astro";
 import PostWrapper from "./PostWrapper.astro";
 
 type Props = {
@@ -17,5 +17,5 @@ if (!postDetails || !content) {
 ---
 
 <PostWrapper config={postDetails}>
-	<TextBlockContent config={content} />
+	<TextBlockView config={content} />
 </PostWrapper>

@@ -22,6 +22,11 @@ const textColorVar = `var(--color-text-${textColor})`;
 >
 	.block {
 		background: var(--blockBackground);
+		padding: 2rem;
+	}
+
+	.block:first-child {
+		padding-top: 1rem;
 	}
 
 	.block :global(*) {

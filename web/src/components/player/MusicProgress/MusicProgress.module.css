@@ -16,7 +16,10 @@
 }
 
 .text {
-	color: var(--color-controls-light-muted);
+	color: var(--color-text-light);
+	font-size: var(--font-size-xs);
+	font-weight: var(--font-weight-light);
+	font-family: var(--font-family-text);
 }
 
 .progress-bar {

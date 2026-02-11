@@ -12,6 +12,23 @@
           },
           "optional": true
         },
+        "textColor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "light"
+              },
+              {
+                "type": "string",
+                "value": "dark"
+              }
+            ]
+          },
+          "optional": true
+        },
         "alignment": {
           "type": "objectAttribute",
           "value": {
@@ -28,23 +45,6 @@
               {
                 "type": "string",
                 "value": "right"
-              }
-            ]
-          },
-          "optional": true
-        },
-        "textColor": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "light"
-              },
-              {
-                "type": "string",
-                "value": "dark"
               }
             ]
           },
@@ -662,14 +662,14 @@
           },
           "optional": true
         },
-        "date": {
+        "location": {
           "type": "objectAttribute",
           "value": {
             "type": "string"
           },
           "optional": true
         },
-        "location": {
+        "date": {
           "type": "objectAttribute",
           "value": {
             "type": "string"
@@ -679,402 +679,14 @@
         "startTime": {
           "type": "objectAttribute",
           "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "12:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "12:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "1:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "1:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "2:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "2:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "3:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "3:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "4:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "4:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "5:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "5:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "6:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "6:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "7:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "7:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "8:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "8:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "9:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "9:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "10:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "10:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "11:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "11:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "12:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "12:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "1:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "1:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "2:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "2:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "3:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "3:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "4:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "4:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "5:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "5:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "6:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "6:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "7:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "7:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "8:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "8:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "9:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "9:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "10:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "10:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "11:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "11:30 PM"
-              }
-            ]
+            "type": "string"
           },
           "optional": true
         },
         "endTime": {
           "type": "objectAttribute",
           "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "12:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "12:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "1:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "1:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "2:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "2:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "3:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "3:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "4:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "4:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "5:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "5:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "6:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "6:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "7:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "7:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "8:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "8:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "9:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "9:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "10:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "10:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "11:00 AM"
-              },
-              {
-                "type": "string",
-                "value": "11:30 AM"
-              },
-              {
-                "type": "string",
-                "value": "12:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "12:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "1:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "1:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "2:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "2:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "3:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "3:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "4:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "4:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "5:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "5:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "6:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "6:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "7:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "7:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "8:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "8:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "9:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "9:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "10:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "10:30 PM"
-              },
-              {
-                "type": "string",
-                "value": "11:00 PM"
-              },
-              {
-                "type": "string",
-                "value": "11:30 PM"
-              }
-            ]
+            "type": "string"
           },
           "optional": true
         }

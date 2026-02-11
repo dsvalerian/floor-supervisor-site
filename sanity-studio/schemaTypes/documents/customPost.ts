@@ -10,7 +10,7 @@ export const customPost = {
     {
       name: "blocks",
       type: "array",
-      title: "Content Blocks",
+      title: "Content",
       of: [
         defineArrayMember({type: "textBlock"}),
         defineArrayMember({type: "eventsBlock"}),

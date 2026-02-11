@@ -9,15 +9,21 @@ const label = {
   type: "object",
   title: "Label",
   description: "The label that appears in the top corner of the post.",
-  fields: [
-    textField({required: true}),
-    alignmentField({required: true}),
-    textColorField({required: true}),
-    backgroundField({required: true}),
+  fieldsets: [
+    {
+      name: "text",
+      description: "Customize this post's label text.",
+      options: {
+        columns: 2,
+      },
+    },
   ],
-  options: {
-    collapsible: true,
-  },
+  fields: [
+    {...textField({title: "Label Text", required: true}), fieldset: "text"},
+    {...textColorField({title: "Label Text Color", required: true}), fieldset: "text"},
+    alignmentField({title: "Label Alignment", required: true}),
+    backgroundField({title: "Label Background", required: true}),
+  ],
 };
 
 export const postDetails = defineType({
@@ -28,7 +34,7 @@ export const postDetails = defineType({
   fields: [
     textField({
       name: "category",
-      title: "Category",
+      title: "Post Category",
       description: "The category of the post. Used for filtering with similar posts.",
       required: true,
     }),

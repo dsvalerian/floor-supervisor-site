@@ -7,9 +7,10 @@ import { useStore } from "@nanostores/react";
 
 interface PostMusicPlayerProps {
 	track: AudioInfo;
+	textColor: "light" | "dark";
 }
 
-const PostMusicPlayer = ({ track }: PostMusicPlayerProps) => {
+const PostMusicPlayer = ({ track, textColor }: PostMusicPlayerProps) => {
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const [duration, setDuration] = useState<number>(0);
 	const activeTrack = useStore(activeAudio);
@@ -18,12 +19,19 @@ const PostMusicPlayer = ({ track }: PostMusicPlayerProps) => {
 		const audio = audioRef.current;
 		if (!audio) return;
 
-		const onLoadedMetadata = () => setDuration(audio.duration);
+		const onDurationChange = () => {
+			if (audio.duration && isFinite(audio.duration)) {
+				setDuration(audio.duration);
+			}
+		};
 
-		audio.addEventListener("loadedmetadata", onLoadedMetadata);
+		// Check immediately
+		onDurationChange();
+
+		audio.addEventListener("durationchange", onDurationChange);
 
 		return () => {
-			audio.removeEventListener("loadedmetadata", onLoadedMetadata);
+			audio.removeEventListener("durationchange", onDurationChange);
 		};
 	}, []);
 
@@ -36,17 +44,12 @@ const PostMusicPlayer = ({ track }: PostMusicPlayerProps) => {
 
 	return (
 		<button
-			className={`${styles["post-music-player"]} ${isActiveTrack && styles["selected"]}`}
+			className={`${styles["post-music-player"]} ${isActiveTrack && styles["selected"]} ${styles[`text-color-${textColor}`]}`}
 			onClick={handleClick}
 		>
 			<audio ref={audioRef} src={track.url}></audio>
 			<div className={styles["left"]}>
-				{(isActiveTrack && (
-					<span className={`material-icons ${styles["icon"]}`}>pause</span>
-				)) || (
-					<span className={`material-icons ${styles["icon"]}`}>play_arrow</span>
-				)}
-				<div className={styles["track-text"]}>
+				<div className={`${styles["track-text"]}`}>
 					<p className={styles["track-name"]}>{track.name}</p>
 					<p className={styles["track-artist"]}>{track.artist}</p>
 				</div>

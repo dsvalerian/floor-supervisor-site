@@ -21,18 +21,29 @@
 
 .music-info {
 	display: flex;
-	flex-direction: column;
-	gap: 0.125rem;
+	flex-direction: row;
+	gap: 0.5rem;
 	align-items: center;
+	justify-content: center;
 	margin-bottom: 0.5rem;
+	flex-wrap: wrap;
 }
 
 .music-name {
 	color: var(--color-controls-light-muted);
 	font-size: var(--font-size-xs);
+	font-weight: var(--font-weight-semibold);
+	font-family: var(--font-family-text);
+	color: var(--color-text-light);
+	text-align: center;
 }
 
-.music-artist {
-	color: var(--color-controls-light-extra-muted);
+.music-artist,
+.dot-symbol {
+	color: var(--color-controls-light-muted);
 	font-size: var(--font-size-xs);
+	font-weight: var(--font-weight-light);
+	font-family: var(--font-family-text);
+	color: var(--color-text-light);
+	text-align: center;
 }

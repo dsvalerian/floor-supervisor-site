@@ -21,6 +21,13 @@ const allPostsQuery = `*[_type in ["customPost", "textPost", "eventsPost"]] {
 				"blockDetails": {
 					...blockDetails,
 					"background": coalesce(blockDetails.background.hex, "transparent")
+				},
+				_type == "musicBlock" => {
+					"coverArt": coverArt.asset->url,
+					"musicTracks": musicTracks[]{
+						...,
+						"audioFile": audioFile.asset->url
+					}
 				}
 			}
 		},

@@ -1,6 +1,7 @@
 ---
 import type { CustomPost } from "../../types/sanity.types";
 import EventsBlockView from "../blocks/EventsBlockView.astro";
+import MusicBlockView from "../blocks/MusicBlockView.astro";
 import TextBlockView from "../blocks/TextBlockView.astro";
 import PostWrapper from "./PostWrapper.astro";
 
@@ -23,7 +24,7 @@ if (!postDetails || !blocks) {
 			if (block._type === "textBlock") {
 				return <TextBlockView config={block} />;
 			} else if (block._type === "musicBlock") {
-				// Render music block
+				return <MusicBlockView config={block} />;
 				return <p>todo</p>;
 			} else if (block._type === "eventsBlock") {
 				return <EventsBlockView config={block} />;

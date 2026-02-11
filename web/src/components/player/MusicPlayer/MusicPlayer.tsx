@@ -68,6 +68,7 @@ const MusicPlayer = () => {
 			<div className={styles["music-player"]}>
 				<div className={styles["music-info"]}>
 					<p className={styles["music-name"]}>{trackInfo?.name}</p>
+
 					<p className={styles["music-artist"]}>{trackInfo?.artist}</p>
 				</div>
 				<div className={styles["music-controls"]}>

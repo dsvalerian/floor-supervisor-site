@@ -8,6 +8,8 @@ import {postDetails} from "./types/common/postDetails";
 import {eventDetails} from "./types/event";
 import {musicTrack} from "./types/musicTrack";
 import {customText} from "./types/customText";
+import photoBlock from "./types/blocks/photoBlock";
+import image from "./types/image";
 
 export const schemaTypes = [
   // Types
@@ -15,10 +17,12 @@ export const schemaTypes = [
   postDetails,
   eventDetails,
   musicTrack,
+  customText,
+  image,
   eventsBlock,
   musicBlock,
   textBlock,
-  customText,
+  photoBlock,
   // Documents
   customPost,
   textPost,

@@ -57,6 +57,9 @@ export type CustomPost = {
 		| ({
 				_key: string;
 		  } & MusicBlock)
+		| ({
+				_key: string;
+		  } & PhotoBlock)
 	>;
 };
 
@@ -67,18 +70,21 @@ export type PostDetails = {
 	label?: Label;
 };
 
-export type CustomText = {
-	_type: "customText";
-	text?: string;
-	textSize?: "small" | "medium" | "large";
-	textAlignment?: "left" | "center" | "right";
+export type PhotoBlock = {
+	_type: "photoBlock";
+	blockDetails?: BlockDetails;
+	photos?: Array<
+		{
+			_key: string;
+		} & ImageInfo
+	>;
 };
 
-export type SanityFileAssetReference = {
+export type SanityImageAssetReference = {
 	_ref: string;
 	_type: "reference";
 	_weak?: boolean;
-	[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+	[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type MusicBlock = {
@@ -86,12 +92,34 @@ export type MusicBlock = {
 	blockDetails?: BlockDetails;
 	artist?: string;
 	name?: string;
-	coverArt?: string;
+	coverArt?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		_type: "image";
+	};
 	musicTracks?: Array<
 		{
 			_key: string;
 		} & MusicTrack
 	>;
+};
+
+export type SanityImageCrop = {
+	_type: "sanity.imageCrop";
+	top?: number;
+	bottom?: number;
+	left?: number;
+	right?: number;
+};
+
+export type SanityImageHotspot = {
+	_type: "sanity.imageHotspot";
+	x?: number;
+	y?: number;
+	height?: number;
+	width?: number;
 };
 
 export type EventsBlock = {
@@ -111,11 +139,42 @@ export type BlockDetails = {
 	background?: Color;
 };
 
+export type ImageInfo = {
+	_type: "imageInfo";
+	image?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		_type: "image";
+	};
+	url?: string;
+	alt?: string;
+};
+
+export type CustomText = {
+	_type: "customText";
+	text?: string;
+	textSize?: "small" | "medium" | "large";
+	textAlignment?: "left" | "center" | "right";
+};
+
+export type SanityFileAssetReference = {
+	_ref: string;
+	_type: "reference";
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+};
+
 export type MusicTrack = {
 	_type: "musicTrack";
 	name?: string;
 	artist?: string;
-	audioFile?: string;
+	audioFile?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: "file";
+	};
 };
 
 export type Event = {
@@ -198,22 +257,6 @@ export type SanityImageMetadata = {
 	isOpaque?: boolean;
 };
 
-export type SanityImageHotspot = {
-	_type: "sanity.imageHotspot";
-	x?: number;
-	y?: number;
-	height?: number;
-	width?: number;
-};
-
-export type SanityImageCrop = {
-	_type: "sanity.imageCrop";
-	top?: number;
-	bottom?: number;
-	left?: number;
-	right?: number;
-};
-
 export type SanityFileAsset = {
 	_id: string;
 	_type: "sanity.fileAsset";
@@ -285,11 +328,16 @@ export type AllSanitySchemaTypes =
 	| TextBlock
 	| CustomPost
 	| PostDetails
-	| CustomText
-	| SanityFileAssetReference
+	| PhotoBlock
+	| SanityImageAssetReference
 	| MusicBlock
+	| SanityImageCrop
+	| SanityImageHotspot
 	| EventsBlock
 	| BlockDetails
+	| ImageInfo
+	| CustomText
+	| SanityFileAssetReference
 	| MusicTrack
 	| Event
 	| Color
@@ -300,8 +348,6 @@ export type AllSanitySchemaTypes =
 	| SanityImagePalette
 	| SanityImageDimensions
 	| SanityImageMetadata
-	| SanityImageHotspot
-	| SanityImageCrop
 	| SanityFileAsset
 	| SanityAssetSourceData
 	| SanityImageAsset

@@ -2,7 +2,7 @@ import {defineField, defineType} from "sanity";
 import alignmentField from "../../fields/alignmentField";
 import backgroundField from "../../fields/backgroundField";
 import textColorField from "../../fields/textColorField";
-import {textField} from "../../fields/textField";
+import textField from "../../fields/textField";
 
 const label = {
   name: "label",

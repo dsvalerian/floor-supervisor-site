@@ -28,6 +28,12 @@ const allPostsQuery = `*[_type in ["customPost", "textPost", "eventsPost"]] {
 						...,
 						"audioFile": audioFile.asset->url
 					}
+				},
+				_type == "photoBlock" => {
+					"photos": photos[]{
+						...,
+						"url": image.asset->url
+					}
 				}
 			}
 		},
@@ -62,6 +68,7 @@ const allPostsQuery = `*[_type in ["customPost", "textPost", "eventsPost"]] {
 export const getAllPosts = async () => {
 	console.info("Getting all posts");
 	const result = await sanityClient.fetch<QueryResult[]>(allPostsQuery);
-	console.info(`Fetched ${result.length} post(s)`, result);
+	console.info(`Fetched ${result.length} post(s)`);
+	console.dir(result, { depth: 7 });
 	return result;
 };

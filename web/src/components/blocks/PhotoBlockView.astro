@@ -1,0 +1,50 @@
+---
+import type { PhotoBlock } from "../../types/sanity.types";
+import BlockWrapper from "./BlockWrapper.astro";
+import Image from "astro/components/Image.astro";
+
+type Props = {
+	config: PhotoBlock;
+};
+
+const {
+	config: { blockDetails, photos },
+} = Astro.props;
+
+if (!blockDetails || !photos) {
+	throw new Error("Must provide block details and photos for photo block.");
+}
+---
+
+<BlockWrapper config={{ ...blockDetails, padding: false }}>
+	<div class="images">
+		{
+			photos.map(photo => (
+				<div class="image-wrapper">
+					<Image src={photo.url || ""} alt={``} inferSize />
+				</div>
+			))
+		}
+	</div>
+</BlockWrapper>
+
+<style>
+	.images {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.image-wrapper {
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+
+	.image-wrapper img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+</style>

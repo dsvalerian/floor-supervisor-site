@@ -2,6 +2,7 @@
 import type { CustomPost } from "../../types/sanity.types";
 import EventsBlockView from "../blocks/EventsBlockView.astro";
 import MusicBlockView from "../blocks/MusicBlockView.astro";
+import PhotoBlockView from "../blocks/PhotoBlockView.astro";
 import TextBlockView from "../blocks/TextBlockView.astro";
 import PostWrapper from "./PostWrapper.astro";
 
@@ -25,9 +26,10 @@ if (!postDetails || !blocks) {
 				return <TextBlockView config={block} />;
 			} else if (block._type === "musicBlock") {
 				return <MusicBlockView config={block} />;
-				return <p>todo</p>;
 			} else if (block._type === "eventsBlock") {
 				return <EventsBlockView config={block} />;
+			} else if (block._type === "photoBlock") {
+				return <PhotoBlockView config={block} />;
 			}
 		})
 	}

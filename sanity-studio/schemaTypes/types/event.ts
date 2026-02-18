@@ -1,5 +1,5 @@
 import {defineType} from "sanity";
-import {textField} from "../fields/textField";
+import textField from "../fields/textField";
 
 export const eventDetails = defineType({
   name: "event",

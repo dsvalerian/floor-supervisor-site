@@ -1,6 +1,6 @@
 import {defineArrayMember, defineType} from "sanity";
 import {blockDetailsField} from "../common/blockDetails";
-import {textField} from "../../fields/textField";
+import textField from "../../fields/textField";
 
 export const eventsBlock = defineType({
   name: "eventsBlock",

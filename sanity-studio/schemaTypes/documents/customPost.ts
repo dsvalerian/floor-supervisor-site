@@ -1,4 +1,4 @@
-import {defineArrayMember, defineField} from "sanity";
+import {defineArrayMember} from "sanity";
 import {postDetailsField} from "../types/common/postDetails";
 
 export const customPost = {
@@ -15,6 +15,7 @@ export const customPost = {
         defineArrayMember({type: "textBlock"}),
         defineArrayMember({type: "eventsBlock"}),
         defineArrayMember({type: "musicBlock"}),
+        defineArrayMember({type: "photoBlock"}),
       ],
     },
   ],

@@ -2,14 +2,15 @@
 import { type BlockDetails } from "../../types/sanity.types";
 
 type Props = {
-	config: BlockDetails;
+	config: BlockDetails & { padding?: boolean };
 };
 
 const {
-	config: { textColor, background },
+	config: { textColor, background, padding = true },
 } = Astro.props;
 
 const textColorVar = `var(--color-text-${textColor})`;
+const paddingValue = padding ? "2rem" : "0";
 ---
 
 <div class="block"><slot /></div>
@@ -18,11 +19,12 @@ const textColorVar = `var(--color-text-${textColor})`;
 	define:vars={{
 		blockBackground: background,
 		textColor: textColorVar,
+		padding: paddingValue,
 	}}
 >
 	.block {
 		background: var(--blockBackground);
-		padding: 2rem;
+		padding: var(--padding);
 	}
 
 	.block:first-child {

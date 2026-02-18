@@ -1,5 +1,5 @@
 import {defineType} from "sanity";
-import {textField} from "../fields/textField";
+import textField from "../fields/textField";
 import audioField from "../fields/audioField";
 
 export const musicTrack = defineType({

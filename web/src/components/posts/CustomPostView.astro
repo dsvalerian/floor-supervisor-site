@@ -10,7 +10,7 @@ type Props = {
 };
 
 const {
-	config: { postDetails, blocks },
+	config: { _id, postDetails, blocks },
 } = Astro.props;
 
 if (!postDetails || !blocks) {
@@ -18,9 +18,9 @@ if (!postDetails || !blocks) {
 }
 ---
 
-<PostWrapper config={postDetails}>
+<PostWrapper config={postDetails} postId={_id}>
 	{
-		blocks.map((block) => {
+		blocks.map(block => {
 			if (block._type === "textBlock") {
 				return <TextBlockView config={block} />;
 			} else if (block._type === "musicBlock") {

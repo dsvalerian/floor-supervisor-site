@@ -72,15 +72,11 @@ const MusicPlayer = () => {
 					<p className={styles["music-artist"]}>{trackInfo?.artist}</p>
 				</div>
 				<div className={styles["music-controls"]}>
-					<RewindButton />
+					{/* <RewindButton /> */}
 					<PlayButton playing={isSongPlaying} onClick={togglePlay} />
-					<ForwardButton />
+					{/* <ForwardButton /> */}
 				</div>
-				<MusicProgress
-					duration={duration}
-					currentTime={currentTime}
-					onSeekEnd={onSeek}
-				/>
+				<MusicProgress duration={duration} currentTime={currentTime} onSeekEnd={onSeek} />
 			</div>
 		</section>
 	);

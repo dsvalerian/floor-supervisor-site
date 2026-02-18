@@ -8,7 +8,7 @@ type Props = {
 };
 
 const {
-	config: { postDetails, content },
+	config: { _id, postDetails, content },
 } = Astro.props;
 
 if (!postDetails || !content) {
@@ -16,6 +16,6 @@ if (!postDetails || !content) {
 }
 ---
 
-<PostWrapper config={postDetails}>
+<PostWrapper config={postDetails} postId={_id}>
 	<TextBlockView config={content} />
 </PostWrapper>

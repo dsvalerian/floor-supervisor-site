@@ -1,6 +1,6 @@
 import {defineType} from "sanity";
-import fileField from "../fields/fileField";
 import {textField} from "../fields/textField";
+import audioField from "../fields/audioField";
 
 export const musicTrack = defineType({
   name: "musicTrack",
@@ -10,6 +10,6 @@ export const musicTrack = defineType({
   fields: [
     textField({name: "name", title: "Name", required: true}),
     textField({name: "artist", title: "Artist", required: true}),
-    fileField({name: "audioFile", title: "Audio File", required: true}),
+    audioField({name: "audioFile", title: "Audio File", required: true}),
   ],
 });

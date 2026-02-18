@@ -1,5 +1,5 @@
 import {defineArrayMember, defineType} from "sanity";
-import fileField from "../../fields/fileField";
+import imageField from "../../fields/imageField";
 import {textField} from "../../fields/textField";
 import {blockDetailsField} from "../common/blockDetails";
 
@@ -12,7 +12,7 @@ export const musicBlock = defineType({
     blockDetailsField,
     textField({name: "artist", title: "Release Artist"}),
     textField({name: "name", title: "Release Name", description: "The name of this music release."}),
-    fileField({name: "coverArt", title: "Cover Art", description: "The cover art for this release."}),
+    imageField({name: "coverArt", title: "Cover Art", description: "The cover art for this release."}),
     {
       name: "musicTracks",
       type: "array",

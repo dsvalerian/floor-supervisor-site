@@ -21,7 +21,7 @@ if (!blockDetails || !photos) {
 		{
 			photos.map(photo => (
 				<div class="image-wrapper">
-					<Image src={photo.url || ""} alt={``} inferSize />
+					<Image src={photo.url || ""} alt={photo.alt || ""} inferSize />
 				</div>
 			))
 		}

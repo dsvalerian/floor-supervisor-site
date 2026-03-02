@@ -10,6 +10,7 @@ import {musicTrack} from "./types/musicTrack";
 import {customText} from "./types/customText";
 import photoBlock from "./types/blocks/photoBlock";
 import image from "./types/image";
+import {contactFormBlock} from "./types/blocks/contactFormBlock";
 
 export const schemaTypes = [
   // Types
@@ -23,6 +24,7 @@ export const schemaTypes = [
   musicBlock,
   textBlock,
   photoBlock,
+  contactFormBlock,
   // Documents
   customPost,
   textPost,

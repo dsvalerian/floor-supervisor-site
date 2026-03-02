@@ -16,6 +16,7 @@ export const customPost = {
         defineArrayMember({type: "eventsBlock"}),
         defineArrayMember({type: "musicBlock"}),
         defineArrayMember({type: "photoBlock"}),
+        defineArrayMember({type: "contactFormBlock"}),
       ],
     },
   ],

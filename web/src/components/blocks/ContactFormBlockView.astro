@@ -1,0 +1,107 @@
+---
+import type { ContactFormBlock, TextBlock } from "../../types/sanity.types";
+import BlockWrapper from "./BlockWrapper.astro";
+
+type Props = {
+	config: ContactFormBlock;
+};
+
+const {
+	config: { blockDetails, title },
+} = Astro.props;
+
+if (!blockDetails) {
+	throw new Error("Must provide block details for contact form block.");
+}
+
+const textColorVar = `var(--color-text-${blockDetails.textColor})`;
+const oppositeColorVar = `var(--color-text-${blockDetails.textColor === "dark" ? "light" : "dark"})`;
+---
+
+<BlockWrapper config={blockDetails}>
+	<div class="form-container">
+		{title && <p class="contact-title">{title}</p>}
+		<form class="form" action="https://formsubmit.co/f0e81aa5ebd0c9c5ed38a1ea0639427d" method="POST">
+			<input class="input" type="text" name="name" placeholder="Your name" required />
+			<input class="input" type="email" name="email" placeholder="Your email" required />
+			<textarea rows="5" class="input textarea" name="message" placeholder="Your message" required></textarea>
+			<button class="button" type="submit">Send</button>
+		</form>
+	</div>
+</BlockWrapper>
+
+<style define:vars={{ textColor: textColorVar, oppositeColor: oppositeColorVar }}>
+	.form-container {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.contact-title {
+		font-size: var(--font-size-lg);
+		font-weight: var(--font-weight-semibold);
+		align-self: center;
+		text-align: center;
+	}
+
+	.form {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.input {
+		width: 100%;
+		max-width: 600px;
+		border-radius: var(--radius-normal);
+		border: none;
+		outline: 2px solid var(--textColor);
+		color: var(--textColor);
+		background: transparent;
+		padding: 0.5rem;
+		font-family: var(--font-family-text);
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-light);
+		transition-duration: var(--transition-normal);
+	}
+
+	.input:focus {
+		outline-offset: 2px;
+	}
+
+	.input::placeholder {
+		color: var(--textColor);
+		opacity: 0.5;
+	}
+
+	.button {
+		width: 100%;
+		max-width: 600px;
+		border-radius: var(--radius-normal);
+		border: none;
+		outline: 2px solid var(--textColor);
+		color: var(--oppositeColor);
+		background: var(--textColor);
+		padding: 0.5rem;
+		font-family: var(--font-family-text);
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-light);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+	}
+
+	.button:hover {
+		outline-offset: 2px;
+		background: transparent;
+		color: var(--textColor);
+		transition-duration: var(--transition-normal);
+	}
+
+	.textarea {
+		resize: none;
+		height: 6rem;
+	}
+</style>

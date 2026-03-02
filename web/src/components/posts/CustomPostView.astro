@@ -1,5 +1,6 @@
 ---
 import type { CustomPost } from "../../types/sanity.types";
+import ContactFormBlockView from "../blocks/ContactFormBlockView.astro";
 import EventsBlockView from "../blocks/EventsBlockView.astro";
 import MusicBlockView from "../blocks/MusicBlockView.astro";
 import PhotoBlockView from "../blocks/PhotoBlockView.astro";
@@ -30,6 +31,8 @@ if (!postDetails || !blocks) {
 				return <EventsBlockView config={block} />;
 			} else if (block._type === "photoBlock") {
 				return <PhotoBlockView config={block} />;
+			} else if (block._type === "contactFormBlock") {
+				return <ContactFormBlockView config={block} />;
 			}
 		})
 	}

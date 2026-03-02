@@ -81,6 +81,9 @@ export type CustomPost = {
     | ({
         _key: string;
       } & PhotoBlock)
+    | ({
+        _key: string;
+      } & ContactFormBlock)
   >;
 };
 
@@ -89,6 +92,12 @@ export type PostDetails = {
   category?: string;
   background?: Color;
   label?: Label;
+};
+
+export type ContactFormBlock = {
+  _type: "contactFormBlock";
+  blockDetails?: BlockDetails;
+  title?: string;
 };
 
 export type PhotoBlock = {
@@ -344,6 +353,7 @@ export type AllSanitySchemaTypes =
   | TextBlock
   | CustomPost
   | PostDetails
+  | ContactFormBlock
   | PhotoBlock
   | MusicBlock
   | SanityImageCrop

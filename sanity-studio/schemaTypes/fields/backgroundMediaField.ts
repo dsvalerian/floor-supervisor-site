@@ -16,12 +16,13 @@ export default (options: FieldOptions = {}) =>
         title: "Background Type",
         options: {
           list: [
-            {title: "Transparent", value: "transparent"},
+            {title: "Transparent (uses post color)", value: "transparent"},
             {title: "Color", value: "color"},
             {title: "Image", value: "image"},
           ],
           layout: "radio",
         },
+        initialValue: "transparent",
         validation: (rule) => (options.required ? rule.required() : rule),
       }),
       {

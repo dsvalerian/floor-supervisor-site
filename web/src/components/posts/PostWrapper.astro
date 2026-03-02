@@ -30,13 +30,10 @@ const alignVar = (label.alignment === "left" && "start") || (label.alignment ===
 			</div>
 		)
 	}
-	<div class="post-content" data-post-collapsible>
-		<div class="post-content-inner" data-post-collapsible-inner>
+	<div class="post-content">
+		<div class="post-content-inner">
 			<slot />
 		</div>
-		<button class="post-content-toggle" type="button" aria-expanded="false" data-post-collapsible-toggle>
-			<span class="material-icons post-content-icon" aria-hidden="true">keyboard_arrow_down</span>
-		</button>
 	</div>
 </article>
 
@@ -53,6 +50,7 @@ const alignVar = (label.alignment === "left" && "start") || (label.alignment ===
 		background: var(--postBackground);
 		border-radius: var(--radius-normal);
 		overflow: hidden;
+		position: relative;
 	}
 
 	.post-card > * {
@@ -71,77 +69,14 @@ const alignVar = (label.alignment === "left" && "start") || (label.alignment ===
 		flex-direction: column;
 	}
 
-	.post-content-toggle {
-		display: none;
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 2;
-		height: 64px;
-		width: 100%;
-		border: 0;
-		background: transparent;
-		cursor: pointer;
-		align-items: flex-end;
-		justify-content: center;
-		padding: 0 0 12px 0;
-	}
-
-	.post-content-toggle .post-content-icon {
-		font-size: 28px;
-		line-height: 1;
-		transition:
-			transform 180ms ease,
-			opacity 180ms ease;
-		opacity: 0.85;
-		color: var(--color-text-light);
-	}
-
-	.post-content-toggle:hover .post-content-icon {
-		opacity: 1;
-	}
-
-	.post-content[data-collapsible="true"][data-expanded="false"] .post-content-inner {
-		max-height: var(--postCollapseHeight);
-		overflow: hidden;
-	}
-
-	.post-content[data-collapsible="true"][data-expanded="false"]::after {
-		content: "";
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		height: 96px;
-		pointer-events: none;
-		z-index: 1;
-		background: linear-gradient(to bottom, rgba(0, 0, 0, 0), var(--postFadeTo));
-	}
-
-	.post-content[data-collapsible="true"] .post-content-toggle {
-		display: inline-flex;
-	}
-
-	.post-content[data-collapsible="true"][data-expanded="true"] :global(.post-content-icon) {
-		transform: rotate(180deg);
-	}
-
-	@media (max-width: 640px) {
-		.post-content {
-			--postCollapseHeight: 420px;
-		}
-	}
-
-	@media (min-width: 641px) {
-		.post-content {
-			--postCollapseHeight: 600px;
-		}
-	}
-
 	.post-label-container {
 		display: flex;
 		justify-content: var(--alignment);
+		position: absolute;
+		left: 0;
+		right: 0;
+		z-index: 3;
+		pointer-events: none;
 	}
 
 	.post-label {
@@ -153,6 +88,3 @@ const alignVar = (label.alignment === "left" && "start") || (label.alignment ===
 		font-family: var(--font-family-header);
 	}
 </style>
-
-<!-- Client-side behavior: Astro/Vite will bundle the TypeScript file and run it on the client. -->
-<script src="../../lib/postCollapsible.ts"></script>

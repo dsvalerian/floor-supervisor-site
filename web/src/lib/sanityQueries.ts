@@ -20,7 +20,14 @@ const allPostsQuery = `*[_type in ["customPost", "textPost", "eventsPost"]] {
 				...,
 				"blockDetails": {
 					...blockDetails,
-					"background": coalesce(blockDetails.background.hex, "transparent")
+					"background": {
+						"type": blockDetails.background.type,
+						"color": blockDetails.background.color,
+						"image": blockDetails.background.image{
+							...,
+							"url": asset->url
+						}
+					}
 				},
 				_type == "musicBlock" => {
 					"coverArt": coverArt.asset->url,
@@ -44,7 +51,14 @@ const allPostsQuery = `*[_type in ["customPost", "textPost", "eventsPost"]] {
 				...content,
 				"blockDetails": {
 					...content.blockDetails,
-					"background": coalesce(content.blockDetails.background.hex, "transparent")
+					"background": {
+						"type": content.blockDetails.background.type,
+						"color": content.blockDetails.background.color,
+						"image": content.blockDetails.background.image{
+							...,
+							"url": asset->url
+						}
+					}
 				}
 			}
 		},

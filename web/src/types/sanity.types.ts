@@ -13,345 +13,360 @@
  */
 
 // Source: generated-schema.json
-export type Label = {
-	text?: string;
-	textColor?: "light" | "dark";
-	alignment?: "left" | "center" | "right";
-	background?: Color;
-};
-
-export type TextPost = {
-	_id: string;
-	_type: "textPost";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	postDetails?: PostDetails;
-	content?: TextBlock;
-};
-
-export type TextBlock = {
-	_type: "textBlock";
-	blockDetails?: BlockDetails;
-	customTexts?: Array<
-		{
-			_key: string;
-		} & CustomText
-	>;
-};
-
-export type CustomPost = {
-	_id: string;
-	_type: "customPost";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	postDetails?: PostDetails;
-	blocks?: Array<
-		| ({
-				_key: string;
-		  } & TextBlock)
-		| ({
-				_key: string;
-		  } & EventsBlock)
-		| ({
-				_key: string;
-		  } & MusicBlock)
-		| ({
-				_key: string;
-		  } & PhotoBlock)
-	>;
-};
-
-export type PostDetails = {
-	_type: "postDetails";
-	category?: string;
-	background?: Color;
-	label?: Label;
-};
-
-export type PhotoBlock = {
-	_type: "photoBlock";
-	blockDetails?: BlockDetails;
-	photos?: Array<
-		{
-			_key: string;
-		} & ImageInfo
-	>;
+export type Background = {
+  type?: "transparent" | "color" | "image";
+  color?: Color;
+  image?: BackgroundImage;
 };
 
 export type SanityImageAssetReference = {
-	_ref: string;
-	_type: "reference";
-	_weak?: boolean;
-	[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type BackgroundImage = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type Label = {
+  text?: string;
+  textColor?: "light" | "dark";
+  alignment?: "left" | "center" | "right";
+  background?: Color;
+};
+
+export type TextPost = {
+  _id: string;
+  _type: "textPost";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  postDetails?: PostDetails;
+  content?: TextBlock;
+};
+
+export type TextBlock = {
+  _type: "textBlock";
+  blockDetails?: BlockDetails;
+  customTexts?: Array<
+    {
+      _key: string;
+    } & CustomText
+  >;
+};
+
+export type CustomPost = {
+  _id: string;
+  _type: "customPost";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  postDetails?: PostDetails;
+  blocks?: Array<
+    | ({
+        _key: string;
+      } & TextBlock)
+    | ({
+        _key: string;
+      } & EventsBlock)
+    | ({
+        _key: string;
+      } & MusicBlock)
+    | ({
+        _key: string;
+      } & PhotoBlock)
+  >;
+};
+
+export type PostDetails = {
+  _type: "postDetails";
+  category?: string;
+  background?: Color;
+  label?: Label;
+};
+
+export type PhotoBlock = {
+  _type: "photoBlock";
+  blockDetails?: BlockDetails;
+  photos?: Array<
+    {
+      _key: string;
+    } & ImageInfo
+  >;
 };
 
 export type MusicBlock = {
-	_type: "musicBlock";
-	blockDetails?: BlockDetails;
-	artist?: string;
-	name?: string;
-	coverArt?: {
-		asset?: SanityImageAssetReference;
-		media?: unknown;
-		hotspot?: SanityImageHotspot;
-		crop?: SanityImageCrop;
-		_type: "image";
-	};
-	musicTracks?: Array<
-		{
-			_key: string;
-		} & MusicTrack
-	>;
+  _type: "musicBlock";
+  blockDetails?: BlockDetails;
+  artist?: string;
+  name?: string;
+  coverArt?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  musicTracks?: Array<
+    {
+      _key: string;
+    } & MusicTrack
+  >;
 };
 
 export type SanityImageCrop = {
-	_type: "sanity.imageCrop";
-	top?: number;
-	bottom?: number;
-	left?: number;
-	right?: number;
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
 };
 
 export type SanityImageHotspot = {
-	_type: "sanity.imageHotspot";
-	x?: number;
-	y?: number;
-	height?: number;
-	width?: number;
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
 };
 
 export type EventsBlock = {
-	_type: "eventsBlock";
-	blockDetails?: BlockDetails;
-	title?: string;
-	events?: Array<
-		{
-			_key: string;
-		} & Event
-	>;
+  _type: "eventsBlock";
+  blockDetails?: BlockDetails;
+  title?: string;
+  events?: Array<
+    {
+      _key: string;
+    } & Event
+  >;
 };
 
 export type BlockDetails = {
-	_type: "blockDetails";
-	textColor?: "light" | "dark";
-	background?: Color;
+  _type: "blockDetails";
+  textColor?: "light" | "dark";
+  background?: Background;
 };
 
 export type ImageInfo = {
-	_type: "imageInfo";
-	image?: {
-		asset?: SanityImageAssetReference;
-		media?: unknown;
-		hotspot?: SanityImageHotspot;
-		crop?: SanityImageCrop;
-		_type: "image";
-	};
-	url?: string;
-	alt?: string;
+  _type: "imageInfo";
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  alt?: string;
 };
 
 export type CustomText = {
-	_type: "customText";
-	text?: string;
-	textSize?: "small" | "medium" | "large";
-	textAlignment?: "left" | "center" | "right";
+  _type: "customText";
+  text?: string;
+  textSize?: "small" | "medium" | "large";
+  textAlignment?: "left" | "center" | "right";
 };
 
 export type SanityFileAssetReference = {
-	_ref: string;
-	_type: "reference";
-	_weak?: boolean;
-	[internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
 };
 
 export type MusicTrack = {
-	_type: "musicTrack";
-	name?: string;
-	artist?: string;
-	audioFile?: {
-		asset?: SanityFileAssetReference;
-		media?: unknown;
-		_type: "file";
-	};
+  _type: "musicTrack";
+  name?: string;
+  artist?: string;
+  audioFile?: {
+    asset?: SanityFileAssetReference;
+    media?: unknown;
+    _type: "file";
+  };
 };
 
 export type Event = {
-	_type: "event";
-	name?: string;
-	location?: string;
-	date?: string;
-	startTime?: string;
-	endTime?: string;
+  _type: "event";
+  name?: string;
+  location?: string;
+  date?: string;
+  startTime?: string;
+  endTime?: string;
 };
 
 export type Color = {
-	_type: "color";
-	hex?: string;
-	alpha?: number;
-	hsl?: HslaColor;
-	hsv?: HsvaColor;
-	rgb?: RgbaColor;
+  _type: "color";
+  hex?: string;
+  alpha?: number;
+  hsl?: HslaColor;
+  hsv?: HsvaColor;
+  rgb?: RgbaColor;
 };
 
 export type RgbaColor = {
-	_type: "rgbaColor";
-	r?: number;
-	g?: number;
-	b?: number;
-	a?: number;
+  _type: "rgbaColor";
+  r?: number;
+  g?: number;
+  b?: number;
+  a?: number;
 };
 
 export type HsvaColor = {
-	_type: "hsvaColor";
-	h?: number;
-	s?: number;
-	v?: number;
-	a?: number;
+  _type: "hsvaColor";
+  h?: number;
+  s?: number;
+  v?: number;
+  a?: number;
 };
 
 export type HslaColor = {
-	_type: "hslaColor";
-	h?: number;
-	s?: number;
-	l?: number;
-	a?: number;
+  _type: "hslaColor";
+  h?: number;
+  s?: number;
+  l?: number;
+  a?: number;
 };
 
 export type SanityImagePaletteSwatch = {
-	_type: "sanity.imagePaletteSwatch";
-	background?: string;
-	foreground?: string;
-	population?: number;
-	title?: string;
+  _type: "sanity.imagePaletteSwatch";
+  background?: string;
+  foreground?: string;
+  population?: number;
+  title?: string;
 };
 
 export type SanityImagePalette = {
-	_type: "sanity.imagePalette";
-	darkMuted?: SanityImagePaletteSwatch;
-	lightVibrant?: SanityImagePaletteSwatch;
-	darkVibrant?: SanityImagePaletteSwatch;
-	vibrant?: SanityImagePaletteSwatch;
-	dominant?: SanityImagePaletteSwatch;
-	lightMuted?: SanityImagePaletteSwatch;
-	muted?: SanityImagePaletteSwatch;
+  _type: "sanity.imagePalette";
+  darkMuted?: SanityImagePaletteSwatch;
+  lightVibrant?: SanityImagePaletteSwatch;
+  darkVibrant?: SanityImagePaletteSwatch;
+  vibrant?: SanityImagePaletteSwatch;
+  dominant?: SanityImagePaletteSwatch;
+  lightMuted?: SanityImagePaletteSwatch;
+  muted?: SanityImagePaletteSwatch;
 };
 
 export type SanityImageDimensions = {
-	_type: "sanity.imageDimensions";
-	height?: number;
-	width?: number;
-	aspectRatio?: number;
+  _type: "sanity.imageDimensions";
+  height?: number;
+  width?: number;
+  aspectRatio?: number;
 };
 
 export type SanityImageMetadata = {
-	_type: "sanity.imageMetadata";
-	location?: Geopoint;
-	dimensions?: SanityImageDimensions;
-	palette?: SanityImagePalette;
-	lqip?: string;
-	blurHash?: string;
-	thumbHash?: string;
-	hasAlpha?: boolean;
-	isOpaque?: boolean;
+  _type: "sanity.imageMetadata";
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  thumbHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
 };
 
 export type SanityFileAsset = {
-	_id: string;
-	_type: "sanity.fileAsset";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	originalFilename?: string;
-	label?: string;
-	title?: string;
-	description?: string;
-	altText?: string;
-	sha1hash?: string;
-	extension?: string;
-	mimeType?: string;
-	size?: number;
-	assetId?: string;
-	uploadId?: string;
-	path?: string;
-	url?: string;
-	source?: SanityAssetSourceData;
+  _id: string;
+  _type: "sanity.fileAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  source?: SanityAssetSourceData;
 };
 
 export type SanityAssetSourceData = {
-	_type: "sanity.assetSourceData";
-	name?: string;
-	id?: string;
-	url?: string;
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
 };
 
 export type SanityImageAsset = {
-	_id: string;
-	_type: "sanity.imageAsset";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	originalFilename?: string;
-	label?: string;
-	title?: string;
-	description?: string;
-	altText?: string;
-	sha1hash?: string;
-	extension?: string;
-	mimeType?: string;
-	size?: number;
-	assetId?: string;
-	uploadId?: string;
-	path?: string;
-	url?: string;
-	metadata?: SanityImageMetadata;
-	source?: SanityAssetSourceData;
+  _id: string;
+  _type: "sanity.imageAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  metadata?: SanityImageMetadata;
+  source?: SanityAssetSourceData;
 };
 
 export type Geopoint = {
-	_type: "geopoint";
-	lat?: number;
-	lng?: number;
-	alt?: number;
+  _type: "geopoint";
+  lat?: number;
+  lng?: number;
+  alt?: number;
 };
 
 export type Slug = {
-	_type: "slug";
-	current?: string;
-	source?: string;
+  _type: "slug";
+  current?: string;
+  source?: string;
 };
 
 export type AllSanitySchemaTypes =
-	| Label
-	| TextPost
-	| TextBlock
-	| CustomPost
-	| PostDetails
-	| PhotoBlock
-	| SanityImageAssetReference
-	| MusicBlock
-	| SanityImageCrop
-	| SanityImageHotspot
-	| EventsBlock
-	| BlockDetails
-	| ImageInfo
-	| CustomText
-	| SanityFileAssetReference
-	| MusicTrack
-	| Event
-	| Color
-	| RgbaColor
-	| HsvaColor
-	| HslaColor
-	| SanityImagePaletteSwatch
-	| SanityImagePalette
-	| SanityImageDimensions
-	| SanityImageMetadata
-	| SanityFileAsset
-	| SanityAssetSourceData
-	| SanityImageAsset
-	| Geopoint
-	| Slug;
+  | Background
+  | SanityImageAssetReference
+  | BackgroundImage
+  | Label
+  | TextPost
+  | TextBlock
+  | CustomPost
+  | PostDetails
+  | PhotoBlock
+  | MusicBlock
+  | SanityImageCrop
+  | SanityImageHotspot
+  | EventsBlock
+  | BlockDetails
+  | ImageInfo
+  | CustomText
+  | SanityFileAssetReference
+  | MusicTrack
+  | Event
+  | Color
+  | RgbaColor
+  | HsvaColor
+  | HslaColor
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint
+  | Slug;
 
 export declare const internalGroqTypeReferenceTo: unique symbol;

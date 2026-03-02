@@ -1,4 +1,6 @@
 ---
+import { createImageUrlBuilder } from "@sanity/image-url";
+import { sanityClient } from "sanity:client";
 import { type BlockDetails } from "../../types/sanity.types";
 
 type Props = {
@@ -11,19 +13,50 @@ const {
 
 const textColorVar = `var(--color-text-${textColor})`;
 const paddingValue = padding ? "2rem" : "0";
+const imageBuilder = createImageUrlBuilder(sanityClient);
+
+let backgroundValue;
+switch (background?.type) {
+	case "color":
+		backgroundValue = background.color?.rgb
+			? `rgba(${background.color.rgb.r}, ${background.color.rgb.g}, ${background.color.rgb.b})`
+			: "transparent";
+		break;
+	case "image":
+		if (!background.image) {
+			backgroundValue = "transparent";
+			break;
+		}
+
+		backgroundValue = `url(${imageBuilder.image(background.image).url()})`;
+		break;
+	default:
+		backgroundValue = "transparent";
+		break;
+}
 ---
 
-<div class="block"><slot /></div>
+<div class="block">
+	<div class="block-content"><slot /></div>
+</div>
 
 <style
 	define:vars={{
-		blockBackground: background,
+		blockBackground: backgroundValue,
 		textColor: textColorVar,
 		padding: paddingValue,
 	}}
 >
 	.block {
 		background: var(--blockBackground);
+		position: relative;
+		overflow: hidden;
+		background-size: cover;
+	}
+
+	.block-content {
+		position: relative;
+		z-index: 2;
 		padding: var(--padding);
 	}
 

@@ -3,8 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { activeAudio, isPlaying } from "../../../stores/musicStore";
 import MusicProgress from "../MusicProgress/MusicProgress";
 import PlayButton from "../PlayButton/PlayButton";
-import ForwardButton from "../SkipNextButton/SkipNextButton";
-import RewindButton from "../SkipPreviousButton/SkipPreviousButton";
 import styles from "./MusicPlayer.module.css";
 
 const MusicPlayer = () => {
@@ -75,8 +73,8 @@ const MusicPlayer = () => {
 					{/* <RewindButton /> */}
 					<PlayButton playing={isSongPlaying} onClick={togglePlay} />
 					{/* <ForwardButton /> */}
+					<MusicProgress duration={duration} currentTime={currentTime} onSeekEnd={onSeek} />
 				</div>
-				<MusicProgress duration={duration} currentTime={currentTime} onSeekEnd={onSeek} />
 			</div>
 		</section>
 	);

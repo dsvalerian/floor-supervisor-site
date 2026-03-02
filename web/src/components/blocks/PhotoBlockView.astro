@@ -1,7 +1,9 @@
 ---
+import { createImageUrlBuilder } from "@sanity/image-url";
 import type { PhotoBlock } from "../../types/sanity.types";
 import BlockWrapper from "./BlockWrapper.astro";
 import Image from "astro/components/Image.astro";
+import { sanityClient } from "sanity:client";
 
 type Props = {
 	config: PhotoBlock;
@@ -14,14 +16,21 @@ const {
 if (!blockDetails || !photos) {
 	throw new Error("Must provide block details and photos for photo block.");
 }
+
+const builder = createImageUrlBuilder(sanityClient);
+const photosWithUrls = photos.map(photo => ({
+	...photo,
+	url: builder.image(photo.image).url(),
+	alt: photo.alt || "",
+}));
 ---
 
 <BlockWrapper config={{ ...blockDetails, padding: false }}>
 	<div class="images">
 		{
-			photos.map(photo => (
+			photosWithUrls.map(photo => (
 				<div class="image-wrapper">
-					<Image src={photo.url || ""} alt={photo.alt || ""} inferSize />
+					<Image src={photo.url} alt={photo.alt} layout="constrained" inferSize />
 				</div>
 			))
 		}

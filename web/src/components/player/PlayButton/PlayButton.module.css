@@ -5,10 +5,12 @@
 }
 
 .icon {
-	font-size: 48px;
+	font-size: 36px;
 	user-select: none;
 	color: var(--color-controls-light-muted);
 	transition: var(--transition-normal);
+	vertical-align: middle;
+	text-align: center;
 }
 
 .icon:hover {

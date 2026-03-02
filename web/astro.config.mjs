@@ -13,8 +13,11 @@ export default defineConfig({
 		sanity({
 			projectId: env.PUBLIC_SANITY_PROJECT_ID || "d40vvytu",
 			dataset: env.PUBLIC_SANITY_DATASET || "dev",
-			useCdn: false,
+			useCdn: true,
 		}),
 		react(),
 	],
+	image: {
+		domains: ["cdn.sanity.io"],
+	},
 });

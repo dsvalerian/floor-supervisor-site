@@ -12,6 +12,7 @@ export default (options: FieldOptions = {}) =>
         {value: "light", title: "Light"},
         {value: "dark", title: "Dark"},
       ],
+      layout: "radio",
     },
     initialValue: "light",
     validation: (rule) => (options.required ? rule.required() : rule),

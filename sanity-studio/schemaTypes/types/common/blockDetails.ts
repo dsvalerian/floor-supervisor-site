@@ -1,5 +1,5 @@
 import {defineField, defineType} from "sanity";
-import backgroundField from "../../fields/backgroundField";
+import backgroundMediaField from "../../fields/backgroundMediaField";
 import textColorField from "../../fields/textColorField";
 
 export const blockDetails = defineType({
@@ -7,7 +7,7 @@ export const blockDetails = defineType({
   type: "object",
   title: "Block Details",
   description: "Change the text color and background for this block.",
-  fields: [textColorField({required: false}), backgroundField({required: false})],
+  fields: [textColorField({required: false}), backgroundMediaField({required: true})],
   options: {
     collapsible: true,
     collapsed: true,

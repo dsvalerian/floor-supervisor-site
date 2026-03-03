@@ -41,26 +41,6 @@ export type Label = {
   background?: Color;
 };
 
-export type TextPost = {
-  _id: string;
-  _type: "textPost";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  postDetails?: PostDetails;
-  content?: TextBlock;
-};
-
-export type TextBlock = {
-  _type: "textBlock";
-  blockDetails?: BlockDetails;
-  customTexts?: Array<
-    {
-      _key: string;
-    } & CustomText
-  >;
-};
-
 export type CustomPost = {
   _id: string;
   _type: "customPost";
@@ -107,6 +87,16 @@ export type PhotoBlock = {
     {
       _key: string;
     } & ImageInfo
+  >;
+};
+
+export type TextBlock = {
+  _type: "textBlock";
+  blockDetails?: BlockDetails;
+  customTexts?: Array<
+    {
+      _key: string;
+    } & CustomText
   >;
 };
 
@@ -349,12 +339,11 @@ export type AllSanitySchemaTypes =
   | SanityImageAssetReference
   | BackgroundImage
   | Label
-  | TextPost
-  | TextBlock
   | CustomPost
   | PostDetails
   | ContactFormBlock
   | PhotoBlock
+  | TextBlock
   | MusicBlock
   | SanityImageCrop
   | SanityImageHotspot

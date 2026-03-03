@@ -15,25 +15,26 @@ const {
 	config: { _id, postDetails, blocks },
 } = Astro.props;
 
-if (!postDetails || !blocks) {
+if (!postDetails) {
 	throw new Error("Must provide post details and blocks for a custom post.");
 }
 ---
 
 <PostWrapper config={postDetails} postId={_id}>
 	{
-		blocks.map(block => {
-			if (block._type === "textBlock") {
-				return <TextBlockView config={block} />;
-			} else if (block._type === "musicBlock") {
-				return <MusicBlockView config={block} />;
-			} else if (block._type === "eventsBlock") {
-				return <EventsBlockView config={block} />;
-			} else if (block._type === "photoBlock") {
-				return <PhotoBlockView config={block} />;
-			} else if (block._type === "contactFormBlock") {
-				return <ContactFormBlockView config={block} />;
-			}
-		})
+		blocks &&
+			blocks.map(block => {
+				if (block._type === "textBlock") {
+					return <TextBlockView config={block} />;
+				} else if (block._type === "musicBlock") {
+					return <MusicBlockView config={block} />;
+				} else if (block._type === "eventsBlock") {
+					return <EventsBlockView config={block} />;
+				} else if (block._type === "photoBlock") {
+					return <PhotoBlockView config={block} />;
+				} else if (block._type === "contactFormBlock") {
+					return <ContactFormBlockView config={block} />;
+				}
+			})
 	}
 </PostWrapper>

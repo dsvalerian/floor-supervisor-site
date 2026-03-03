@@ -1,8 +1,12 @@
 ---
-import { getAllPosts } from "../lib/sanityQueries";
+import type { CustomPost } from "../types/sanity.types";
 import CustomPostView from "./posts/CustomPostView.astro";
 
-const posts = await getAllPosts();
+type Props = {
+	posts: CustomPost[];
+};
+
+const { posts } = Astro.props;
 ---
 
 <section class="feed-section">

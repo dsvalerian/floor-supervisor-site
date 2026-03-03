@@ -1,9 +1,9 @@
 import { sanityClient } from "sanity:client";
-import type { CustomPost, TextPost } from "../types/sanity.types";
+import type { CustomPost } from "../types/sanity.types";
 
-type QueryResult = CustomPost | TextPost;
+type QueryResult = CustomPost;
 
-const allPostsQuery = `*[_type in ["customPost", "textPost", "eventsPost"]] {
+const allPostsQuery = `*[_type in ["customPost"]] {
 		...,
 		"postDetails": {
 			...postDetails,
@@ -43,39 +43,6 @@ const allPostsQuery = `*[_type in ["customPost", "textPost", "eventsPost"]] {
 					}
 				}
 			}
-		},
-		
-		// Text post specific fields - transform content block background
-		_type == "textPost" => {
-			"content": {
-				...content,
-				"blockDetails": {
-					...content.blockDetails,
-					"background": {
-						"type": content.blockDetails.background.type,
-						"color": content.blockDetails.background.color,
-						"image": content.blockDetails.background.image{
-							...,
-							"url": asset->url
-						}
-					}
-				}
-			}
-		},
-		
-		// Music post specific fields
-		_type == "musicPost" => {
-			"releaseCoverArt": releaseCoverArt.asset->url,
-			"trackInfos": trackInfos[]{
-				"trackFile": trackFile.asset->url,
-				trackArtist,
-				trackName
-			}
-		},
-		
-		// Event post specific fields  
-		_type == "eventPost" => {
-			"eventInfos": eventInfos[]
 		}
 	}`;
 

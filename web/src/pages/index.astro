@@ -1,35 +1,30 @@
 ---
 import Feed from "../components/Feed.astro";
 import MusicPlayer from "../components/player/MusicPlayer/MusicPlayer";
+import { getAllPosts } from "../lib/sanityQueries";
 import "../styles/global.css";
+
+const posts = await getAllPosts();
+const categories = Array.from(new Set(posts.map(post => post.postDetails?.category!!)));
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link
-			href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/icon?family=Material+Icons"
-			rel="stylesheet"
-		/>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Floor Supervisor</title>
-		<meta
-			name="description"
-			content="Professional portfolio website for Chicago DJ Floor Supervisor."
-		/>
+		<meta name="description" content="Professional portfolio website for Chicago DJ Floor Supervisor." />
 	</head>
 	<body>
 		<main>
-			<Feed />
+			<Feed posts={posts} />
 		</main>
 		<footer>
-			<MusicPlayer client:load />
+			<MusicPlayer client:load categories={categories} />
 		</footer>
 	</body>
 </html>
@@ -41,6 +36,9 @@ import "../styles/global.css";
 
 	main {
 		padding: 1rem;
+		position: relative;
+		z-index: 0;
+		padding-bottom: 6.5rem;
 	}
 
 	footer {

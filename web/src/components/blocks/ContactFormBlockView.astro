@@ -25,7 +25,7 @@ const oppositeColorVar = `var(--color-text-${blockDetails.textColor === "dark" ?
 			<input class="input" type="text" name="name" placeholder="Your name" required />
 			<input class="input" type="email" name="email" placeholder="Your email" required />
 			<textarea rows="5" class="input textarea" name="message" placeholder="Your message" required></textarea>
-			<button class="button" type="submit">Send</button>
+			<button class="button" type="submit">SEND</button>
 		</form>
 	</div>
 </BlockWrapper>
@@ -54,7 +54,7 @@ const oppositeColorVar = `var(--color-text-${blockDetails.textColor === "dark" ?
 	.input {
 		width: 100%;
 		max-width: 600px;
-		border-radius: var(--radius-normal);
+		border-radius: none;
 		border: none;
 		outline: 2px solid var(--textColor);
 		color: var(--textColor);
@@ -78,7 +78,8 @@ const oppositeColorVar = `var(--color-text-${blockDetails.textColor === "dark" ?
 	.button {
 		width: 100%;
 		max-width: 600px;
-		border-radius: var(--radius-normal);
+		border-radius: none;
+		border: none;
 		border: none;
 		outline: 2px solid var(--textColor);
 		color: var(--oppositeColor);
@@ -86,7 +87,7 @@ const oppositeColorVar = `var(--color-text-${blockDetails.textColor === "dark" ?
 		padding: 0.5rem;
 		font-family: var(--font-family-text);
 		font-size: var(--font-size-xs);
-		font-weight: var(--font-weight-light);
+		font-weight: var(--font-weight-normal);
 		display: flex;
 		align-items: center;
 		justify-content: center;

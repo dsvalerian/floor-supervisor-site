@@ -89,7 +89,7 @@
 	--breakpoint-desktop: 1024px;
 
 	/* Border Radius */
-	--radius-normal: 3px;
+	--radius-normal: 0px;
 
 	/* Shadows */
 	--shadow-md: 4px 4px 20px 1px rgba(0, 0, 0, 0.3);

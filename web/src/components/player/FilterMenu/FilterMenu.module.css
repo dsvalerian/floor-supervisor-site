@@ -62,7 +62,7 @@
 	appearance: none;
 	background: transparent;
 	border: 3px solid var(--color-text-light);
-	border-radius: 0;
+	border-radius: var(--radius-normal);
 	display: grid;
 	place-content: center;
 }

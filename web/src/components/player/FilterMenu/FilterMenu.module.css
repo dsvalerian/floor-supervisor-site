@@ -32,7 +32,8 @@
 	list-style: none;
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
+	gap: 0;
+	width: 100%;
 }
 
 .list-item {
@@ -40,11 +41,18 @@
 	text-transform: uppercase;
 }
 
+.list-item:hover {
+	background: hsl(0, 100%, 100%, 0.1);
+}
+
 .category-label {
-	display: inline-flex;
+	display: flex;
 	align-items: center;
 	gap: 0.65rem;
 	cursor: pointer;
+	width: 100%;
+	padding: 0.5rem 1rem;
+	user-select: none;
 }
 
 .category-checkbox {

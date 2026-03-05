@@ -9,7 +9,7 @@ type Props = {
 };
 
 const {
-	config: { label, background },
+	config: { label, background, category },
 	postId,
 } = Astro.props;
 
@@ -22,7 +22,7 @@ const textColorVar = `var(--color-text-${label.textColor})`;
 const alignVar = (label.alignment === "left" && "start") || (label.alignment === "right" && "end") || "center";
 ---
 
-<article class="post-card" data-post-id={postId}>
+<article class="post-card" data-post-id={postId} data-post-category={category}>
 	{
 		label.text && (
 			<div class="post-label-container">

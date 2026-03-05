@@ -20,6 +20,11 @@ const { posts } = Astro.props;
 	}
 </section>
 
+<script type="module" is:inline>
+	import { initPostFiltering } from "/src/lib/filterPosts.ts";
+	initPostFiltering();
+</script>
+
 <style>
 	.feed-section {
 		display: flex;

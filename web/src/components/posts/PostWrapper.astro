@@ -102,18 +102,6 @@ const alignVar = (label.alignment === "left" && "start") || (label.alignment ===
 		display: none;
 	}
 
-	.post-content[data-collapsed="true"]::after {
-		content: "";
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: 120px;
-		background: linear-gradient(to bottom, transparent, var(--color-background));
-		pointer-events: none;
-		z-index: 1;
-	}
-
 	.expand-button {
 		position: relative;
 		z-index: 2;
@@ -126,11 +114,14 @@ const alignVar = (label.alignment === "left" && "start") || (label.alignment ===
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
+		padding: 0.75rem;
 		color: var(--textColor);
 		font-size: var(--font-size-sm);
 		font-weight: var(--font-weight-semibold);
 		font-family: var(--font-family-text);
 		transition: opacity var(--transition-normal);
+		text-transform: uppercase;
+		user-select: none;
 	}
 
 	.expand-button:hover {

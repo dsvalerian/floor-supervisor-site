@@ -4,12 +4,13 @@ import CustomPostView from "./posts/CustomPostView.astro";
 
 type Props = {
 	posts: CustomPost[];
+	allCategories: string[];
 };
 
-const { posts } = Astro.props;
+const { posts, allCategories } = Astro.props;
 ---
 
-<section class="feed-section">
+<section class="feed-section" data-feed-categories={JSON.stringify(allCategories)}>
 	{
 		posts.map(post => {
 			switch (post._type) {
@@ -20,8 +21,14 @@ const { posts } = Astro.props;
 	}
 </section>
 
-<script type="module" is:inline>
-	import { initPostFiltering } from "/src/lib/filterPosts.ts";
+<script>
+	import { selectedCategories } from "../stores/categoriesStore";
+	import { initPostFiltering } from "../lib/filterPosts";
+
+	const allCategories = JSON.parse(
+		(document.querySelector(".feed-section") as HTMLElement)?.dataset.feedCategories || "[]",
+	);
+	selectedCategories.set(allCategories);
 	initPostFiltering();
 </script>
 

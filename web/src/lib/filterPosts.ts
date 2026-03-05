@@ -8,10 +8,9 @@ export const initPostFiltering = () => {
 	const updatePosts = (categories: readonly string[]) => {
 		const selected = categories.map(normalize);
 
-		const hasFilters = selected.length > 0;
 		allPosts.forEach(post => {
 			const normalizedCategory = normalize(post.dataset.postCategory || "");
-			const shouldShow = !hasFilters || selected.includes(normalizedCategory);
+			const shouldShow = selected.length > 0 && selected.includes(normalizedCategory);
 			post.style.display = shouldShow ? "" : "none";
 		});
 	};

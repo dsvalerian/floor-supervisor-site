@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import CloseButton from "../CloseButton/CloseButton";
 import styles from "./FilterMenu.module.css";
@@ -12,11 +11,6 @@ interface FilterMenuProps {
 
 const FilterMenu = ({ categories, setIsFilterOpen }: FilterMenuProps) => {
 	const selected = useStore(selectedCategories);
-
-	useEffect(() => {
-		if (selected.length > 0) return;
-		selectedCategories.set(categories);
-	}, [categories, selected.length]);
 
 	const toggleCategory = (category: string) => {
 		const newCategories = selected.includes(category)

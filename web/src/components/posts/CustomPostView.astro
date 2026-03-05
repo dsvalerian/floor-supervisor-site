@@ -20,7 +20,7 @@ if (!postDetails) {
 }
 ---
 
-<PostWrapper config={postDetails} postId={_id}>
+<PostWrapper config={postDetails} postId={_id} isCollapsible={blocks && blocks.length > 1}>
 	{
 		blocks &&
 			blocks.map(block => {

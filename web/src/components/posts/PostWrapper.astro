@@ -6,11 +6,13 @@ type Props = {
 	// Optional: pass the post document id to enable sessionStorage persistence
 	// of the expanded/collapsed state across UI re-renders on the same page.
 	postId?: string;
+	isCollapsible?: boolean;
 };
 
 const {
 	config: { label, background, category },
 	postId,
+	isCollapsible = false,
 } = Astro.props;
 
 if (!label || !background) {
@@ -30,10 +32,18 @@ const alignVar = (label.alignment === "left" && "start") || (label.alignment ===
 			</div>
 		)
 	}
-	<div class="post-content">
+	<div class="post-content" data-collapsed={isCollapsible ? "true" : undefined}>
 		<div class="post-content-inner">
 			<slot />
 		</div>
+		{
+			isCollapsible && (
+				<button class="expand-button" aria-label="Expand post">
+					<span class="expand-text">Show More</span>
+					<span class="expand-icon">▼</span>
+				</button>
+			)
+		}
 	</div>
 </article>
 
@@ -87,4 +97,85 @@ const alignVar = (label.alignment === "left" && "start") || (label.alignment ===
 		font-weight: var(--font-weight-bold);
 		font-family: var(--font-family-header);
 	}
+
+	.post-content[data-collapsed="true"] :global(.block:not(:first-child)) {
+		display: none;
+	}
+
+	.post-content[data-collapsed="true"]::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 120px;
+		background: linear-gradient(to bottom, transparent, var(--color-background));
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	.expand-button {
+		position: relative;
+		z-index: 2;
+		width: 100%;
+		padding: 1rem;
+		background: var(--labelBackground);
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		color: var(--textColor);
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+		font-family: var(--font-family-text);
+		transition: opacity var(--transition-normal);
+	}
+
+	.expand-button:hover {
+		opacity: 0.9;
+	}
+
+	.expand-icon {
+		transition: transform 0.3s ease;
+	}
+
+	.post-content[data-collapsed="false"] .expand-icon {
+		transform: rotate(180deg);
+	}
 </style>
+
+<script>
+	document.querySelectorAll(".post-card").forEach(post => {
+		const postId = post.getAttribute("data-post-id");
+		const content = post.querySelector(".post-content");
+		const button = post.querySelector(".expand-button");
+		const textSpan = button?.querySelector(".expand-text");
+
+		if (!content || !button || !textSpan) return;
+
+		const storageKey = postId ? `post-expanded-${postId}` : null;
+		const savedState = storageKey ? sessionStorage.getItem(storageKey) : null;
+		const isExpanded = savedState === "true";
+
+		if (isExpanded) {
+			content.setAttribute("data-collapsed", "false");
+			textSpan.textContent = "Show Less";
+		}
+
+		button.addEventListener("click", () => {
+			const currentlyCollapsed = content.getAttribute("data-collapsed") === "true";
+
+			if (currentlyCollapsed) {
+				content.setAttribute("data-collapsed", "false");
+				textSpan.textContent = "Show Less";
+				if (storageKey) sessionStorage.setItem(storageKey, "true");
+			} else {
+				content.setAttribute("data-collapsed", "true");
+				textSpan.textContent = "Show More";
+				if (storageKey) sessionStorage.setItem(storageKey, "false");
+			}
+		});
+	});
+</script>

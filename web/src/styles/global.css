@@ -105,12 +105,22 @@ html {
 	line-height: var(--line-height-normal);
 	color: var(--color-text-dark);
 	background-color: var(--color-background);
+	overflow-x: hidden;
 }
 
 body {
 	min-height: 100vh;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea,
+a {
+	-webkit-tap-highlight-color: transparent;
 }
 
 /* Typography */

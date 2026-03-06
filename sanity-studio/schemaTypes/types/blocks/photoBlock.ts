@@ -16,4 +16,15 @@ export default defineType({
       of: [defineArrayMember({type: "imageInfo"})],
     },
   ],
+  preview: {
+    select: {
+      photos: "photos",
+    },
+    prepare({photos}: {photos?: {_type: "photos"}[]}) {
+      return {
+        title: "Photo Block",
+        subtitle: `${photos?.length || 0} photo(s)`,
+      };
+    },
+  },
 });

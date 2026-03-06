@@ -16,4 +16,15 @@ export const contactFormBlock = defineType({
       description: "An optional title for the contact form block.",
     }),
   ],
+  preview: {
+    select: {
+      title: "title",
+    },
+    prepare({title}: {title?: string}) {
+      return {
+        title: "Contact Form Block",
+        subtitle: title && `${title}`,
+      };
+    },
+  },
 });

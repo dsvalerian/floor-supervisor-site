@@ -8,10 +8,7 @@ const allPostsQuery = `*[_type in ["customPost"]] {
 		"postDetails": {
 			...postDetails,
 			"background": coalesce(postDetails.background.hex, postDetails.backgroundImage.asset->url, "#000000"),
-			"label": {
-				...postDetails.label,
-				"background": coalesce(postDetails.label.background.hex, postDetails.label.backgroundImage.asset->url, "#000000"),
-			}
+			"labelBackground": coalesce(postDetails.labelBackground.hex, postDetails.labelBackground, "#000000"),
 		},
 		
 		// Custom post specific fields - transform block backgrounds

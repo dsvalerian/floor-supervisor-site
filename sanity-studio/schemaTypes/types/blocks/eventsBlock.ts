@@ -18,4 +18,17 @@ export const eventsBlock = defineType({
       of: [defineArrayMember({type: "event"})],
     },
   ],
+  preview: {
+    select: {
+      title: "title",
+      events: "events",
+    },
+    prepare({title, events}: {title?: string; events?: {_type: "event"}[]}) {
+      const eventsCount = events?.length ?? 0;
+      return {
+        title: "Events Block",
+        subtitle: `${eventsCount} event(s)${title ? ` - ${title}` : ""}`,
+      };
+    },
+  },
 });

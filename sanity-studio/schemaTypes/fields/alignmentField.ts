@@ -13,6 +13,7 @@ export default (options: FieldOptions = {}) =>
         {value: "center", title: "Center"},
         {value: "right", title: "Right"},
       ],
+      layout: "radio",
     },
     initialValue: "left",
     validation: (rule) => (options.required ? rule.required() : rule),

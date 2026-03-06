@@ -124,68 +124,6 @@
     }
   },
   {
-    "type": "type",
-    "name": "label",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "text": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "textColor": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "light"
-              },
-              {
-                "type": "string",
-                "value": "dark"
-              }
-            ]
-          },
-          "optional": true
-        },
-        "alignment": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "left"
-              },
-              {
-                "type": "string",
-                "value": "center"
-              },
-              {
-                "type": "string",
-                "value": "right"
-              }
-            ]
-          },
-          "optional": true
-        },
-        "background": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "color"
-          },
-          "optional": true
-        }
-      }
-    }
-  },
-  {
     "name": "customPost",
     "type": "document",
     "attributes": {
@@ -345,11 +283,56 @@
           },
           "optional": true
         },
-        "label": {
+        "text": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "alignment": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "left"
+              },
+              {
+                "type": "string",
+                "value": "center"
+              },
+              {
+                "type": "string",
+                "value": "right"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "labelTextColor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "light"
+              },
+              {
+                "type": "string",
+                "value": "dark"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "labelBackground": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "label"
+            "name": "color"
           },
           "optional": true
         }

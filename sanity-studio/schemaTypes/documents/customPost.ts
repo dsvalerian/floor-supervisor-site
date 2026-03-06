@@ -20,4 +20,18 @@ export const customPost = {
       ],
     },
   ],
+  preview: {
+    select: {
+      category: "postDetails.category",
+      blocks: "blocks",
+      createdAt: "_createdAt",
+    },
+    prepare({category, blocks, createdAt}: {category?: string; blocks?: {_type: "array"}[]; createdAt?: string}) {
+      const createdAtLabel = createdAt ? new Date(createdAt).toLocaleDateString() : "";
+      return {
+        title: `Post${category ? ` - ${category}` : ""}`,
+        subtitle: `${blocks?.length || 0} block(s)` + `${createdAtLabel ? ` - ${createdAtLabel}` : ""}`,
+      };
+    },
+  },
 };

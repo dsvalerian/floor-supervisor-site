@@ -10,25 +10,27 @@ type Props = {
 };
 
 const {
-	config: { label, background, category },
+	config: { text, background, category, alignment, labelTextColor, labelBackground },
 	postId,
 	isCollapsible = false,
 } = Astro.props;
 
-if (!label || !background) {
+if (!background || !labelTextColor || !alignment || !labelBackground) {
 	throw new Error("Must provide post details.");
 }
 
 // Compute the CSS variable name based on textColor value
-const textColorVar = `var(--color-text-${label.textColor})`;
-const alignVar = (label.alignment === "left" && "start") || (label.alignment === "right" && "end") || "center";
+const labelTextColorVar = `var(--color-text-${labelTextColor})`;
+const alignVar = (alignment === "left" && "start") || (alignment === "right" && "end") || "center";
+
+console.log("labelBackground", labelBackground);
 ---
 
 <article class="post-card" data-post-id={postId} data-post-category={category}>
 	{
-		label.text && (
+		text && (
 			<div class="post-label-container">
-				<h2 class="post-label">{label.text.toUpperCase()}</h2>
+				<h2 class="post-label">{text.toUpperCase()}</h2>
 			</div>
 		)
 	}
@@ -50,8 +52,8 @@ const alignVar = (label.alignment === "left" && "start") || (label.alignment ===
 <style
 	define:vars={{
 		postBackground: background,
-		labelBackground: label.background,
-		textColor: textColorVar,
+		labelBackground: labelBackground,
+		labelTextColor: labelTextColorVar,
 		alignment: alignVar,
 	}}
 >
@@ -91,7 +93,7 @@ const alignVar = (label.alignment === "left" && "start") || (label.alignment ===
 
 	.post-label {
 		background: var(--labelBackground);
-		color: white;
+		color: var(--labelTextColor);
 		padding: 0.5rem 1rem;
 		font-size: var(--font-size-sm);
 		font-weight: var(--font-weight-bold);
@@ -115,7 +117,7 @@ const alignVar = (label.alignment === "left" && "start") || (label.alignment ===
 		justify-content: center;
 		gap: 0.5rem;
 		padding: 0.75rem;
-		color: var(--textColor);
+		color: var(--labelTextColor);
 		font-size: var(--font-size-sm);
 		font-weight: var(--font-weight-semibold);
 		font-family: var(--font-family-text);

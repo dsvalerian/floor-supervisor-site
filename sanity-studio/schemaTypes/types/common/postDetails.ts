@@ -4,33 +4,20 @@ import backgroundField from "../../fields/backgroundField";
 import textColorField from "../../fields/textColorField";
 import textField from "../../fields/textField";
 
-const label = {
-  name: "label",
-  type: "object",
-  title: "Label",
-  description: "The label that appears in the top corner of the post.",
-  fieldsets: [
-    {
-      name: "text",
-      description: "Customize this post's label text.",
-      options: {
-        columns: 2,
-      },
-    },
-  ],
-  fields: [
-    {...textField({title: "Label Text", required: true}), fieldset: "text"},
-    {...textColorField({title: "Label Text Color", required: true}), fieldset: "text"},
-    alignmentField({title: "Label Alignment", required: true}),
-    backgroundField({title: "Label Background", required: true}),
-  ],
-};
-
 export const postDetails = defineType({
   name: "postDetails",
   type: "object",
   title: "Post Details",
   description: "Define some details about this post.",
+  fieldsets: [
+    {
+      name: "label",
+      description: "Customize this post's label.",
+      options: {
+        columns: 2,
+      },
+    },
+  ],
   fields: [
     textField({
       name: "category",
@@ -39,7 +26,10 @@ export const postDetails = defineType({
       required: true,
     }),
     backgroundField({title: "Post Background", required: true}),
-    label,
+    {...textField({title: "Label Text", required: true}), fieldset: "label"},
+    {...alignmentField({title: "Label Alignment", required: true}), fieldset: "label"},
+    {...textColorField({name: "labelTextColor", title: "Label Text Color", required: true}), fieldset: "label"},
+    {...backgroundField({name: "labelBackground", title: "Label Background", required: true}), fieldset: "label"},
   ],
   options: {
     collapsible: true,

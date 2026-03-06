@@ -12,12 +12,14 @@ const { posts, allCategories } = Astro.props;
 
 <section class="feed-section" data-feed-categories={JSON.stringify(allCategories)}>
 	{
-		posts.map(post => {
-			switch (post._type) {
-				case "customPost":
-					return <CustomPostView config={post} />;
-			}
-		})
+		posts
+			.sort((a, b) => new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime())
+			.map(post => {
+				switch (post._type) {
+					case "customPost":
+						return <CustomPostView config={post} />;
+				}
+			})
 	}
 </section>
 

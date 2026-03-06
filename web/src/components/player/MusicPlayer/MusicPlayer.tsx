@@ -43,7 +43,7 @@ const MusicPlayer = ({ categories = [] }: MusicPlayerProps) => {
 	}, []);
 
 	const togglePlay = () => {
-		if (audioRef.current) {
+		if (audioRef.current && trackInfo?.url) {
 			if (isSongPlaying) {
 				isPlaying.set(false);
 			} else {

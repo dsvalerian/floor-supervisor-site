@@ -1,7 +1,4 @@
-import {defineType, defineArrayMember} from "sanity";
-import alignmentField from "../../fields/alignmentField";
-import multilineTextField from "../../fields/multilineTextField";
-import sizeField from "../../fields/sizeField";
+import {defineArrayMember, defineType} from "sanity";
 import {blockDetailsField} from "../common/blockDetails";
 
 export const textBlock = defineType({
@@ -19,4 +16,19 @@ export const textBlock = defineType({
       of: [defineArrayMember({type: "customText"})],
     },
   ],
+  preview: {
+    select: {
+      texts: "customTexts",
+    },
+    prepare({texts}: {texts?: {text?: string}[]}) {
+      const textPreviewLength = 20;
+      const firstText = texts?.[0]?.text?.trim() ?? "";
+      const textPreview =
+        firstText.length > textPreviewLength ? `${firstText.slice(0, textPreviewLength)}...` : firstText;
+      return {
+        title: "Text Block",
+        subtitle: `${texts?.length || 0} text(s) - ${textPreview}`,
+      };
+    },
+  },
 });

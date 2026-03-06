@@ -24,4 +24,16 @@ export const musicBlock = defineType({
       of: [defineArrayMember({type: "musicTrack"})],
     },
   ],
+  preview: {
+    select: {
+      artist: "artist",
+      name: "name",
+    },
+    prepare({artist, name}: {artist?: string; name?: string}) {
+      return {
+        title: "Music Block",
+        subtitle: `${artist && `${artist} - `}${name || ""}`,
+      };
+    },
+  },
 });

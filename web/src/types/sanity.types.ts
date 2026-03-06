@@ -34,13 +34,6 @@ export type BackgroundImage = {
   _type: "image";
 };
 
-export type Label = {
-  text?: string;
-  textColor?: "light" | "dark";
-  alignment?: "left" | "center" | "right";
-  background?: Color;
-};
-
 export type CustomPost = {
   _id: string;
   _type: "customPost";
@@ -71,7 +64,10 @@ export type PostDetails = {
   _type: "postDetails";
   category?: string;
   background?: Color;
-  label?: Label;
+  text?: string;
+  alignment?: "left" | "center" | "right";
+  labelTextColor?: "light" | "dark";
+  labelBackground?: Color;
 };
 
 export type ContactFormBlock = {
@@ -338,7 +334,6 @@ export type AllSanitySchemaTypes =
   | Background
   | SanityImageAssetReference
   | BackgroundImage
-  | Label
   | CustomPost
   | PostDetails
   | ContactFormBlock

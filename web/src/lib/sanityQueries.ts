@@ -1,5 +1,5 @@
-import { sanityClient } from "sanity:client";
 import type { CustomPost } from "../types/sanity.types";
+import { getSanityClient } from "./sanityClient";
 
 type QueryResult = CustomPost;
 
@@ -45,7 +45,7 @@ const allPostsQuery = `*[_type in ["customPost"]] {
 
 export const getAllPosts = async () => {
 	console.info("Getting all posts");
-	const result = await sanityClient.fetch<QueryResult[]>(allPostsQuery);
+	const result = await getSanityClient().fetch<QueryResult[]>(allPostsQuery);
 	console.info(`Fetched ${result.length} post(s)`);
 	console.dir(result, { depth: 7 });
 	return result;

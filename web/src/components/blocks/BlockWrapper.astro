@@ -1,7 +1,7 @@
 ---
 import { createImageUrlBuilder } from "@sanity/image-url";
-import { sanityClient } from "sanity:client";
 import { type BlockDetails } from "../../types/sanity.types";
+import { getSanityClient } from "../../lib/sanityClient";
 
 type Props = {
 	config: BlockDetails & { padding?: boolean };
@@ -13,7 +13,7 @@ const {
 
 const textColorVar = `var(--color-text-${textColor})`;
 const paddingValue = padding ? "2rem" : "0";
-const imageBuilder = createImageUrlBuilder(sanityClient);
+const imageBuilder = createImageUrlBuilder(getSanityClient());
 
 let backgroundValue;
 let backgroundPosition = "50% 50%";

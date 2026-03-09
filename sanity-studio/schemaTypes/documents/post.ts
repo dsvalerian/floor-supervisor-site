@@ -55,13 +55,24 @@ export const post = {
     select: {
       category: "category",
       blocks: "blocks",
+      labelText: "labelText",
       createdAt: "_createdAt",
     },
-    prepare({category, blocks, createdAt}: {category?: string; blocks?: {_type: "array"}[]; createdAt?: string}) {
+    prepare({
+      category,
+      blocks,
+      createdAt,
+      labelText,
+    }: {
+      category?: string;
+      blocks?: {_type: "array"}[];
+      createdAt?: string;
+      labelText?: string;
+    }) {
       const createdAtLabel = createdAt ? new Date(createdAt).toLocaleDateString() : "";
       return {
-        title: `Post${category ? ` - ${category}` : ""}`,
-        subtitle: `${blocks?.length || 0} block(s)` + `${createdAtLabel ? ` - ${createdAtLabel}` : ""}`,
+        title: labelText,
+        subtitle: `${createdAtLabel} - ${category} - ${blocks?.length || 0} block(s)`,
       };
     },
   },

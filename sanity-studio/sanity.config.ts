@@ -1,8 +1,9 @@
+import {colorInput} from "@sanity/color-input";
+import {visionTool} from "@sanity/vision";
 import {defineConfig} from "sanity";
 import {structureTool} from "sanity/structure";
-import {visionTool} from "@sanity/vision";
 import {schemaTypes} from "./schemaTypes";
-import {colorInput} from "@sanity/color-input";
+import {deployTool} from "./tools/deployTool";
 
 export default defineConfig({
   name: "default",
@@ -12,6 +13,8 @@ export default defineConfig({
   dataset: process.env.SANITY_STUDIO_DATASET || "",
 
   plugins: [structureTool(), visionTool(), colorInput()],
+
+  tools: (prev) => [...prev, deployTool],
 
   schema: {
     types: schemaTypes,

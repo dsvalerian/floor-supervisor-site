@@ -4,11 +4,11 @@ import { type BlockColors } from "../../types/sanity.types";
 import { getSanityClient } from "../../lib/sanityClient";
 
 type Props = {
-	config: BlockColors & { padding?: boolean } & { postTextColor: "light" | "dark" };
+	config: BlockColors & { padding?: boolean } & { postTextColor: "light" | "dark" } & { topPadding?: string };
 };
 
 const {
-	config: { textColor, background, padding = true, postTextColor },
+	config: { textColor, background, padding = true, postTextColor, topPadding = "1rem" },
 } = Astro.props;
 
 const resolvedTextColor = textColor === "inherit" ? postTextColor : textColor;
@@ -61,6 +61,7 @@ switch (background?.type) {
 		blockBackgroundPosition: backgroundPosition,
 		textColor: textColorVar,
 		padding: paddingValue,
+		topPadding: topPadding,
 	}}
 >
 	.block {
@@ -79,7 +80,7 @@ switch (background?.type) {
 	}
 
 	.block:first-child {
-		padding-top: 1rem;
+		padding-top: var(--topPadding);
 	}
 
 	.block :global(*) {

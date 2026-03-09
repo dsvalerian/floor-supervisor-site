@@ -20,7 +20,7 @@ const { posts, allCategories } = Astro.props;
 						case "post":
 							return <PostView config={post} />;
 					}
-				})) || <p>Nothing to see here. Check back soon!</p>
+				})) || <p class="empty-text">Nothing to see here. Check back soon!</p>
 	}
 </section>
 
@@ -42,5 +42,10 @@ const { posts, allCategories } = Astro.props;
 		gap: 1rem;
 		max-width: 860px;
 		margin: 0 auto;
+	}
+
+	.empty-text {
+		text-align: center;
+		color: var(--color-text-light);
 	}
 </style>

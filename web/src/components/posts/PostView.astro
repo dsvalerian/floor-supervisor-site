@@ -1,0 +1,43 @@
+---
+import type { Post } from "../../types/sanity.types";
+import ContactFormBlockView from "../blocks/ContactFormBlockView.astro";
+import EventsBlockView from "../blocks/EventsBlockView.astro";
+import MusicBlockView from "../blocks/MusicBlockView.astro";
+import PhotoBlockView from "../blocks/PhotoBlockView.astro";
+import TextBlockView from "../blocks/TextBlockView.astro";
+import PostWrapper from "./PostWrapper.astro";
+
+type Props = {
+	config: Post;
+};
+
+const { config } = Astro.props;
+
+if (!config.category || !config.textColor || !config.background) {
+	throw new Error("Missing category, text color, or background color for post.");
+}
+
+if (!config.labelAlignment || !config.labelTextColor || !config.labelBackground) {
+	console.log(config.labelAlignment, config.labelTextColor, config.labelBackground);
+	throw new Error("Missing alignment, text color, or background color for post label.");
+}
+---
+
+<PostWrapper config={config} postId={config._id} isCollapsible={config.blocks && config.blocks.length > 1}>
+	{
+		config.blocks &&
+			config.blocks.map(block => {
+				if (block._type === "textBlock") {
+					return <TextBlockView config={block} postTextColor={config.textColor!} />;
+				} else if (block._type === "musicBlock") {
+					return <MusicBlockView config={block} postTextColor={config.textColor!} />;
+				} else if (block._type === "eventsBlock") {
+					return <EventsBlockView config={block} postTextColor={config.textColor!} />;
+				} else if (block._type === "photoBlock") {
+					return <PhotoBlockView config={block} postTextColor={config.textColor!} />;
+				} else if (block._type === "contactFormBlock") {
+					return <ContactFormBlockView config={block} postTextColor={config.textColor!} />;
+				}
+			})
+	}
+</PostWrapper>

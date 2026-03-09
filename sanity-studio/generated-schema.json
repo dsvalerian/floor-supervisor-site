@@ -124,7 +124,7 @@
     }
   },
   {
-    "name": "customPost",
+    "name": "post",
     "type": "document",
     "attributes": {
       "_id": {
@@ -137,7 +137,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "customPost"
+          "value": "post"
         }
       },
       "_createdAt": {
@@ -158,11 +158,88 @@
           "type": "string"
         }
       },
-      "postDetails": {
+      "category": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "textColor": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "light"
+            },
+            {
+              "type": "string",
+              "value": "dark"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "background": {
         "type": "objectAttribute",
         "value": {
           "type": "inline",
-          "name": "postDetails"
+          "name": "color"
+        },
+        "optional": true
+      },
+      "labelText": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "labelAlignment": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "left"
+            },
+            {
+              "type": "string",
+              "value": "center"
+            },
+            {
+              "type": "string",
+              "value": "right"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "labelTextColor": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "light"
+            },
+            {
+              "type": "string",
+              "value": "dark"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "labelBackground": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "color"
         },
         "optional": true
       },
@@ -256,7 +333,7 @@
     }
   },
   {
-    "name": "postDetails",
+    "name": "color",
     "type": "type",
     "value": {
       "type": "object",
@@ -265,74 +342,44 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "postDetails"
+            "value": "color"
           }
         },
-        "category": {
+        "hex": {
           "type": "objectAttribute",
           "value": {
             "type": "string"
           },
           "optional": true
         },
-        "background": {
+        "alpha": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "hsl": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "color"
+            "name": "hslaColor"
           },
           "optional": true
         },
-        "text": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "alignment": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "left"
-              },
-              {
-                "type": "string",
-                "value": "center"
-              },
-              {
-                "type": "string",
-                "value": "right"
-              }
-            ]
-          },
-          "optional": true
-        },
-        "labelTextColor": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "light"
-              },
-              {
-                "type": "string",
-                "value": "dark"
-              }
-            ]
-          },
-          "optional": true
-        },
-        "labelBackground": {
+        "hsv": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "color"
+            "name": "hsvaColor"
+          },
+          "optional": true
+        },
+        "rgb": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "rgbaColor"
           },
           "optional": true
         }
@@ -352,11 +399,11 @@
             "value": "contactFormBlock"
           }
         },
-        "blockDetails": {
+        "blockColors": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "blockDetails"
+            "name": "blockColors"
           },
           "optional": true
         },
@@ -382,14 +429,6 @@
             "type": "string",
             "value": "photoBlock"
           }
-        },
-        "blockDetails": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "blockDetails"
-          },
-          "optional": true
         },
         "photos": {
           "type": "objectAttribute",
@@ -429,11 +468,11 @@
             "value": "textBlock"
           }
         },
-        "blockDetails": {
+        "blockColors": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "blockDetails"
+            "name": "blockColors"
           },
           "optional": true
         },
@@ -475,11 +514,11 @@
             "value": "musicBlock"
           }
         },
-        "blockDetails": {
+        "blockColors": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "blockDetails"
+            "name": "blockColors"
           },
           "optional": true
         },
@@ -670,11 +709,11 @@
             "value": "eventsBlock"
           }
         },
-        "blockDetails": {
+        "blockColors": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "blockDetails"
+            "name": "blockColors"
           },
           "optional": true
         },
@@ -711,7 +750,7 @@
     }
   },
   {
-    "name": "blockDetails",
+    "name": "blockColors",
     "type": "type",
     "value": {
       "type": "object",
@@ -720,7 +759,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "blockDetails"
+            "value": "blockColors"
           }
         },
         "textColor": {
@@ -728,6 +767,10 @@
           "value": {
             "type": "union",
             "of": [
+              {
+                "type": "string",
+                "value": "inherit"
+              },
               {
                 "type": "string",
                 "value": "light"
@@ -1022,60 +1065,6 @@
           "type": "objectAttribute",
           "value": {
             "type": "string"
-          },
-          "optional": true
-        }
-      }
-    }
-  },
-  {
-    "name": "color",
-    "type": "type",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "color"
-          }
-        },
-        "hex": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "alpha": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "number"
-          },
-          "optional": true
-        },
-        "hsl": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "hslaColor"
-          },
-          "optional": true
-        },
-        "hsv": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "hsvaColor"
-          },
-          "optional": true
-        },
-        "rgb": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "rgbaColor"
           },
           "optional": true
         }

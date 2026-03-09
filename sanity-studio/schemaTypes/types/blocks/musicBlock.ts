@@ -1,7 +1,7 @@
 import {defineArrayMember, defineType} from "sanity";
 import croppedImageField from "../../fields/imageField";
 import textField from "../../fields/textField";
-import {blockDetailsField} from "../common/blockDetails";
+import {blockDetailsField} from "./blockColors";
 
 export const musicBlock = defineType({
   name: "musicBlock",

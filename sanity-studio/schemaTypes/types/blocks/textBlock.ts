@@ -1,5 +1,5 @@
 import {defineArrayMember, defineType} from "sanity";
-import {blockDetailsField} from "../common/blockDetails";
+import {blockDetailsField} from "./blockColors";
 
 export const textBlock = defineType({
   name: "textBlock",
@@ -11,9 +11,13 @@ export const textBlock = defineType({
     {
       name: "customTexts",
       type: "array",
-      title: "Custom Texts",
-      description: "Define one or more custom text objects.",
-      of: [defineArrayMember({type: "customText"})],
+      title: "Texts",
+      description: "Define one or more text sections.",
+      of: [
+        defineArrayMember({
+          type: "customText",
+        }),
+      ],
     },
   ],
   preview: {
@@ -22,12 +26,12 @@ export const textBlock = defineType({
     },
     prepare({texts}: {texts?: {text?: string}[]}) {
       const textPreviewLength = 20;
-      const firstText = texts?.[0]?.text?.trim() ?? "";
+      const firstText = texts?.[0]?.text?.trim() || "";
       const textPreview =
         firstText.length > textPreviewLength ? `${firstText.slice(0, textPreviewLength)}...` : firstText;
       return {
         title: "Text Block",
-        subtitle: `${texts?.length || 0} text(s) - ${textPreview}`,
+        subtitle: `${texts?.length || 0} text(s) ${textPreview && ` - ${textPreview}`}`,
       };
     },
   },

@@ -4,21 +4,24 @@ import BlockWrapper from "./BlockWrapper.astro";
 
 type Props = {
 	config: ContactFormBlock;
+	postTextColor: "light" | "dark";
 };
 
 const {
-	config: { blockDetails, title },
+	config: { blockColors, title },
+	postTextColor,
 } = Astro.props;
 
-if (!blockDetails) {
-	throw new Error("Must provide block details for contact form block.");
+if (!blockColors) {
+	throw new Error("Missing block colors from contact form block.");
 }
 
-const textColorVar = `var(--color-text-${blockDetails.textColor})`;
-const oppositeColorVar = `var(--color-text-${blockDetails.textColor === "dark" ? "light" : "dark"})`;
+const resolvedTextColor = blockColors.textColor === "inherit" ? postTextColor : blockColors.textColor;
+const textColorVar = `var(--color-text-${resolvedTextColor})`;
+const oppositeColorVar = `var(--color-text-${resolvedTextColor === "dark" ? "light" : "dark"})`;
 ---
 
-<BlockWrapper config={blockDetails}>
+<BlockWrapper config={{ ...blockColors, postTextColor }}>
 	<div class="form-container">
 		{title && <p class="contact-title">{title}</p>}
 		<form class="form" action="https://formsubmit.co/f0e81aa5ebd0c9c5ed38a1ea0639427d" method="POST">

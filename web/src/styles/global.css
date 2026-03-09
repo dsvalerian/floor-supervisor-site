@@ -49,7 +49,6 @@
 	--color-controls-light-extra-muted: rgba(255, 255, 255, 0.1);
 
 	/* Typography */
-	--font-family-header: "Stack Sans Headline", sans;
 	--font-family-text: "Stack Sans Text", sans;
 
 	--font-size-2xs: 0.625rem; /* 10px */
@@ -113,6 +112,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow-x: hidden;
+	font-family: var(--font-family-text);
 }
 
 button,
@@ -121,6 +121,7 @@ select,
 textarea,
 a {
 	-webkit-tap-highlight-color: transparent;
+	font-family: var(--font-family-text);
 }
 
 /* Typography */
@@ -130,7 +131,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: var(--font-family-header);
+	font-family: var(--font-family-text);
 	font-weight: var(--font-weight-semibold);
 	line-height: var(--line-height-tight);
 }

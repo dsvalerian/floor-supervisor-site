@@ -1,17 +1,18 @@
 ---
 import { createImageUrlBuilder } from "@sanity/image-url";
-import { type BlockDetails } from "../../types/sanity.types";
+import { type BlockColors } from "../../types/sanity.types";
 import { getSanityClient } from "../../lib/sanityClient";
 
 type Props = {
-	config: BlockDetails & { padding?: boolean };
+	config: BlockColors & { padding?: boolean } & { postTextColor: "light" | "dark" };
 };
 
 const {
-	config: { textColor, background, padding = true },
+	config: { textColor, background, padding = true, postTextColor },
 } = Astro.props;
 
-const textColorVar = `var(--color-text-${textColor})`;
+const resolvedTextColor = textColor === "inherit" ? postTextColor : textColor;
+const textColorVar = `var(--color-text-${resolvedTextColor})`;
 const paddingValue = padding ? "2rem" : "0";
 const imageBuilder = createImageUrlBuilder(getSanityClient());
 

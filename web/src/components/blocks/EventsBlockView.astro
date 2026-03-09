@@ -4,25 +4,27 @@ import BlockWrapper from "./BlockWrapper.astro";
 
 type Props = {
 	config: EventsBlock;
+	postTextColor: "light" | "dark";
 };
 
 const {
-	config: { blockDetails, title, events },
+	config: { blockColors, title, events },
+	postTextColor,
 } = Astro.props;
 
-if (!blockDetails || !events) {
-	throw new Error("Must provide block details and events for events block.");
+if (!blockColors || !events) {
+	throw new Error("Missing block colors or events from events block.");
 }
 ---
 
-<BlockWrapper config={blockDetails}>
+<BlockWrapper config={{ ...blockColors, postTextColor }}>
 	<div class="events-block-container">
 		{title && <p class="events-title">{title}</p>}
 		<div class="events-container">
 			{
-				events.map((event) => (
+				events.map(event => (
 					<div class="event-details">
-						{event.name && <p class="event-name">{event.name.toUpperCase()}</p>}
+						{event.name && <p class="event-name">{event.name}</p>}
 						{event.location && <p class="event-location">{event.location}</p>}
 						{event.date && <p class="event-date">{event.date}</p>}
 						{event.startTime && event.endTime && (
@@ -55,7 +57,7 @@ if (!blockDetails || !events) {
 
 	.events-title {
 		font-size: var(--font-size-lg);
-		font-weight: var(--font-weight-semibold);
+		font-weight: var(--font-weight-bold);
 		align-self: center;
 		text-align: center;
 	}

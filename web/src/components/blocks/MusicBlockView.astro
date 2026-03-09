@@ -6,18 +6,20 @@ import { Image } from "astro:assets";
 
 type Props = {
 	config: MusicBlock;
+	postTextColor: "light" | "dark";
 };
 
 const {
-	config: { blockDetails, name, artist, coverArt, musicTracks },
+	config: { blockColors, name, artist, coverArt, musicTracks },
+	postTextColor,
 } = Astro.props;
 
-if (!blockDetails || !musicTracks) {
-	throw new Error("Must provide block details and tracks for music block.");
+if (!blockColors || !musicTracks) {
+	throw new Error("Missing block colors or music tracks for music post.");
 }
 ---
 
-<BlockWrapper config={blockDetails}>
+<BlockWrapper config={{...blockColors, postTextColor}}>
 	<div class="music-block-content">
 		{
 			coverArt && (
@@ -43,7 +45,7 @@ if (!blockDetails || !musicTracks) {
 										name: track.name || "",
 										artist: track.artist || "",
 									}}
-									textColor={blockDetails.textColor!}
+									textColor={blockColors?.textColor === "inherit" ? postTextColor : blockColors.textColor!}
 								/>
 							</li>
 						))}

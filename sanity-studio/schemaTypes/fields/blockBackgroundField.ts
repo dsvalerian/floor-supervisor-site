@@ -16,7 +16,7 @@ export default (options: FieldOptions = {}) =>
         title: "Background Type",
         options: {
           list: [
-            {title: "Transparent (uses post color)", value: "transparent"},
+            {title: "Use post color", value: "transparent"},
             {title: "Color", value: "color"},
             {title: "Image", value: "image"},
           ],
@@ -36,6 +36,7 @@ export default (options: FieldOptions = {}) =>
     ],
     options: {
       collapsible: false,
+      columns: 2,
     },
     validation: (rule) =>
       rule.custom((value) => {

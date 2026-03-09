@@ -1,43 +1,36 @@
-import type { CustomPost } from "../types/sanity.types";
+import type { Post } from "../types/sanity.types";
 import { getSanityClient } from "./sanityClient";
 
-type QueryResult = CustomPost;
+type QueryResult = Post;
 
-const allPostsQuery = `*[_type in ["customPost"]] {
+const allPostsQuery = `*[_type == "post"] {
 		...,
-		"postDetails": {
-			...postDetails,
-			"background": coalesce(postDetails.background.hex, postDetails.backgroundImage.asset->url, "#000000"),
-			"labelBackground": coalesce(postDetails.labelBackground.hex, postDetails.labelBackground, "#000000"),
-		},
-		
-		// Custom post specific fields - transform block backgrounds
-		_type == "customPost" => {
-			"blocks": blocks[]{
-				...,
-				"blockDetails": {
-					...blockDetails,
-					"background": {
-						"type": blockDetails.background.type,
-						"color": blockDetails.background.color,
-						"image": blockDetails.background.image{
-							...,
-							"url": asset->url
-						}
-					}
-				},
-				_type == "musicBlock" => {
-					"coverArt": coverArt.asset->url,
-					"musicTracks": musicTracks[]{
+		"background": background.hex,
+		"labelBackground": labelBackground.hex,
+		"blocks": blocks[]{
+			...,
+			"blockColors": {
+				...blockColors,
+				"background": {
+					"type": blockColors.background.type,
+					"color": blockColors.background.color,
+					"image": blockColors.background.image{
 						...,
-						"audioFile": audioFile.asset->url
+						"url": asset->url
 					}
-				},
-				_type == "photoBlock" => {
-					"photos": photos[]{
-						...,
-						"url": image.asset->url
-					}
+				}
+			},
+			_type == "musicBlock" => {
+				"coverArt": coverArt.asset->url,
+				"musicTracks": musicTracks[]{
+					...,
+					"audioFile": audioFile.asset->url
+				}
+			},
+			_type == "photoBlock" => {
+				"photos": photos[]{
+					...,
+					"url": image.asset->url
 				}
 			}
 		}

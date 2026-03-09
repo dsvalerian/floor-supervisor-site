@@ -11,8 +11,8 @@ const env = loadEnv(process.env.NODE_ENV || "", process.cwd(), "");
 export default defineConfig({
 	integrations: [
 		sanity({
-			projectId: env.PUBLIC_SANITY_PROJECT_ID || "d40vvytu",
-			dataset: env.PUBLIC_SANITY_DATASET || "dev",
+			projectId: env.PUBLIC_SANITY_PROJECT_ID,
+			dataset: env.PUBLIC_SANITY_DATASET,
 			useCdn: true,
 		}),
 		react(),

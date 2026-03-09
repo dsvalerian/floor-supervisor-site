@@ -34,13 +34,19 @@ export type BackgroundImage = {
   _type: "image";
 };
 
-export type CustomPost = {
+export type Post = {
   _id: string;
-  _type: "customPost";
+  _type: "post";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  postDetails?: PostDetails;
+  category?: string;
+  textColor?: "light" | "dark";
+  background?: Color;
+  labelText?: string;
+  labelAlignment?: "left" | "center" | "right";
+  labelTextColor?: "light" | "dark";
+  labelBackground?: Color;
   blocks?: Array<
     | ({
         _key: string;
@@ -60,25 +66,23 @@ export type CustomPost = {
   >;
 };
 
-export type PostDetails = {
-  _type: "postDetails";
-  category?: string;
-  background?: Color;
-  text?: string;
-  alignment?: "left" | "center" | "right";
-  labelTextColor?: "light" | "dark";
-  labelBackground?: Color;
+export type Color = {
+  _type: "color";
+  hex?: string;
+  alpha?: number;
+  hsl?: HslaColor;
+  hsv?: HsvaColor;
+  rgb?: RgbaColor;
 };
 
 export type ContactFormBlock = {
   _type: "contactFormBlock";
-  blockDetails?: BlockDetails;
+  blockColors?: BlockColors;
   title?: string;
 };
 
 export type PhotoBlock = {
   _type: "photoBlock";
-  blockDetails?: BlockDetails;
   photos?: Array<
     {
       _key: string;
@@ -88,7 +92,7 @@ export type PhotoBlock = {
 
 export type TextBlock = {
   _type: "textBlock";
-  blockDetails?: BlockDetails;
+  blockColors?: BlockColors;
   customTexts?: Array<
     {
       _key: string;
@@ -98,7 +102,7 @@ export type TextBlock = {
 
 export type MusicBlock = {
   _type: "musicBlock";
-  blockDetails?: BlockDetails;
+  blockColors?: BlockColors;
   artist?: string;
   name?: string;
   coverArt?: {
@@ -133,7 +137,7 @@ export type SanityImageHotspot = {
 
 export type EventsBlock = {
   _type: "eventsBlock";
-  blockDetails?: BlockDetails;
+  blockColors?: BlockColors;
   title?: string;
   events?: Array<
     {
@@ -142,9 +146,9 @@ export type EventsBlock = {
   >;
 };
 
-export type BlockDetails = {
-  _type: "blockDetails";
-  textColor?: "light" | "dark";
+export type BlockColors = {
+  _type: "blockColors";
+  textColor?: "inherit" | "light" | "dark";
   background?: Background;
 };
 
@@ -192,15 +196,6 @@ export type Event = {
   date?: string;
   startTime?: string;
   endTime?: string;
-};
-
-export type Color = {
-  _type: "color";
-  hex?: string;
-  alpha?: number;
-  hsl?: HslaColor;
-  hsv?: HsvaColor;
-  rgb?: RgbaColor;
 };
 
 export type RgbaColor = {
@@ -334,8 +329,8 @@ export type AllSanitySchemaTypes =
   | Background
   | SanityImageAssetReference
   | BackgroundImage
-  | CustomPost
-  | PostDetails
+  | Post
+  | Color
   | ContactFormBlock
   | PhotoBlock
   | TextBlock
@@ -343,13 +338,12 @@ export type AllSanitySchemaTypes =
   | SanityImageCrop
   | SanityImageHotspot
   | EventsBlock
-  | BlockDetails
+  | BlockColors
   | ImageInfo
   | CustomText
   | SanityFileAssetReference
   | MusicTrack
   | Event
-  | Color
   | RgbaColor
   | HsvaColor
   | HslaColor

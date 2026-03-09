@@ -19,6 +19,7 @@ export default ({
         {value: "medium", title: "Medium"},
         {value: "large", title: "Large"},
       ],
+      layout: "radio",
     },
     initialValue: defaultValue || "small",
     validation: (rule) => (required ? rule.required() : rule),

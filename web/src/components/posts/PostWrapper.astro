@@ -1,8 +1,8 @@
 ---
-import type { PostDetails } from "../../types/sanity.types";
+import type { Post } from "../../types/sanity.types";
 
 type Props = {
-	config: PostDetails;
+	config: Post;
 	// Optional: pass the post document id to enable sessionStorage persistence
 	// of the expanded/collapsed state across UI re-renders on the same page.
 	postId?: string;
@@ -10,27 +10,23 @@ type Props = {
 };
 
 const {
-	config: { text, background, category, alignment, labelTextColor, labelBackground },
+	config: { background, category, labelText, labelAlignment, labelTextColor, labelBackground },
 	postId,
 	isCollapsible = false,
 } = Astro.props;
 
-if (!background || !labelTextColor || !alignment || !labelBackground) {
-	throw new Error("Must provide post details.");
-}
-
 // Compute the CSS variable name based on textColor value
 const labelTextColorVar = `var(--color-text-${labelTextColor})`;
-const alignVar = (alignment === "left" && "start") || (alignment === "right" && "end") || "center";
+const alignVar = (labelAlignment === "left" && "start") || (labelAlignment === "right" && "end") || "center";
 
 console.log("labelBackground", labelBackground);
 ---
 
 <article class="post-card" data-post-id={postId} data-post-category={category}>
 	{
-		text && (
+		labelText && (
 			<div class="post-label-container">
-				<h2 class="post-label">{text.toUpperCase()}</h2>
+				<h2 class="post-label">{labelText}</h2>
 			</div>
 		)
 	}
@@ -41,7 +37,7 @@ console.log("labelBackground", labelBackground);
 		{
 			isCollapsible && (
 				<button class="expand-button" aria-label="Expand post">
-					<span class="expand-text">Show More</span>
+					<span class="expand-text">SHOW MORE</span>
 					<span class="expand-icon">▼</span>
 				</button>
 			)
@@ -97,7 +93,7 @@ console.log("labelBackground", labelBackground);
 		padding: 0.5rem 1rem;
 		font-size: var(--font-size-sm);
 		font-weight: var(--font-weight-bold);
-		font-family: var(--font-family-header);
+		font-family: var(--font-family-text);
 	}
 
 	.post-content[data-collapsed="true"] :global(.block:not(:first-child)) {
@@ -122,7 +118,6 @@ console.log("labelBackground", labelBackground);
 		font-weight: var(--font-weight-semibold);
 		font-family: var(--font-family-text);
 		transition: opacity var(--transition-normal);
-		text-transform: uppercase;
 		user-select: none;
 	}
 
@@ -133,6 +128,12 @@ console.log("labelBackground", labelBackground);
 
 	.expand-icon {
 		transition: transform 0.3s ease;
+	}
+
+	.expand-text {
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-bold);
+		font-family: var(--font-family-text);
 	}
 
 	.post-content[data-collapsed="false"] .expand-icon {
@@ -155,7 +156,7 @@ console.log("labelBackground", labelBackground);
 
 		if (isExpanded) {
 			content.setAttribute("data-collapsed", "false");
-			textSpan.textContent = "Show Less";
+			textSpan.textContent = "SHOW LESS";
 		}
 
 		button.addEventListener("click", () => {
@@ -163,11 +164,11 @@ console.log("labelBackground", labelBackground);
 
 			if (currentlyCollapsed) {
 				content.setAttribute("data-collapsed", "false");
-				textSpan.textContent = "Show Less";
+				textSpan.textContent = "SHOW LESS";
 				if (storageKey) sessionStorage.setItem(storageKey, "true");
 			} else {
 				content.setAttribute("data-collapsed", "true");
-				textSpan.textContent = "Show More";
+				textSpan.textContent = "SHOW MORE";
 				if (storageKey) sessionStorage.setItem(storageKey, "false");
 			}
 		});

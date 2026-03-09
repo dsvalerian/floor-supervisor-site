@@ -1,9 +1,9 @@
 ---
-import type { CustomPost } from "../types/sanity.types";
-import CustomPostView from "./posts/CustomPostView.astro";
+import type { Post } from "../types/sanity.types";
+import PostView from "./posts/PostView.astro";
 
 type Props = {
-	posts: CustomPost[];
+	posts: Post[];
 	allCategories: string[];
 };
 
@@ -12,14 +12,15 @@ const { posts, allCategories } = Astro.props;
 
 <section class="feed-section" data-feed-categories={JSON.stringify(allCategories)}>
 	{
-		posts
-			.sort((a, b) => new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime())
-			.map(post => {
-				switch (post._type) {
-					case "customPost":
-						return <CustomPostView config={post} />;
-				}
-			})
+		(posts.length > 0 &&
+			posts
+				.sort((a, b) => new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime())
+				.map(post => {
+					switch (post._type) {
+						case "post":
+							return <PostView config={post} />;
+					}
+				})) || <p>Nothing to see here. Check back soon!</p>
 	}
 </section>
 

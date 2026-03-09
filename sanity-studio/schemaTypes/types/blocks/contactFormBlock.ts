@@ -1,6 +1,6 @@
 import {defineType} from "sanity";
 import textField from "../../fields/textField";
-import {blockDetailsField} from "../common/blockDetails";
+import {blockDetailsField} from "./blockColors";
 
 export const contactFormBlock = defineType({
   name: "contactFormBlock",

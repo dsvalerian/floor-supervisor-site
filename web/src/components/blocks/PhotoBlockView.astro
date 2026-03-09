@@ -7,14 +7,16 @@ import { getSanityClient } from "../../lib/sanityClient";
 
 type Props = {
 	config: PhotoBlock;
+	postTextColor: "light" | "dark";
 };
 
 const {
-	config: { blockDetails, photos },
+	config: { photos },
+	postTextColor,
 } = Astro.props;
 
-if (!blockDetails || !photos) {
-	throw new Error("Must provide block details and photos for photo block.");
+if (!photos) {
+	throw new Error("Missing photos for photo block.");
 }
 
 const builder = createImageUrlBuilder(getSanityClient());
@@ -25,7 +27,15 @@ const photosWithUrls = photos.map(photo => ({
 }));
 ---
 
-<BlockWrapper config={{ ...blockDetails, padding: false }}>
+<BlockWrapper
+	config={{
+		background: { type: "transparent" },
+		textColor: "inherit",
+		padding: false,
+		_type: "blockColors",
+		postTextColor,
+	}}
+>
 	<div class="images">
 		{
 			photosWithUrls.map(photo => (

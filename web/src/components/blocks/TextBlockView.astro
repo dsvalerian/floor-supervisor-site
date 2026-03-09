@@ -4,23 +4,23 @@ import BlockWrapper from "./BlockWrapper.astro";
 
 type Props = {
 	config: TextBlock;
+	postTextColor: "light" | "dark";
 };
 
 const {
-	config: { blockDetails, customTexts },
+	config: { blockColors, customTexts },
+	postTextColor,
 } = Astro.props;
 
-if (!blockDetails || !customTexts) {
-	throw new Error(
-		"Must provide block details and custom text objects for text block.",
-	);
+if (!blockColors || !customTexts) {
+	throw new Error("Missing block colors or text content for text block.");
 }
 ---
 
-<BlockWrapper config={blockDetails}>
+<BlockWrapper config={{ ...blockColors, postTextColor }}>
 	<div class="text-block-container">
 		{
-			customTexts.map((customText) => (
+			customTexts.map(customText => (
 				<p
 					class={`text-content ${customText.textAlignment?.toLowerCase()} ${customText.textSize?.toLowerCase()}`}
 				>

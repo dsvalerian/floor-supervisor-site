@@ -1,5 +1,7 @@
 ---
 import Feed from "../components/Feed.astro";
+import FilterButton from "../components/player/FilterButton/FilterButton";
+import FilterMenuContainer from "../components/player/FilterMenu/FilterMenuContainer";
 import MusicPlayer from "../components/player/MusicPlayer/MusicPlayer";
 import { getAllPosts } from "../lib/sanityQueries";
 import "../styles/global.css";
@@ -20,9 +22,11 @@ const categories = Array.from(new Set(posts.map(post => post.category).filter((c
 		<meta name="description" content="Professional portfolio website for Chicago DJ Floor Supervisor." />
 	</head>
 	<body>
+		<header><div class="menu"><FilterButton client:load /></div></header>
 		<main>
 			<Feed posts={posts} allCategories={categories} />
 		</main>
+		<FilterMenuContainer client:load categories={categories} />
 		<footer>
 			<MusicPlayer client:load categories={categories} />
 		</footer>
@@ -32,6 +36,28 @@ const categories = Array.from(new Set(posts.map(post => post.category).filter((c
 <style>
 	body {
 		height: 100vh;
+	}
+
+	header {
+		display: flex;
+		justify-content: flex-end;
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 10000;
+	}
+
+	.menu {
+		position: fixed;
+		width: fit-content;
+		height: fit-content;
+		margin-top: 1.25rem;
+		margin-right: 1.25rem;
+		z-index: 10001;
+		padding: 4px;
+		background: hsla(var(--color-background-hsl) / 0.8);
+		backdrop-filter: blur(4px);
+		border: 1px solid var(--color-controls-light-extra-muted);
 	}
 
 	main {

@@ -1,8 +1,6 @@
 import { useStore } from "@nanostores/react";
 import { useEffect, useRef, useState } from "react";
 import { activeAudio, isPlaying } from "../../../stores/musicStore";
-import FilterButton from "../FilterButton/FilterButton";
-import FilterMenu from "../FilterMenu/FilterMenu";
 import MusicProgress from "../MusicProgress/MusicProgress";
 import PlayButton from "../PlayButton/PlayButton";
 import styles from "./MusicPlayer.module.css";
@@ -15,7 +13,6 @@ const MusicPlayer = ({ categories = [] }: MusicPlayerProps) => {
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const [duration, setDuration] = useState<number>(0);
 	const [currentTime, setCurrentTime] = useState<number>(0);
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const trackInfo = useStore(activeAudio);
 	const isSongPlaying = useStore(isPlaying);
 
@@ -83,12 +80,8 @@ const MusicPlayer = ({ categories = [] }: MusicPlayerProps) => {
 					<PlayButton playing={isSongPlaying} onClick={togglePlay} />
 					{/* <ForwardButton /> */}
 					<MusicProgress duration={duration} currentTime={currentTime} onSeekEnd={onSeek} />
-					<FilterButton onClick={() => setIsFilterOpen(prev => !prev)} />
 				</div>
 			</div>
-			{isFilterOpen && typeof document !== "undefined" && (
-				<FilterMenu categories={categories} setIsFilterOpen={setIsFilterOpen} />
-			)}
 		</section>
 	);
 };

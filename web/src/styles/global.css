@@ -108,7 +108,8 @@ html {
 }
 
 body {
-	min-height: 100vh;
+	min-height: 100dvh;
+	max-height: 100dvh;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow-x: clip;

@@ -32,13 +32,13 @@ const FilterMenu = ({ categories, setIsFilterOpen }: FilterMenuProps) => {
 						{categories.map(category => (
 							<li key={category} className={styles["list-item"]}>
 								<label className={styles["category-label"]}>
+									<span className={styles["category-text"]}>{category}</span>
 									<input
 										type="checkbox"
 										className={styles["category-checkbox"]}
 										checked={selected.includes(category)}
 										onChange={() => toggleCategory(category)}
 									/>
-									<span className={styles["category-text"]}>{category}</span>
 								</label>
 							</li>
 						))}

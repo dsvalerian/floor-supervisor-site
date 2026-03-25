@@ -65,32 +65,6 @@
 	text-align: center;
 }
 
-.filter-drawer {
-	position: fixed;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	width: 260px;
-	max-width: 80vw;
-	min-height: 100vh;
-	background: hsla(var(--color-background-hsl) / 0.7);
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
-	border-left: 1px solid var(--color-controls-light-extra-muted);
-	padding: 1rem;
-	color: var(--color-text-light);
-	z-index: 10000;
-}
-
-.filter-close {
-	background: none;
-	border: none;
-	color: var(--color-text-light);
-	cursor: pointer;
-	padding: 0;
-	margin-bottom: 1rem;
-}
-
 .top-section {
 	display: flex;
 	justify-content: center;

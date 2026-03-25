@@ -18,7 +18,6 @@ if (!config.category || !config.textColor || !config.background) {
 }
 
 if (!config.labelAlignment || !config.labelTextColor || !config.labelBackground) {
-	console.log(config.labelAlignment, config.labelTextColor, config.labelBackground);
 	throw new Error("Missing alignment, text color, or background color for post label.");
 }
 ---

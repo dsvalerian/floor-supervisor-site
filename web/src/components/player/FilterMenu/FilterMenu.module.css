@@ -6,6 +6,7 @@
 	width: 600px;
 	max-width: 80vw;
 	min-height: 100vh;
+	max-height: 100vh;
 	background: hsla(var(--color-background-hsl) / 0.7);
 	backdrop-filter: blur(12px);
 	border-left: 1px solid var(--color-controls-light-extra-muted);
@@ -16,7 +17,38 @@
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+}
+
+.filter-drawer-content {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 	align-items: start;
+	flex: 1;
+	overflow-y: auto;
+}
+
+.filter-footer {
+	border-top: 1px solid var(--color-controls-light-extra-muted);
+	padding-top: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	text-transform: uppercase;
+}
+
+.footer-copyright {
+	font-size: var(--font-size-2xs);
+	font-weight: var(--font-weight-bold);
+	font-family: var(--font-family-text);
+	color: var(--color-controls-light-muted);
+}
+
+.footer-siteby {
+	font-size: var(--font-size-2xs);
+	font-weight: var(--font-weight-light);
+	font-family: var(--font-family-text);
+	color: var(--color-controls-light-muted);
 }
 
 .filter-close {
@@ -26,6 +58,31 @@
 	cursor: pointer;
 	padding: 0;
 	margin-bottom: 1rem;
+}
+
+.category-fieldset {
+	border: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.category-legend-wrapper {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	border-bottom: 1px solid var(--color-controls-light-extra-muted);
+	padding-bottom: 0.5rem;
+}
+
+.category-legend {
+	color: var(--color-controls-light-muted);
+	font-size: var(--font-size-2xs);
+	font-weight: var(--font-weight-bold);
+	font-family: var(--font-family-text);
 }
 
 .category-list {
@@ -69,8 +126,8 @@
 
 .category-checkbox::before {
 	content: "";
-	width: 0.6rem;
-	height: 0.6rem;
+	width: 0.5rem;
+	height: 0.5rem;
 	transform: scale(0);
 	background:
 		linear-gradient(
@@ -94,5 +151,8 @@
 }
 
 .category-text {
-	letter-spacing: 0.08em;
+	color: var(--color-text-light);
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-bold);
+	font-family: var(--font-family-text);
 }

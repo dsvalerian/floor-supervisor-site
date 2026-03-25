@@ -1,11 +1,12 @@
 .filter-button {
 	border: none;
 	cursor: pointer;
-	padding: 4px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background: transparent;
+	padding: 0;
+	width: fit-content;
 }
 
 .icon {
@@ -15,6 +16,9 @@
 	transition: var(--transition-normal);
 	vertical-align: middle;
 	text-align: center;
+	padding: 0;
+	margin: -4px; /* Offsets the built-in bounding box of the icon font */
+	width: fit-content;
 }
 
 @media (max-width: 768px) {

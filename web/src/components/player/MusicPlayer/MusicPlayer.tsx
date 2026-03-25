@@ -65,24 +65,28 @@ const MusicPlayer = ({ categories = [] }: MusicPlayerProps) => {
 	};
 
 	return (
-		<section className={styles["music-player-container"]}>
+		<>
 			<audio ref={audioRef} src={trackInfo?.url}></audio>
-			<div className={styles["music-player"]}>
-				<div className={styles["top-section"]}>
-					<div className={styles["music-info"]}>
-						<p className={styles["music-name"]}>{trackInfo?.name || "--"}</p>
-						<p className={styles["music-artist"]}>{trackInfo?.artist}</p>
-					</div>
-				</div>
+			{trackInfo?.url && (
+				<section className={styles["music-player-container"]}>
+					<div className={styles["music-player"]}>
+						<div className={styles["top-section"]}>
+							<div className={styles["music-info"]}>
+								<p className={styles["music-name"]}>{trackInfo?.name || "--"}</p>
+								<p className={styles["music-artist"]}>{trackInfo?.artist}</p>
+							</div>
+						</div>
 
-				<div className={styles["music-controls"]}>
-					{/* <RewindButton /> */}
-					<PlayButton playing={isSongPlaying} onClick={togglePlay} />
-					{/* <ForwardButton /> */}
-					<MusicProgress duration={duration} currentTime={currentTime} onSeekEnd={onSeek} />
-				</div>
-			</div>
-		</section>
+						<div className={styles["music-controls"]}>
+							{/* <RewindButton /> */}
+							<PlayButton playing={isSongPlaying} onClick={togglePlay} />
+							{/* <ForwardButton /> */}
+							<MusicProgress duration={duration} currentTime={currentTime} onSeekEnd={onSeek} />
+						</div>
+					</div>
+				</section>
+			)}
+		</>
 	);
 };
 

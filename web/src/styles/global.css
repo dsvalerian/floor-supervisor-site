@@ -104,15 +104,16 @@ html {
 	line-height: var(--line-height-normal);
 	color: var(--color-text-dark);
 	background-color: var(--color-background);
-	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 body {
 	min-height: 100vh;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	overflow-x: hidden;
+	overflow-x: clip;
 	font-family: var(--font-family-text);
+	letter-spacing: 0.04rem;
 }
 
 button,

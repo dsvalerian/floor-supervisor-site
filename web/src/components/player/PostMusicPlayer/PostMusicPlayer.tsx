@@ -49,6 +49,7 @@ const PostMusicPlayer = ({ track, textColor }: PostMusicPlayerProps) => {
 		>
 			<audio ref={audioRef} src={track.url}></audio>
 			<div className={styles["left"]}>
+				<span className={`material-icons ${styles["icon"]}`}>play_arrow</span>
 				<div className={`${styles["track-text"]}`}>
 					<p className={styles["track-name"]}>{track.name}</p>
 					<p className={styles["track-artist"]}>{track.artist}</p>

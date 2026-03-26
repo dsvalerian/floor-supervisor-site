@@ -5,21 +5,25 @@
 	bottom: 0;
 	width: 600px;
 	max-width: 80vw;
-	min-height: 100dvh;
-	max-height: 100dvh;
 	background: hsla(var(--color-background-hsl) / 0.7);
 	backdrop-filter: blur(12px);
 	border-left: 1px solid var(--color-controls-light-extra-muted);
-	padding: 1rem;
 	color: var(--color-text-light);
 	z-index: 10000;
-
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
+	height: 100vh;
 }
 
 .filter-drawer-content {
+	padding: 1rem;
+	color: var(--color-text-light);
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	height: 100dvh;
+	justify-content: space-between;
+}
+
+.filter-list {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;

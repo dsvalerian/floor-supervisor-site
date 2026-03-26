@@ -49,10 +49,10 @@ if (!blockColors || !events) {
 	.events-container {
 		display: flex;
 		justify-content: space-around;
-		row-gap: 2rem;
 		flex-wrap: wrap;
-		padding: var(--spacing-md);
-		gap: 1rem;
+		padding: 1rem;
+		gap: 2rem;
+		align-items: center;
 	}
 
 	.events-title {
@@ -67,11 +67,8 @@ if (!blockColors || !events) {
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		flex-basis: calc(50% - 1rem);
-		flex-grow: 1;
+		flex: 1 0 0;
 		gap: var(--spacing-xs);
-		flex-wrap: nowrap;
-		text-wrap: nowrap;
 	}
 
 	.event-name {
@@ -84,5 +81,6 @@ if (!blockColors || !events) {
 	.event-location {
 		font-size: var(--font-size-xs);
 		font-weight: var(--font-weight-light);
+		white-space: nowrap;
 	}
 </style>

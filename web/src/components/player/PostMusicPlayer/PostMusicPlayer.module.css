@@ -5,7 +5,7 @@
 	align-items: center;
 	user-select: none;
 	cursor: pointer;
-	padding: 0.25rem 0.75rem;
+	padding: 0.25rem 0.75rem 0.25rem 0.5rem;
 
 	width: 100%;
 	background: none;
@@ -39,14 +39,14 @@
 
 .left {
 	display: flex;
-	gap: 1rem;
 	align-items: center;
 	min-width: 0; /* Add this - allows shrinking below content size */
 	flex: 1; /* Add this - allows it to grow and shrink */
+	gap: 0.5rem;
 }
 
 .icon {
-	font-size: 24px;
+	font-size: 16px;
 }
 
 .track-text {

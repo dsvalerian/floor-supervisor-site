@@ -1,0 +1,176 @@
+---
+import type { Post } from "../../types/sanity.types";
+
+type Props = {
+	config: Post;
+	// Optional: pass the post document id to enable sessionStorage persistence
+	// of the expanded/collapsed state across UI re-renders on the same page.
+	postId?: string;
+	isCollapsible?: boolean;
+};
+
+const {
+	config: { background, category, labelText, labelAlignment, labelTextColor, labelBackground },
+	postId,
+	isCollapsible = false,
+} = Astro.props;
+
+// Compute the CSS variable name based on textColor value
+const labelTextColorVar = `var(--color-text-${labelTextColor})`;
+const alignVar = (labelAlignment === "left" && "start") || (labelAlignment === "right" && "end") || "center";
+
+console.log("labelBackground", labelBackground);
+---
+
+<article class="post-card" data-post-id={postId} data-post-category={category}>
+	{
+		labelText && (
+			<div class="post-label-container">
+				<h2 class="post-label">{labelText}</h2>
+			</div>
+		)
+	}
+	<div class="post-content" data-collapsed={isCollapsible ? "true" : undefined}>
+		<div class="post-content-inner">
+			<slot />
+		</div>
+		{
+			isCollapsible && (
+				<button class="expand-button" aria-label="Expand post">
+					<span class="expand-text">SHOW MORE</span>
+					<span class="expand-icon">▼</span>
+				</button>
+			)
+		}
+	</div>
+</article>
+
+<style
+	define:vars={{
+		postBackground: background,
+		labelBackground: labelBackground,
+		labelTextColor: labelTextColorVar,
+		alignment: alignVar,
+	}}
+>
+	.post-card {
+		box-shadow: var(--shadow-md);
+		background: var(--postBackground);
+		border-radius: var(--radius-normal);
+		overflow: hidden;
+		position: relative;
+	}
+
+	.post-card > * {
+		color: var(--textColor);
+	}
+
+	.post-content {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		--postFadeTo: var(--color-background);
+	}
+
+	.post-content-inner {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.post-label-container {
+		display: flex;
+		justify-content: var(--alignment);
+		position: absolute;
+		left: 0;
+		right: 0;
+		z-index: 3;
+		pointer-events: none;
+	}
+
+	.post-label {
+		background: var(--labelBackground);
+		color: var(--labelTextColor);
+		padding: 0.5rem 1rem;
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-bold);
+		font-family: var(--font-family-text);
+	}
+
+	.post-content[data-collapsed="true"] :global(.block:not(:first-child)) {
+		display: none;
+	}
+
+	.expand-button {
+		position: relative;
+		z-index: 2;
+		width: 100%;
+		padding: 1rem;
+		background: var(--labelBackground);
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 0.75rem;
+		color: var(--labelTextColor);
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+		font-family: var(--font-family-text);
+		transition: opacity var(--transition-normal);
+		user-select: none;
+	}
+
+	.expand-button:hover {
+		background: var(--color-text-light);
+		color: var(--color-text-dark);
+	}
+
+	.expand-icon {
+		transition: transform 0.3s ease;
+	}
+
+	.expand-text {
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-bold);
+		font-family: var(--font-family-text);
+	}
+
+	.post-content[data-collapsed="false"] .expand-icon {
+		transform: rotate(180deg);
+	}
+</style>
+
+<script>
+	document.querySelectorAll(".post-card").forEach(post => {
+		const postId = post.getAttribute("data-post-id");
+		const content = post.querySelector(".post-content");
+		const button = post.querySelector(".expand-button");
+		const textSpan = button?.querySelector(".expand-text");
+
+		if (!content || !button || !textSpan) return;
+
+		const storageKey = postId ? `post-expanded-${postId}` : null;
+		const savedState = storageKey ? sessionStorage.getItem(storageKey) : null;
+		const isExpanded = savedState === "true";
+
+		if (isExpanded) {
+			content.setAttribute("data-collapsed", "false");
+			textSpan.textContent = "SHOW LESS";
+		}
+
+		button.addEventListener("click", () => {
+			const currentlyCollapsed = content.getAttribute("data-collapsed") === "true";
+
+			if (currentlyCollapsed) {
+				content.setAttribute("data-collapsed", "false");
+				textSpan.textContent = "SHOW LESS";
+				if (storageKey) sessionStorage.setItem(storageKey, "true");
+			} else {
+				content.setAttribute("data-collapsed", "true");
+				textSpan.textContent = "SHOW MORE";
+				if (storageKey) sessionStorage.setItem(storageKey, "false");
+			}
+		});
+	});
+</script>

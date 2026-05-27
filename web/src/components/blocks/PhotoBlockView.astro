@@ -1,0 +1,70 @@
+---
+import { createImageUrlBuilder } from "@sanity/image-url";
+import type { PhotoBlock } from "../../types/sanity.types";
+import BlockWrapper from "./BlockWrapper.astro";
+import Image from "astro/components/Image.astro";
+import { getSanityClient } from "../../lib/sanityClient";
+
+type Props = {
+	config: PhotoBlock;
+	postTextColor: "light" | "dark";
+};
+
+const {
+	config: { photos },
+	postTextColor,
+} = Astro.props;
+
+if (!photos) {
+	throw new Error("Missing photos for photo block.");
+}
+
+const builder = createImageUrlBuilder(getSanityClient());
+const photosWithUrls = photos.map(photo => ({
+	...photo,
+	url: builder.image(photo.image).url(),
+	alt: photo.alt || "",
+}));
+---
+
+<BlockWrapper
+	config={{
+		background: { type: "transparent" },
+		textColor: "inherit",
+		padding: false,
+		_type: "blockColors",
+		postTextColor,
+		topPadding: "0",
+	}}
+>
+	<div class="images">
+		{
+			photosWithUrls.map(photo => (
+				<div class="image-wrapper">
+					<Image src={photo.url} alt={photo.alt} layout="constrained" inferSize />
+				</div>
+			))
+		}
+	</div>
+</BlockWrapper>
+
+<style>
+	.images {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.image-wrapper {
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+
+	.image-wrapper img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+</style>

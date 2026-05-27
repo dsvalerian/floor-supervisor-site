@@ -1,0 +1,16 @@
+.skip-next-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.icon {
+	font-size: 36px;
+	user-select: none;
+	color: var(--color-controls-light-muted);
+	transition: var(--transition-normal);
+}
+
+.icon:hover {
+	color: var(--color-controls-light);
+}

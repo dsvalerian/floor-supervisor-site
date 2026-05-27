@@ -1,43 +1,105 @@
-# Astro Starter Kit: Minimal
+# Floor Supervisor — Portfolio Site
+
+> **Work in progress.** The site is in a demo-able state but not yet complete. Features, content, and polish are still being actively developed.
+
+Portfolio and promotional website for Chicago DJ Floor Supervisor. Built as a headless CMS-driven single-page app with a persistent music player, content feed, and category filtering.
+
+**Live demo:** [demo.floorsupervisor.com](https://demo.floorsupervisor.com)
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend framework | [Astro 5](https://astro.build) with React 19 islands |
+| CMS | [Sanity v5](https://www.sanity.io) (hosted Studio + GROQ) |
+| State management | [Nanostores](https://github.com/nanostores/nanostores) |
+| Styling | CSS Modules + CSS custom properties |
+| Language | TypeScript |
+| Hosting | [Cloudflare Pages](https://pages.cloudflare.com) |
+| Asset CDN | Sanity CDN |
+
+---
+
+## Architecture
+
+Monorepo with two npm workspaces:
+
+```
+/
+├── web/            # Astro frontend (deployed to Cloudflare Pages)
+└── sanity-studio/  # Sanity Studio CMS (deployed separately)
+```
+
+Content is authored in Sanity Studio, fetched at build time via GROQ queries, and rendered as a vertical card feed. A custom deploy tool in the Studio lets the content author trigger Cloudflare Pages builds directly.
+
+### Content Block Types
+
+Each post in the feed is composed of configurable blocks:
+
+- **Music** — cover art, audio tracks, playback integration
+- **Photo** — single image or gallery
+- **Text** — styled multi-line text
+- **Events** — date, venue, location, ticket links
+- **Contact Form** — name, email, subject, message
+
+---
+
+## Features
+
+- Persistent bottom music player with play/pause, skip, progress scrubbing
+- Category filter menu with Nanostore-based state shared across islands
+- Sticky header with frosted-glass blur
+- Mobile-first responsive layout using `dvh` units for viewport stability
+- Custom Sanity Studio deploy tool for triggering preview and live Cloudflare builds
+
+---
+
+## Dev Environment Setup
+
+### Prerequisites
+
+- Node.js 18+
+- A [Sanity](https://www.sanity.io) account and project
+
+### 1. Install dependencies
+
+From the repo root (installs both workspaces):
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### 2. Configure environment variables
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+**`web/.env.development`**
+```
+PUBLIC_SANITY_PROJECT_ID=your_project_id
+PUBLIC_SANITY_DATASET=dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+**`sanity-studio/.env.development`**
+```
+SANITY_STUDIO_PROJECT_ID=your_project_id
+SANITY_STUDIO_DATASET=dev
+SANITY_STUDIO_PREVIEW_DEPLOY_HOOK=your_cloudflare_deploy_hook_url
+SANITY_STUDIO_LIVE_DEPLOY_HOOK=your_cloudflare_deploy_hook_url
+```
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### 3. Run
 
-Any static assets, like images, can be placed in the `public/` directory.
+```sh
+npm run dev          # runs both web (localhost:4321) and studio (localhost:3333) concurrently
+npm run dev:web      # web only
+npm run dev:studio   # studio only
+```
 
-## 🧞 Commands
+### Other commands
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command | Action |
+|---|---|
+| `npm run build` | Build both web and studio |
+| `npm run build:web` | Build web to `web/dist/` |
+| `npm run build:studio` | Build Sanity Studio |
+| `npm run dev --workspace=sanity-studio -- gen` | Regenerate Sanity TypeScript types |

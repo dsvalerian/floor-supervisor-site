@@ -1,0 +1,89 @@
+---
+import { createImageUrlBuilder } from "@sanity/image-url";
+import { type BlockColors } from "../../types/sanity.types";
+import { getSanityClient } from "../../lib/sanityClient";
+
+type Props = {
+	config: BlockColors & { padding?: boolean } & { postTextColor: "light" | "dark" } & { topPadding?: string };
+};
+
+const {
+	config: { textColor, background, padding = true, postTextColor, topPadding = "1rem" },
+} = Astro.props;
+
+const resolvedTextColor = textColor === "inherit" ? postTextColor : textColor;
+const textColorVar = `var(--color-text-${resolvedTextColor})`;
+const paddingValue = padding ? "2rem" : "0";
+const imageBuilder = createImageUrlBuilder(getSanityClient());
+
+let backgroundValue;
+let backgroundPosition = "50% 50%";
+switch (background?.type) {
+	case "color":
+		backgroundValue = background.color?.rgb
+			? `rgba(${background.color.rgb.r}, ${background.color.rgb.g}, ${background.color.rgb.b})`
+			: "transparent";
+		break;
+	case "image":
+		if (!background.image) {
+			backgroundValue = "transparent";
+			break;
+		}
+
+		const hotspotX = background.image.hotspot?.x ?? 0.5;
+		const hotspotY = background.image.hotspot?.y ?? 0.5;
+		const cropLeft = background.image.crop?.left ?? 0;
+		const cropRight = background.image.crop?.right ?? 0;
+		const cropTop = background.image.crop?.top ?? 0;
+		const cropBottom = background.image.crop?.bottom ?? 0;
+		const cropWidth = Math.max(0.0001, 1 - cropLeft - cropRight);
+		const cropHeight = Math.max(0.0001, 1 - cropTop - cropBottom);
+		const relativeHotspotX = (hotspotX - cropLeft) / cropWidth;
+		const relativeHotspotY = (hotspotY - cropTop) / cropHeight;
+		const clampedHotspotX = Math.min(1, Math.max(0, relativeHotspotX));
+		const clampedHotspotY = Math.min(1, Math.max(0, relativeHotspotY));
+		backgroundPosition = `${clampedHotspotX * 100}% ${clampedHotspotY * 100}%`;
+		backgroundValue = `url(${imageBuilder.image(background.image).url()})`;
+		break;
+	default:
+		backgroundValue = "transparent";
+		break;
+}
+---
+
+<div class="block">
+	<div class="block-content"><slot /></div>
+</div>
+
+<style
+	define:vars={{
+		blockBackground: backgroundValue,
+		blockBackgroundPosition: backgroundPosition,
+		textColor: textColorVar,
+		padding: paddingValue,
+		topPadding: topPadding,
+	}}
+>
+	.block {
+		background: var(--blockBackground);
+		background-position: var(--blockBackgroundPosition);
+		position: relative;
+		overflow: hidden;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+
+	.block-content {
+		position: relative;
+		z-index: 2;
+		padding: var(--padding);
+	}
+
+	.block:first-child {
+		padding-top: var(--topPadding);
+	}
+
+	.block :global(*) {
+		color: var(--textColor);
+	}
+</style>

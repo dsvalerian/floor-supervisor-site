@@ -1,0 +1,86 @@
+---
+import type { EventsBlock } from "../../types/sanity.types";
+import BlockWrapper from "./BlockWrapper.astro";
+
+type Props = {
+	config: EventsBlock;
+	postTextColor: "light" | "dark";
+};
+
+const {
+	config: { blockColors, title, events },
+	postTextColor,
+} = Astro.props;
+
+if (!blockColors || !events) {
+	throw new Error("Missing block colors or events from events block.");
+}
+---
+
+<BlockWrapper config={{ ...blockColors, postTextColor }}>
+	<div class="events-block-container">
+		{title && <p class="events-title">{title}</p>}
+		<div class="events-container">
+			{
+				events.map(event => (
+					<div class="event-details">
+						{event.name && <p class="event-name">{event.name}</p>}
+						{event.location && <p class="event-location">{event.location}</p>}
+						{event.date && <p class="event-date">{event.date}</p>}
+						{event.startTime && event.endTime && (
+							<p class="event-time">
+								{event.startTime} - {event.endTime}
+							</p>
+						)}
+					</div>
+				))
+			}
+		</div>
+	</div>
+</BlockWrapper>
+
+<style>
+	.events-block-container {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.events-container {
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		padding: 1rem;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.events-title {
+		font-size: var(--font-size-lg);
+		font-weight: var(--font-weight-bold);
+		align-self: center;
+		text-align: center;
+	}
+
+	.event-details {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		flex: 1 0 0;
+		gap: var(--spacing-xs);
+	}
+
+	.event-name {
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-semibold);
+	}
+
+	.event-date,
+	.event-time,
+	.event-location {
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-light);
+		white-space: nowrap;
+	}
+</style>

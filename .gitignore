@@ -15,13 +15,13 @@ pnpm-debug.log*
 
 # environment variables
 .env
-.env.development
-.env.production
+.env.*
 
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# various config folders
 .idea/
 .vscode/
 .kiro/
+.sanity/

@@ -1,0 +1,32 @@
+.filter-button {
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	padding: 0;
+	width: fit-content;
+}
+
+.icon {
+	font-size: 36px;
+	user-select: none;
+	color: var(--color-controls-light-muted);
+	transition: var(--transition-normal);
+	vertical-align: middle;
+	text-align: center;
+	padding: 0;
+	margin: -4px; /* Offsets the built-in bounding box of the icon font */
+	width: fit-content;
+}
+
+@media (max-width: 768px) {
+	.icon {
+		font-size: 24px;
+	}
+}
+
+.icon:hover {
+	color: var(--color-controls-light);
+}

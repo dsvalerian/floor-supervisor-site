@@ -1,0 +1,82 @@
+.post-music-player {
+	display: flex;
+	gap: 1rem;
+	justify-content: space-between;
+	align-items: center;
+	user-select: none;
+	cursor: pointer;
+	padding: 0.25rem 0.75rem 0.25rem 0.5rem;
+
+	width: 100%;
+	background: none;
+	border: none;
+	border-radius: var(--radius-normal);
+}
+
+.selected.text-color-dark,
+.post-music-player.text-color-dark:hover {
+	background: var(--color-text-dark);
+}
+
+.selected.text-color-dark *,
+.post-music-player.text-color-dark:hover * {
+	color: var(--color-text-light);
+}
+
+.selected.text-color-light,
+.post-music-player.text-color-light:hover {
+	background: var(--color-text-light);
+}
+
+.selected.text-color-light *,
+.post-music-player.text-color-light:hover * {
+	color: var(--color-text-dark);
+}
+
+.music-progress {
+	flex-grow: 1;
+}
+
+.left {
+	display: flex;
+	align-items: center;
+	min-width: 0; /* Add this - allows shrinking below content size */
+	flex: 1; /* Add this - allows it to grow and shrink */
+	gap: 0.5rem;
+}
+
+.icon {
+	font-size: 16px;
+}
+
+.track-text {
+	text-align: left;
+	min-width: 0; /* Crucial for ellipsis */
+	flex: 1; /* Allow it to take available space */
+}
+
+.track-name {
+	font-size: var(--font-size-xs);
+	font-weight: var(--font-weight-normal);
+	font-family: var(--font-family-text);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.track-artist {
+	font-size: var(--font-size-xs);
+	font-weight: var(--font-weight-light);
+	font-family: var(--font-family-text);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.track-duration {
+	font-size: var(--font-size-xs);
+	font-weight: var(--font-weight-light);
+	font-family: var(--font-family-text);
+	white-space: nowrap;
+	flex-shrink: 0; /* Prevent duration from shrinking */
+}
